@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestClient", "ConsoleTestClient\ConsoleTestClient.csproj", "{BE33927A-A0FB-422C-BFC4-92F9C5626054}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{8112858B-054C-420D-8D3D-7C167C66C59B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Repositories", "Infrastructure.Repositories\Infrastructure.Repositories.csproj", "{4EDF72AD-8667-4E60-91A4-11F4A4C4B7E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseAccounting.Web", "HouseAccounting.Web\HouseAccounting.Web.csproj", "{D65457E2-B258-442E-9277-86B55CB346C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,10 @@ Global
 		{4EDF72AD-8667-4E60-91A4-11F4A4C4B7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EDF72AD-8667-4E60-91A4-11F4A4C4B7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EDF72AD-8667-4E60-91A4-11F4A4C4B7E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D65457E2-B258-442E-9277-86B55CB346C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D65457E2-B258-442E-9277-86B55CB346C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D65457E2-B258-442E-9277-86B55CB346C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D65457E2-B258-442E-9277-86B55CB346C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
