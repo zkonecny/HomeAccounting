@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using HouseAccounting.Infrastructure.Repositories.DataClasses;
+using HouseAccounting.Infrastructure.Repositories;
+using HouseAccounting.Infrastructure.Repositories.Interfaces;
+using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Model.Classes;
 using HouseAccounting.Model.Repositories;
 
@@ -12,15 +13,23 @@ namespace ConsoleTestClient
     {
         static void Main(string[] args)
         {
-            HouseAccountingDbContext dbContext = new HouseAccountingDbContext();
+            IDbProvider dbProvider = new DbProvider();
 
-            IGenericRepository<Category> categoryRepository = new HouseAccounting.Infrastructure.Repositories.Repositories.GenericRepository<Category, CategoryEntity>(dbContext);
-            var result = categoryRepository.FindById(1);
+            IGenericRepository<Category> categoryRepository = new GenericRepository<Category>(dbProvider);
 
-            foreach (HouseholdEntity item in dbContext.Houselholds)
-            {
-               // Console.WriteLine(item.Name);
-            }
+            var allCategories = categoryRepository.GetAll();
+
+            Category category = new Category() { Description = "Osobni", Name = "Osobni" };
+            categoryRepository.Add(category);
+
+            var search = categoryRepository.FindById(category.Id);
+
+            categoryRepository.Remove(category);
+
+            //foreach (var category in dbContext.Categories)
+            //{
+            //    Console.WriteLine(category.Name);
+            //}
 
             Console.WriteLine("Finished, press any key...");
             Console.Read();

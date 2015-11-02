@@ -1,38 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-
-using HouseAccounting.Infrastructure.Repositories.DataClasses;
-using HouseAccounting.Model.Interfaces;
 using HouseAccounting.Model.Repositories;
 using HouseAccounting.Model.Specifications;
+using HouseAccounting.Infrastructure.Repositories.Interfaces;
+using HouseAccounting.Model.Classes;
+using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class GenericRepository<TDomainEntity, TDataEntity> : IGenericRepository<TDomainEntity> 
-        where TDomainEntity : IDomainEntity
-        where TDataEntity : DataEntity
+    public class GenericRepository<TDomainEntity> : IGenericRepository<TDomainEntity>
+        where TDomainEntity : DomainEntity, new()
     {
-        protected HouseAccountingDbContext _dbContext;
-        protected DbSet<TDataEntity> _dbSet;
+        private readonly IDbProvider dbProvider;
 
-        public GenericRepository(HouseAccountingDbContext context)
+        public GenericRepository(IDbProvider dbProvider)
         {
-            this._dbContext = context;
-            this._dbSet = this._dbContext.Set<TDataEntity>();
+            this.dbProvider = dbProvider;
+        }
+
+        public IEnumerable<TDomainEntity> GetAll()
+        {
+            return dbProvider.GetAll<TDomainEntity>();
         }
 
         public TDomainEntity FindById(int id)
         {
-            var dbEntity = this._dbSet.FirstOrDefault(d => d.Id == id);
-            if (dbEntity != null)
-            {
-                //return null;
-            }
-
-            return default(TDomainEntity);
+            return dbProvider.FindById<TDomainEntity>(id);
         }
 
         public TDomainEntity FindOne(ISpecification<TDomainEntity> spec)
@@ -47,12 +40,17 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
         public void Add(TDomainEntity entity)
         {
-            throw new NotImplementedException();
+            dbProvider.Insert(entity);
+        }
+
+        public void Update(TDomainEntity entity)
+        {
+            dbProvider.Update(entity);
         }
 
         public void Remove(TDomainEntity entity)
         {
-            throw new NotImplementedException();
+            dbProvider.Delete(entity);
         }
     }
 }

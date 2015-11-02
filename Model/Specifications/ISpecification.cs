@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using HouseAccounting.Model.Interfaces;
-
 namespace HouseAccounting.Model.Specifications
 {
-    public interface ISpecification<T> where T : IDomainEntity
+    public interface ISpecification<T>
     {
         bool IsSatisfiedBy(T obj);
     }

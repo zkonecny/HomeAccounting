@@ -1,13 +1,17 @@
-﻿using HouseAccounting.Model.Interfaces;
+﻿using System.Collections.Generic;
 
 namespace HouseAccounting.Model.Classes
 {
-    public class Category : IDomainEntity
+    public class Category : DomainEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public User User { get; set; }
+
+        public ICollection<Expenditure> Expenditures { get; set; }
+
+        public ICollection<Income> Incomes { get; set; }
     }
 }

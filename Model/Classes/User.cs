@@ -1,18 +1,14 @@
 ﻿using System;
-using HouseAccounting.Model.Interfaces;
+using System.Collections.Generic;
 
 namespace HouseAccounting.Model.Classes
 {
-    public class User : IDomainEntity
+    public class User : DomainEntity
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public DateTime? BornOn { get; set; }
-
-        public Household Household { get; set; }
+        public ICollection<Category> Categories { get; set; }
     }
 }

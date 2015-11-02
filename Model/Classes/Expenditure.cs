@@ -1,15 +1,12 @@
 ﻿using System;
-using HouseAccounting.Model.Interfaces;
 
 namespace HouseAccounting.Model.Classes
 {
-    public class Expenditure : IDomainEntity
+    public class Expenditure : DomainEntity
     {
-        public int Id { get; set; }
-
         public DateTime Created { get; set; }
 
-        public double Amount { get; set; }
+        public int Amount { get; set; }
 
         public Category Category { get; set; }
 

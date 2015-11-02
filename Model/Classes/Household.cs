@@ -1,8 +1,6 @@
-﻿using HouseAccounting.Model.Interfaces;
-
-namespace HouseAccounting.Model.Classes
+﻿namespace HouseAccounting.Model.Classes
 {
-    public class Household : IDomainEntity
+    public class Household : DomainEntity
     {
         public int Id { get; set; }
 
