@@ -11,39 +11,39 @@ using HouseAccounting.Model.Repositories;
 
 namespace HouseAccounting.Web.Controllers
 {
-    public class UserController : Controller
+    public class PersonController : Controller
     {
         private readonly IDbProvider dbProvider;
-        private readonly IGenericRepository<User> userRepository;
+        private readonly IGenericRepository<Person> userRepository;
 
-        public UserController()
+        public PersonController()
         {
             dbProvider = new DbProvider();
-            userRepository = new GenericRepository<User>(dbProvider);
+            userRepository = new GenericRepository<Person>(dbProvider);
         }
 
-        // GET: User
+        // GET: Person
         public ActionResult Index()
         {
             var users = userRepository.GetAll();
             return View(users);
         }
 
-        // GET: User/Details/5
+        // GET: Person/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
+        // GET: Person/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Person/Create
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(Person user)
         {
             try
             {
@@ -57,13 +57,13 @@ namespace HouseAccounting.Web.Controllers
             }
         }
 
-        // GET: User/Edit/5
+        // GET: Person/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
+        // POST: Person/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -79,13 +79,13 @@ namespace HouseAccounting.Web.Controllers
             }
         }
 
-        // GET: User/Delete/5
+        // GET: Person/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
+        // POST: Person/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -10,6 +10,6 @@ namespace HouseAccounting.Model.Classes
 
        public Category Category { get; set; }
 
-        public User User { get; set; }
+        public Person User { get; set; }
     }
 }

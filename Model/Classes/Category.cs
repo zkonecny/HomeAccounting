@@ -8,7 +8,7 @@ namespace HouseAccounting.Model.Classes
 
         public string Description { get; set; }
 
-        public User User { get; set; }
+        public Person Person { get; set; }
 
         public ICollection<Expenditure> Expenditures { get; set; }
 

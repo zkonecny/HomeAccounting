@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HouseAccounting.Model.Classes
 {
-    public class User : DomainEntity
+    public class Person : DomainEntity
     {
         public string FirstName { get; set; }
 

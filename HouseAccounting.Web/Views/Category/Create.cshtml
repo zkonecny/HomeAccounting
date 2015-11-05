@@ -1,4 +1,4 @@
-﻿@model HouseAccounting.Model.Classes.Category
+﻿@model HouseAccounting.DTOS.CategoryDto
 
 @{
     ViewBag.Title = "Create";
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => "Osoba", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.User, null, "-- Select Status --")
+                @Html.DropDownListFor(model => model.Person, null, "-- Select Status --")
             </div>
         </div>
   
