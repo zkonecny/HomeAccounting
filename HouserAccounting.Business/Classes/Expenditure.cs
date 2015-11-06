@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HouseAccounting.Model.Classes
+namespace HouserAccounting.Business.Classes
 {
     public class Expenditure : DomainEntity
     {

@@ -65,9 +65,9 @@
       <Project>{55e8d102-5cbe-428b-8309-f406c73c0a65}</Project>
       <Name>HouseAccounting.DTOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{8112858B-054C-420D-8D3D-7C167C66C59B}</Project>
-      <Name>Model</Name>
+    <ProjectReference Include="..\HouserAccounting.Business\HouserAccounting.Business.csproj">
+      <Project>{F1C89212-724E-483F-A8ED-2B8ADC935F4E}</Project>
+      <Name>HouserAccounting.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

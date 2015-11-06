@@ -1,53 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using HouseAccounting.DTO.Translators;
+using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouseAccounting.Model.Classes;
-using HouseAccounting.Model.Repositories;
+using HouseAccounting.Web.Models.Persons;
+using HouserAccounting.Business.Classes;
+using HouserAccounting.Business.Repositories;
 
 namespace HouseAccounting.Web.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly IDbProvider dbProvider;
-        private readonly IGenericRepository<Person> userRepository;
+        private readonly IGenericRepository<Person> personRepository;
+        private readonly ITranslator translator;
 
-        public PersonController()
+        public PersonController(IGenericRepository<Person> personRepository, ITranslator translator)
         {
-            dbProvider = new DbProvider();
-            userRepository = new GenericRepository<Person>(dbProvider);
+            this.personRepository = personRepository;
+            this.translator = translator;
         }
 
         // GET: Person
         public ActionResult Index()
         {
-            var users = userRepository.GetAll();
-            return View(users);
+            PersonListViewModel model = new PersonListViewModel(personRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // GET: Person/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            PersonDetailsViewModel model = new PersonDetailsViewModel(id, personRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // GET: Person/Create
         public ActionResult Create()
         {
-            return View();
+            PersonCreateViewModel model = new PersonCreateViewModel();
+            return View(model);
         }
 
         // POST: Person/Create
         [HttpPost]
-        public ActionResult Create(Person user)
+        public ActionResult Create(PersonCreateViewModel model)
         {
             try
             {
-                userRepository.Add(user);
+                var person = translator.TranslateTo<Person>(model.Person);
+                personRepository.Add(person);
 
                 return RedirectToAction("Index");
             }
@@ -60,20 +65,24 @@ namespace HouseAccounting.Web.Controllers
         // GET: Person/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            PersonEditViewModel model = new PersonEditViewModel(id, personRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // POST: Person/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, PersonEditViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                TryUpdateModel(model.Person);
+                var person = translator.TranslateTo<Person>(model.Person);
+                personRepository.Update(person);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception exception)
             {
                 return View();
             }
@@ -82,16 +91,20 @@ namespace HouseAccounting.Web.Controllers
         // GET: Person/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            PersonDeleteViewModel model = new PersonDeleteViewModel(id, personRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // POST: Person/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, PersonDeleteViewModel model)
         {
             try
             {
-                // TODO: Add delete logic here
+                TryUpdateModel(model.Person);
+                var person = translator.TranslateTo<Person>(model.Person);
+                personRepository.Remove(person);
 
                 return RedirectToAction("Index");
             }

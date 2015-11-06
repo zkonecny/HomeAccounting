@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using HouseAccounting.Model.Repositories;
-using HouseAccounting.Model.Specifications;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
-using HouseAccounting.Model.Classes;
-using LiteDB;
+using HouserAccounting.Business.Classes;
+using HouserAccounting.Business.Repositories;
+using HouserAccounting.Business.Specifications;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {

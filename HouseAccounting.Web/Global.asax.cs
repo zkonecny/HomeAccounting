@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
@@ -10,6 +8,7 @@ using System.Web.Routing;
 using Castle.Windsor;
 using HouseAccounting.DTO.Translators.Installers;
 using HouseAccounting.Infrastructure.Repositories.Installers;
+using HouseAccounting.Web.Installers;
 
 namespace HouseAccounting.Web
 {
@@ -39,7 +38,8 @@ namespace HouseAccounting.Web
 
             this._container.Install(
                 new RepositoriesInstaller(),
-                new TranslatorsInstaller()
+                new TranslatorsInstaller(),
+                new WebInstaller()
                 );
         }
 

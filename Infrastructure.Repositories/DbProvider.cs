@@ -1,10 +1,7 @@
 ﻿using HouseAccounting.Infrastructure.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HouseAccounting.Model.Classes;
+using HouserAccounting.Business.Classes;
 using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories
@@ -51,7 +48,7 @@ namespace HouseAccounting.Infrastructure.Repositories
             {
                 var collection = GetCollection(db, entity);
 
-                var result = collection.Insert(entity);
+                var result = collection.Update(entity);
             }
         }
 

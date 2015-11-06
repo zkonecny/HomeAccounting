@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace HouseAccounting.Model.Classes
+namespace HouserAccounting.Business.Classes
 {
     public class Person : DomainEntity
     {

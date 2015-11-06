@@ -3,7 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouseAccounting.Model.Repositories;
+using HouserAccounting.Business.Repositories;
 
 namespace HouseAccounting.Infrastructure.Repositories.Installers
 {

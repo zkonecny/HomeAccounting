@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace HouseAccounting.Web.Models
+﻿namespace HouseAccounting.Web.Models
 {
     public abstract class ViewModelBase
     {
@@ -29,7 +24,6 @@ namespace HouseAccounting.Web.Models
 
         protected virtual void SetupViewData()
         {
-
         }
     }
 }

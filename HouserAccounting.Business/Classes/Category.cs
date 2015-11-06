@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HouseAccounting.Model.Classes
+namespace HouserAccounting.Business.Classes
 {
     public class Category : DomainEntity
     {

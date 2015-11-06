@@ -1,0 +1,18 @@
+﻿@model HouseAccounting.Web.Models.Persons.PersonDeleteViewModel
+
+<h2>Smazání osoby</h2>
+
+<h3>Opravdu smazat osobu?</h3>
+<div>
+    <hr />
+    @Html.Partial("PersonDetail", Model.Person)
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Smazat" class="btn btn-default" /> |
+            @Html.ActionLink("Zpět na seznam osob", "Index")
+        </div>
+    }
+</div>

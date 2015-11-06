@@ -7,17 +7,17 @@ namespace HouseAccounting.Web
 {
     public class WindsorControllerFactory : DefaultControllerFactory
     {
-        private readonly WindsorContainer _container;
+        private readonly WindsorContainer container;
 
         public WindsorControllerFactory(WindsorContainer container)
         {
-            _container = container;
+            this.container = container;
 
         }
 
         public override void ReleaseController(IController controller)
         {
-            _container.Release(controller);
+            container.Release(controller);
         }
 
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
@@ -27,7 +27,7 @@ namespace HouseAccounting.Web
                 return base.GetControllerInstance(requestContext, controllerType);
             }
 
-            return _container.Resolve(controllerType) as IController;
+            return container.Resolve(controllerType) as IController;
         }
     }
 }

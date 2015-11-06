@@ -1,0 +1,12 @@
+﻿@model HouseAccounting.Web.Models.Persons.PersonDetailsViewModel
+
+<h2>Detail osoby</h2>
+
+<div>
+    <hr />
+    @Html.Partial("PersonDetail", Model.Person)
+</div>
+<p>
+    @Html.ActionLink("Editovat", "Edit", new { id = Model.Person.Id }) |
+    @Html.ActionLink("Zpět na seznam osob", "Index")
+</p>

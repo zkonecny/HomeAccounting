@@ -1,13 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HouseAccounting.Model.Classes;
-using HouseAccounting.Model.Specifications;
+﻿using System.Collections.Generic;
+using HouserAccounting.Business.Classes;
+using HouserAccounting.Business.Specifications;
 
-namespace HouseAccounting.Model.Repositories
+namespace HouserAccounting.Business.Repositories
 {
     public interface IGenericRepository<TDomainEntity> where TDomainEntity : DomainEntity
     {

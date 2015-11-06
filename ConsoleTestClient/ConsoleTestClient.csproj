@@ -33,12 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,13 +49,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HouserAccounting.Business\HouserAccounting.Business.csproj">
+      <Project>{F1C89212-724E-483F-A8ED-2B8ADC935F4E}</Project>
+      <Name>HouserAccounting.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
       <Project>{4edf72ad-8667-4e60-91a4-11f4a4c4b7e0}</Project>
       <Name>Infrastructure.Repositories</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{8112858b-054c-420d-8d3d-7c167c66c59b}</Project>
-      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

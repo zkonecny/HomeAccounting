@@ -1,4 +1,4 @@
-﻿namespace HouseAccounting.Model.Classes
+﻿namespace HouserAccounting.Business.Classes
 {
     public class Household : DomainEntity
     {
