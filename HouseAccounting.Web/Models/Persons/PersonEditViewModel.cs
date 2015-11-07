@@ -10,8 +10,8 @@ namespace HouseAccounting.Web.Models.Persons
         {
         }
 
-        public PersonEditViewModel(int personId, IGenericRepository<Person> personRepository, ITranslator translator)
-            : base(personId, personRepository, translator)
+        public PersonEditViewModel(int id, IGenericRepository<Person> repository, ITranslator translator)
+            : base(id, repository, translator)
         {
 
         }

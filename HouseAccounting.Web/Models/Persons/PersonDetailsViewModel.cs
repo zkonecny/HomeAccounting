@@ -10,8 +10,8 @@ namespace HouseAccounting.Web.Models.Persons
     public class PersonDetailsViewModel : ViewModelBase
     {
         private readonly ITranslator translator;
-        private readonly int personId;
-        private readonly IGenericRepository<Person> personRepository;
+        private readonly int id;
+        private readonly IGenericRepository<Person> repository;
         public readonly string Title = "Detail osoby";
 
         public PersonDto Person { get; private set; }
@@ -21,10 +21,10 @@ namespace HouseAccounting.Web.Models.Persons
             Person = new PersonDto();
         }
 
-        public PersonDetailsViewModel(int personId, IGenericRepository<Person> personRepository, ITranslator translator)
+        public PersonDetailsViewModel(int id, IGenericRepository<Person> repository, ITranslator translator)
         {
-            this.personId = personId;
-            this.personRepository = personRepository;
+            this.id = id;
+            this.repository = repository;
             this.translator = translator;
         }
 
@@ -32,8 +32,8 @@ namespace HouseAccounting.Web.Models.Persons
         {
             base.SetupViewData();
             PageTitle = Title;
-            var person = this.personRepository.FindById(personId);
-            Person = this.translator.TranslateTo<PersonDto>(person);
+            var person = repository.FindById(id);
+            Person = translator.TranslateTo<PersonDto>(person);
         }
     }
 }

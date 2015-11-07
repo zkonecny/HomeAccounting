@@ -16,5 +16,8 @@ namespace HouseAccounting.DTOS
 
         [Display(Name = "Osoba")]
         public PersonDto Person { get; set; }
+
+        //[Display(Name = "Osoba")]
+        //public PersonDto Person { get; set; }
     }
 }

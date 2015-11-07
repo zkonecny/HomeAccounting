@@ -1,40 +1,18 @@
-﻿@model HouseAccounting.DTOS.CategoryDto
+﻿@model HouseAccounting.Web.Models.Categories.CategoryDeleteViewModel
 
-@{
-    ViewBag.Title = "Delete";
-}
+<h2>Smazání kategorie</h2>
 
-<h2>Delete</h2>
-
-<h3>Opravdu smazat?</h3>
+<h3>Opravdu smazat kategorii?</h3>
 <div>
-    <h4>Category</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
+    @Html.Partial("CategoryDetail", Model.Category)
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Smazat" class="btn btn-default" /> |
+            @Html.ActionLink("Zpět na seznam kategorií", "Index")
         </div>
     }
 </div>

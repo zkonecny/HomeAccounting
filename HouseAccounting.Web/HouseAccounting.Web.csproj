@@ -128,13 +128,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Installers\WebInstaller.cs" />
+    <Compile Include="Models\Categories\CategoryCreateViewModel.cs" />
+    <Compile Include="Models\Categories\CategoryDeleteViewModel.cs" />
+    <Compile Include="Models\Categories\CategoryDetailsViewModel.cs" />
+    <Compile Include="Models\Categories\CategoryEditViewModel.cs" />
+    <Compile Include="Models\Categories\CategoryListViewModel.cs" />
     <Compile Include="Models\Persons\PersonDeleteViewModel.cs" />
     <Compile Include="Models\Persons\PersonCreateViewModel.cs" />
     <Compile Include="Models\Persons\PersonDetailsViewModel.cs" />
@@ -181,18 +186,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Person\Create.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Person\Details.cshtml" />
     <Content Include="Views\Person\Delete.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\Person\PersonDetail.cshtml" />
     <Content Include="Views\Person\PersonEdit.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\CategoryDetail.cshtml" />
+    <Content Include="Views\Category\CategoryEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

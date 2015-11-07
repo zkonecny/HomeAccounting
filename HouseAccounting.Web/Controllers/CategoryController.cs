@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-using HouseAccounting.Infrastructure.Repositories;
-using HouseAccounting.Infrastructure.Repositories.Interfaces;
-using HouseAccounting.Infrastructure.Repositories.Repositories;
+﻿using System;
+using System.Web.Mvc;
+using HouseAccounting.DTO.Translators;
+using HouseAccounting.Web.Models.Categories;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
 
@@ -9,41 +9,50 @@ namespace HouseAccounting.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly IDbProvider dbProvider;
         private readonly IGenericRepository<Category> categoryRepository;
+        private readonly IGenericRepository<Person> pesonRepository;
+        private readonly ITranslator translator;
 
-        public CategoryController()
+        public CategoryController(IGenericRepository<Category> categoryRepository, IGenericRepository<Person> pesonRepository, ITranslator translator)
         {
-            dbProvider = new DbProvider();
-            categoryRepository = new GenericRepository<Category>(dbProvider);
+            this.categoryRepository = categoryRepository;
+            this.pesonRepository = pesonRepository;
+            this.translator = translator;
         }
 
         // GET: Category
         public ActionResult Index()
         {
-            var categories = categoryRepository.GetAll();
-            return View(categories);
+            CategoryListViewModel model = new CategoryListViewModel(categoryRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            CategoryDetailsViewModel model = new CategoryDetailsViewModel(id, categoryRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // GET: Category/Create
         public ActionResult Create()
         {
-            return View();
+            CategoryCreateViewModel model = new CategoryCreateViewModel(pesonRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // POST: Category/Create
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult Create(CategoryCreateViewModel model)
         {
             try
             {
-                categoryRepository.Add(category);
+                TryUpdateModel(model.Category);
+                var person = translator.TranslateTo<Category>(model.Category);
+                categoryRepository.Add(person);
 
                 return RedirectToAction("Index");
             }
@@ -56,20 +65,24 @@ namespace HouseAccounting.Web.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            CategoryEditViewModel model = new CategoryEditViewModel(id, categoryRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, CategoryEditViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                TryUpdateModel(model.Category);
+                var person = translator.TranslateTo<Category>(model.Category);
+                categoryRepository.Update(person);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception exception)
             {
                 return View();
             }
@@ -78,16 +91,19 @@ namespace HouseAccounting.Web.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            var category = categoryRepository.FindById(id);
-            return View(category);
+            CategoryDeleteViewModel model = new CategoryDeleteViewModel(id, categoryRepository, translator);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Category category)
+        public ActionResult Delete(int id, CategoryDeleteViewModel model)
         {
             try
             {
+                TryUpdateModel(model.Category);
+                var category = translator.TranslateTo<Category>(model.Category);
                 categoryRepository.Remove(category);
 
                 return RedirectToAction("Index");

@@ -4,17 +4,17 @@ using HouseAccounting.DTOS;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
 
-namespace HouseAccounting.Web.Models.Persons
+namespace HouseAccounting.Web.Models.Categories
 {
-    public class PersonListViewModel : ViewModelBase
+    public class CategoryListViewModel : ViewModelBase
     {
         private readonly ITranslator translator;
-        private readonly IGenericRepository<Person> repository;
-        public readonly string Title = "Seznam osob";
+        private readonly IGenericRepository<Category> repository;
+        public readonly string Title = "Seznam kategorií";
 
-        public IEnumerable<PersonDto> Persons { get; private set; }
+        public IEnumerable<CategoryDto> Categories { get; private set; }
 
-        public PersonListViewModel(IGenericRepository<Person> repository, ITranslator translator)
+        public CategoryListViewModel(IGenericRepository<Category> repository, ITranslator translator)
         {
             this.repository = repository;
             this.translator = translator;
@@ -30,9 +30,9 @@ namespace HouseAccounting.Web.Models.Persons
         {
             PageTitle = Title;
 
-            var persons = repository.GetAll();
+            var categories = this.repository.GetAll();
 
-            Persons = translator.TranslateTo<IEnumerable<PersonDto>>(persons);
+            Categories = this.translator.TranslateTo<IEnumerable<CategoryDto>>(categories);
         }
     }
 }
