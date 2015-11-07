@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using HouseAccounting.DTO.Translators;
-using HouseAccounting.DTOS;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
+﻿using HouseAccounting.DTOS;
 
 namespace HouseAccounting.Web.Models.Persons
 {

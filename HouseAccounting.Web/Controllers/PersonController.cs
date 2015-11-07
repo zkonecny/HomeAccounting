@@ -51,6 +51,7 @@ namespace HouseAccounting.Web.Controllers
         {
             try
             {
+                TryUpdateModel(model.Person);
                 var person = translator.TranslateTo<Person>(model.Person);
                 personRepository.Add(person);
 
