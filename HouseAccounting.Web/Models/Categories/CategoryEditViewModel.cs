@@ -1,4 +1,5 @@
 ﻿using HouseAccounting.DTO.Translators;
+using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
 
@@ -10,7 +11,7 @@ namespace HouseAccounting.Web.Models.Categories
         {
         }
 
-        public CategoryEditViewModel(int personId, IGenericRepository<Category> repository, ITranslator translator)
+        public CategoryEditViewModel(int personId, ICategoryRepository repository, ITranslator translator)
             : base(personId, repository, translator)
         {
 

@@ -1,23 +1,20 @@
 ﻿using System.Collections.Generic;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Specifications;
+using LiteDB;
 
 namespace HouserAccounting.Business.Repositories
 {
-    public interface IGenericRepository<TDomainEntity> where TDomainEntity : DomainEntity
+    public interface IGenericRepository<TDomainEntity> where TDomainEntity : DomainEntity, new()
     {
         IEnumerable<TDomainEntity> GetAll();
 
         TDomainEntity FindById(int id);
 
-        TDomainEntity FindOne(ISpecification<TDomainEntity> spec);
+        void Add(TDomainEntity domainEntity);
 
-        IEnumerable<TDomainEntity> Find(ISpecification<TDomainEntity> spec);
+        void Update(TDomainEntity domainEntity);
 
-        void Add(TDomainEntity entity);
-
-        void Update(TDomainEntity entity);
-
-        void Remove(TDomainEntity entity);
+        void Remove(TDomainEntity domainEntity);
     }
 }

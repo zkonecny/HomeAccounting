@@ -13,10 +13,10 @@ namespace HouseAccounting.Web.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly IGenericRepository<Person> personRepository;
+        private readonly IPersonRepository personRepository;
         private readonly ITranslator translator;
 
-        public PersonController(IGenericRepository<Person> personRepository, ITranslator translator)
+        public PersonController(IPersonRepository personRepository, ITranslator translator)
         {
             this.personRepository = personRepository;
             this.translator = translator;

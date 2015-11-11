@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
+using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
 
@@ -10,7 +11,7 @@ namespace HouseAccounting.Web.Models.Persons
     {
         private readonly ITranslator translator;
         private readonly int id;
-        private readonly IGenericRepository<Person> repository;
+        private readonly IPersonRepository repository;
         public readonly string Title = "Smazat osobu";
 
         public PersonDto Person { get; private set; }
@@ -20,7 +21,7 @@ namespace HouseAccounting.Web.Models.Persons
             Person = new PersonDto();
         }
 
-        public PersonDeleteViewModel(int id, IGenericRepository<Person> repository, ITranslator translator)
+        public PersonDeleteViewModel(int id, IPersonRepository repository, ITranslator translator)
         {
             this.id = id;
             this.repository = repository;

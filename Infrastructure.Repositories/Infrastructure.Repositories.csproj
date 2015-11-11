@@ -55,10 +55,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbProvider.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\ExpenditureEntity.cs" />
+    <Compile Include="Entities\IncomeEntity.cs" />
+    <Compile Include="Entities\PersonEntity.cs" />
     <Compile Include="Installers\RepositoriesInstaller.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\ICategoryRepository.cs" />
+    <Compile Include="Repositories\IPersonRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

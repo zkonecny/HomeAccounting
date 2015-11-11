@@ -1,7 +1,8 @@
-﻿using HouseAccounting.Infrastructure.Repositories.Interfaces;
+﻿using System;
+using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Infrastructure.Repositories.Entities;
 using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories
@@ -10,21 +11,39 @@ namespace HouseAccounting.Infrastructure.Repositories
     {
         private const string connectionString = @"C:\Temp\MyData.db";
 
-        public IEnumerable<TDomainEntity> GetAll<TDomainEntity>() where TDomainEntity : DomainEntity, new()
+        public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity, new()
         {
             using (var db = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection<TDomainEntity>(db, typeof(TDomainEntity).Name);
+                var collection = GetCollection<TEntity>(db, typeof(TEntity).Name);
 
                 return collection.FindAll().ToList();
             }
         }
 
-        public TDomainEntity FindById<TDomainEntity>(int id) where TDomainEntity : DomainEntity, new()
+        public IEnumerable<TEntity> GetAll<TEntity>(Action<TEntity>[] includes) where TEntity : BaseEntity, new()
         {
             using (var db = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection<TDomainEntity>(db, typeof(TDomainEntity).Name);
+                var collection = GetCollection<TEntity>(db, typeof(TEntity).Name);
+                
+
+                return collection.FindAll().ToList();
+            }
+        }
+
+        public TEntity FindById<TEntity>(int id) where TEntity : BaseEntity, new()
+        {
+            return FindById<TEntity>(id, null);
+        }
+
+        public TEntity FindById<TEntity>(int id, Action<TEntity>[] includes) where TEntity : BaseEntity, new()
+        {
+            using (var db = new LiteDatabase(connectionString))
+            {
+                var collection = GetCollection<TEntity>(db, typeof(TEntity).Name);
+
+                AddIncludes(collection, includes);
 
                 var result = collection.FindById(new BsonValue(id));
 
@@ -32,7 +51,7 @@ namespace HouseAccounting.Infrastructure.Repositories
             }
         }
 
-        public void Insert<TDomainEntity>(TDomainEntity entity) where TDomainEntity : DomainEntity, new()
+        public void Insert<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
             using (var db = new LiteDatabase(connectionString))
             {
@@ -42,7 +61,7 @@ namespace HouseAccounting.Infrastructure.Repositories
             }
         }
 
-        public void Update<TDomainEntity>(TDomainEntity entity) where TDomainEntity : DomainEntity, new()
+        public void Update<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
             using (var db = new LiteDatabase(connectionString))
             {
@@ -52,7 +71,7 @@ namespace HouseAccounting.Infrastructure.Repositories
             }
         }
 
-        public void Delete<TDomainEntity>(TDomainEntity entity) where TDomainEntity : DomainEntity, new()
+        public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
             using (var db = new LiteDatabase(connectionString))
             {
@@ -62,18 +81,39 @@ namespace HouseAccounting.Infrastructure.Repositories
             }
         }
 
-        private LiteCollection<TDomainEntity> GetCollection<TDomainEntity>(LiteDatabase database, TDomainEntity entity)
-            where TDomainEntity : DomainEntity, new()
+        public LiteCollection<TEntity> GetCollection<TEntity>(Type entityType) where TEntity : BaseEntity, new()
         {
-            var collectionName = entity.GetType().Name;
-            return GetCollection<TDomainEntity>(database, collectionName);
+            using (var db = new LiteDatabase(connectionString))
+            {
+                var collectionName = entityType.Name;
+                return GetCollection<TEntity>(db, collectionName);
+            }
         }
 
-        private LiteCollection<TDomainEntity> GetCollection<TDomainEntity>(LiteDatabase database, string collectionName)
-            where TDomainEntity : DomainEntity, new()
+        private LiteCollection<TEntity> GetCollection<TEntity>(LiteDatabase database, TEntity entity)
+            where TEntity : BaseEntity, new()
         {
-            var collection = database.GetCollection<TDomainEntity>(collectionName);
+            var collectionName = entity.GetType().Name;
+            return GetCollection<TEntity>(database, collectionName);
+        }
+
+        private LiteCollection<TEntity> GetCollection<TEntity>(LiteDatabase database, string collectionName)
+            where TEntity : BaseEntity, new()
+        {
+            var collection = database.GetCollection<TEntity>(collectionName);
             return collection;
+        }
+
+        private void AddIncludes<TEntity>(LiteCollection<TEntity> collection, Action<TEntity>[] includes)
+            where TEntity : BaseEntity, new()
+        {
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    collection.Include(include);
+                }
+            }
         }
     }
 }

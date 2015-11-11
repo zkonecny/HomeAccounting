@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LiteDB;
 
 namespace HouserAccounting.Business.Classes
 {

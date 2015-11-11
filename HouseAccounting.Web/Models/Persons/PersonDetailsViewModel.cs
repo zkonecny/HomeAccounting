@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using HouseAccounting.DTO.Translators;
+﻿using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
+using HouseAccounting.Infrastructure.Repositories.Repositories;
 
 namespace HouseAccounting.Web.Models.Persons
 {
@@ -11,7 +8,7 @@ namespace HouseAccounting.Web.Models.Persons
     {
         private readonly ITranslator translator;
         private readonly int id;
-        private readonly IGenericRepository<Person> repository;
+        private readonly IPersonRepository repository;
         public readonly string Title = "Detail osoby";
 
         public PersonDto Person { get; private set; }
@@ -21,7 +18,7 @@ namespace HouseAccounting.Web.Models.Persons
             Person = new PersonDto();
         }
 
-        public PersonDetailsViewModel(int id, IGenericRepository<Person> repository, ITranslator translator)
+        public PersonDetailsViewModel(int id, IPersonRepository repository, ITranslator translator)
         {
             this.id = id;
             this.repository = repository;

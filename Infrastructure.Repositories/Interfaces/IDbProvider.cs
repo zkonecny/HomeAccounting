@@ -1,18 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouserAccounting.Business.Classes;
+using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Interfaces
 {
     public interface IDbProvider
     {
-        IEnumerable<TDomainEntity> GetAll<TDomainEntity>() where TDomainEntity : DomainEntity, new();
+        IEnumerable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity, new();
 
-        TDomainEntity FindById<TDomainEntity>(int id) where TDomainEntity : DomainEntity, new();
+        IEnumerable<TEntity> GetAll<TEntity>(Action<TEntity>[] includes) where TEntity : BaseEntity, new();
 
-        void Insert<TDomainEntity>(TDomainEntity entity) where TDomainEntity : DomainEntity, new();
+        TEntity FindById<TEntity>(int id) where TEntity : BaseEntity, new();
 
-        void Update<TDomainEntity>(TDomainEntity entity) where TDomainEntity : DomainEntity, new();
+        TEntity FindById<TEntity>(int id, Action<TEntity>[] includes) where TEntity : BaseEntity, new();
 
-        void Delete<TDomainEntity>(TDomainEntity entity) where TDomainEntity : DomainEntity, new();
+        void Insert<TEntity>(TEntity entity) where TEntity : BaseEntity, new();
+
+        void Update<TEntity>(TEntity entity) where TEntity : BaseEntity, new();
+
+        void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity, new();
+
+        LiteCollection<TEntity> GetCollection<TEntity>(Type entityType)
+            where TEntity : BaseEntity, new();
     }
 }

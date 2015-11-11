@@ -1,55 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
 using HouserAccounting.Business.Specifications;
+using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class GenericRepository<TDomainEntity> : IGenericRepository<TDomainEntity>
-        where TDomainEntity : DomainEntity, new()
+    public class GenericRepository<TDomainEntity> : IGenericRepository<TDomainEntity> where TDomainEntity : DomainEntity, new()
     {
-        private readonly IDbProvider dbProvider;
-
-        public GenericRepository(IDbProvider dbProvider)
+        public virtual IEnumerable<TDomainEntity> GetAll()
         {
-            this.dbProvider = dbProvider;
+            throw new System.NotImplementedException();
         }
 
-        public IEnumerable<TDomainEntity> GetAll()
+        public virtual TDomainEntity FindById(int id)
         {
-            return dbProvider.GetAll<TDomainEntity>();
+            throw new System.NotImplementedException();
         }
 
-        public TDomainEntity FindById(int id)
+        public virtual void Add(TDomainEntity domainEntity)
         {
-            return dbProvider.FindById<TDomainEntity>(id);
+            throw new System.NotImplementedException();
         }
 
-        public TDomainEntity FindOne(ISpecification<TDomainEntity> spec)
+        public virtual void Update(TDomainEntity domainEntity)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
-        public IEnumerable<TDomainEntity> Find(ISpecification<TDomainEntity> spec)
+        public virtual  void Remove(TDomainEntity domainEntity)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Add(TDomainEntity entity)
-        {
-            dbProvider.Insert(entity);
-        }
-
-        public void Update(TDomainEntity entity)
-        {
-            dbProvider.Update(entity);
-        }
-
-        public void Remove(TDomainEntity entity)
-        {
-            dbProvider.Delete(entity);
+            throw new System.NotImplementedException();
         }
     }
 }

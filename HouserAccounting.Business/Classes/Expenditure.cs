@@ -1,4 +1,5 @@
 ﻿using System;
+using LiteDB;
 
 namespace HouserAccounting.Business.Classes
 {
@@ -8,8 +9,8 @@ namespace HouserAccounting.Business.Classes
 
         public int Amount { get; set; }
 
-        public Category Category { get; set; }
+        public DbRef<Category> Category { get; set; }
 
-        public Person User { get; set; }
+        public DbRef<Person> Person { get; set; }
     }
 }

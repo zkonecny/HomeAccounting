@@ -16,6 +16,11 @@ namespace HouseAccounting.Infrastructure.Repositories.Installers
 
             container.Register(Component.For(typeof(IGenericRepository<>))
                 .ImplementedBy(typeof(GenericRepository<>)).LifestylePerWebRequest());
+
+            container.Register(Component.For(typeof(IPersonRepository))
+                .ImplementedBy(typeof(PersonRepository)).LifestylePerWebRequest());
+            container.Register(Component.For(typeof(ICategoryRepository))
+                .ImplementedBy(typeof(CategoryRepository)).LifestylePerWebRequest());
         }
     }
 }

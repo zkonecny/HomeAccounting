@@ -13,16 +13,16 @@ namespace ConsoleTestClient
         {
             IDbProvider dbProvider = new DbProvider();
 
-            IGenericRepository<Category> categoryRepository = new GenericRepository<Category>(dbProvider);
+            //IGenericRepository<Category> categoryRepository = new GenericRepository<Category>(dbProvider);
 
-            var allCategories = categoryRepository.GetAll();
+            //var allCategories = categoryRepository.GetAll();
 
-            Category category = new Category() { Description = "Osobni", Name = "Osobni" };
-            categoryRepository.Add(category);
+            //Category category = new Category() { Description = "Osobni", Name = "Osobni" };
+            //categoryRepository.Add(category);
 
-            var search = categoryRepository.FindById(category.Id);
+            //var search = categoryRepository.FindById(category.Id);
 
-            categoryRepository.Remove(category);
+            //categoryRepository.Remove(category);
 
             //foreach (var category in dbContext.Categories)
             //{

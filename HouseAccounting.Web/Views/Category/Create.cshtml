@@ -30,7 +30,7 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="Osoba">Osoba</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Category.Id, new SelectList(Model.Persons))
+                @Html.DropDownListFor(model => model.SelectedPersonId, new SelectList(Model.Persons, "Id", "FullName"))
             </div>
         </div>
 

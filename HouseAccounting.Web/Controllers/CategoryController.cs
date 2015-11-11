@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Web.Mvc;
 using HouseAccounting.DTO.Translators;
+using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Categories;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
+using LiteDB;
 
 namespace HouseAccounting.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly IGenericRepository<Category> categoryRepository;
-        private readonly IGenericRepository<Person> pesonRepository;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly IPersonRepository pesonRepository;
         private readonly ITranslator translator;
 
-        public CategoryController(IGenericRepository<Category> categoryRepository, IGenericRepository<Person> pesonRepository, ITranslator translator)
+        public CategoryController(ICategoryRepository categoryRepository, IPersonRepository pesonRepository, ITranslator translator)
         {
             this.categoryRepository = categoryRepository;
             this.pesonRepository = pesonRepository;
@@ -51,12 +53,13 @@ namespace HouseAccounting.Web.Controllers
             try
             {
                 TryUpdateModel(model.Category);
-                var person = translator.TranslateTo<Category>(model.Category);
-                categoryRepository.Add(person);
+                var category = translator.TranslateTo<Category>(model.Category);
+                category.Person = pesonRepository.FindById(model.SelectedPersonId);
+                categoryRepository.Add(category);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception exception)
             {
                 return View();
             }
