@@ -6,7 +6,7 @@ using HouserAccounting.Business.Classes;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class PersonRepository : GenericRepository<Person>, IPersonRepository
+    public class PersonRepository : IPersonRepository
     {
         private readonly IDbProvider dbProvider;
 
@@ -15,7 +15,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             this.dbProvider = dbProvider;
         }
 
-        public override IEnumerable<Person> GetAll()
+        public IEnumerable<Person> GetAll()
         {
             var entities = dbProvider.GetAll<PersonEntity>();
 
@@ -30,7 +30,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return persons;
         }
 
-        public override Person FindById(int id)
+        public Person FindById(int id)
         {
             var entity = dbProvider.FindById<PersonEntity>(id);
 
@@ -44,7 +44,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return person;
         }
 
-        public override void Add(Person domainEntity)
+        public void Add(Person domainEntity)
         {
             PersonEntity entity = new PersonEntity
             {
@@ -55,7 +55,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Insert(entity);
         }
 
-        public override void Update(Person domainEntity)
+        public void Update(Person domainEntity)
         {
             var entity = dbProvider.FindById<PersonEntity>(domainEntity.Id);
             entity.FirstName = domainEntity.FirstName;
@@ -64,7 +64,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Update(entity);
         }
 
-        public override void Remove(Person domainEntity)
+        public void Remove(Person domainEntity)
         {
             var entity = dbProvider.FindById<PersonEntity>(domainEntity.Id);
             dbProvider.Delete<PersonEntity>(entity);

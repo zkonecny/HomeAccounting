@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
@@ -7,7 +8,7 @@ using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly IDbProvider dbProvider;
 
@@ -16,22 +17,40 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             this.dbProvider = dbProvider;
         }
 
-        public override IEnumerable<Category> GetAll()
+        public IEnumerable<Category> GetAll()
         {
+            List<Category> categories = new List<Category>();
+
             var entities = dbProvider.GetAll<CategoryEntity>();
 
-            // TODO add catageries
-            List<Category> categories = entities.Select(entity => new Category
+            foreach (var categoryEntity in entities)
             {
-                Id = entity.Id,
-                Name = entity.Name,
-                Description = entity.Description
-            }).ToList();
+                var category = new Category
+                {
+                    Id = categoryEntity.Id,
+                    Name = categoryEntity.Name,
+                    Description = categoryEntity.Description
+                };
+
+                if (categoryEntity.Person != null)
+                {
+                    var personEntity = dbProvider.FindById<PersonEntity>(categoryEntity.Person.Id);
+
+                    category.Person = new Person
+                    {
+                        Id = personEntity.Id,
+                        FirstName = personEntity.FirstName,
+                        LastName = personEntity.LastName
+                    };
+                }
+
+                categories.Add(category);
+            }
 
             return categories;
         }
 
-        public override Category FindById(int id)
+        public Category FindById(int id)
         {
             var entity = dbProvider.FindById<CategoryEntity>(id);
 
@@ -45,7 +64,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return category;
         }
 
-        public override void Add(Category domainEntity)
+        public void Add(Category domainEntity)
         {
             CategoryEntity entity = new CategoryEntity
             {
@@ -56,14 +75,14 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             if (domainEntity.Person != null)
             {
                 var person = dbProvider.FindById<PersonEntity>(domainEntity.Person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof (PersonEntity));
+                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
                 entity.Person = new DbRef<PersonEntity>(persons, person.Id);
             }
 
             dbProvider.Insert(entity);
         }
 
-        public override void Update(Category domainEntity)
+        public void Update(Category domainEntity)
         {
             var entity = dbProvider.FindById<CategoryEntity>(domainEntity.Id);
             entity.Name = domainEntity.Name;
@@ -79,10 +98,10 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Update(entity);
         }
 
-        public override void Remove(Category domainEntity)
+        public void Remove(Category domainEntity)
         {
             var entity = dbProvider.FindById<CategoryEntity>(domainEntity.Id);
-            dbProvider.Delete<CategoryEntity>(entity);
+            dbProvider.Delete(entity);
         }
     }
 }

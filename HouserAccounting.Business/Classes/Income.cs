@@ -9,8 +9,8 @@ namespace HouserAccounting.Business.Classes
 
         public int Amount { get; set; }
 
-       public DbRef<Category> Category { get; set; }
+        public Category Category { get; set; }
 
-        public DbRef<Person> Person { get; set; }
+        public Person Person { get; set; }
     }
 }

@@ -13,20 +13,16 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
-            {
-                var collection = GetCollection<TEntity>(db, typeof(TEntity).Name);
-
-                return collection.FindAll().ToList();
-            }
+            return GetAll<TEntity>(null);
         }
 
-        public IEnumerable<TEntity> GetAll<TEntity>(Action<TEntity>[] includes) where TEntity : BaseEntity, new()
+        public IEnumerable<TEntity> GetAll<TEntity>(params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection<TEntity>(db, typeof(TEntity).Name);
-                
+                var collection = GetCollection<TEntity>(database, typeof(TEntity).Name);
+
+                AddIncludes(database, collection, includes);
 
                 return collection.FindAll().ToList();
             }
@@ -37,13 +33,13 @@ namespace HouseAccounting.Infrastructure.Repositories
             return FindById<TEntity>(id, null);
         }
 
-        public TEntity FindById<TEntity>(int id, Action<TEntity>[] includes) where TEntity : BaseEntity, new()
+        public TEntity FindById<TEntity>(int id, params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection<TEntity>(db, typeof(TEntity).Name);
+                var collection = GetCollection<TEntity>(database, typeof(TEntity).Name);
 
-                AddIncludes(collection, includes);
+                AddIncludes(database, collection, includes);
 
                 var result = collection.FindById(new BsonValue(id));
 
@@ -53,9 +49,9 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public void Insert<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection(db, entity);
+                var collection = GetCollection(database, entity);
 
                 var result = collection.Insert(entity);
             }
@@ -63,9 +59,9 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public void Update<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection(db, entity);
+                var collection = GetCollection(database, entity);
 
                 var result = collection.Update(entity);
             }
@@ -73,9 +69,9 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(connectionString))
             {
-                var collection = GetCollection(db, entity);
+                var collection = GetCollection(database, entity);
 
                 var result = collection.Delete(new BsonValue(entity.Id));
             }
@@ -83,10 +79,10 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public LiteCollection<TEntity> GetCollection<TEntity>(Type entityType) where TEntity : BaseEntity, new()
         {
-            using (var db = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(connectionString))
             {
                 var collectionName = entityType.Name;
-                return GetCollection<TEntity>(db, collectionName);
+                return GetCollection<TEntity>(database, collectionName);
             }
         }
 
@@ -104,14 +100,14 @@ namespace HouseAccounting.Infrastructure.Repositories
             return collection;
         }
 
-        private void AddIncludes<TEntity>(LiteCollection<TEntity> collection, Action<TEntity>[] includes)
+        private void AddIncludes<TEntity>(LiteDatabase database, LiteCollection<TEntity> collection, DbRef<TEntity>[] includes)
             where TEntity : BaseEntity, new()
         {
             if (includes != null)
             {
                 foreach (var include in includes)
                 {
-                    collection.Include(include);
+                    collection.Include(x => include.Fetch(database));
                 }
             }
         }

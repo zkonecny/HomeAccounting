@@ -10,11 +10,11 @@ namespace HouseAccounting.Infrastructure.Repositories.Interfaces
     {
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity, new();
 
-        IEnumerable<TEntity> GetAll<TEntity>(Action<TEntity>[] includes) where TEntity : BaseEntity, new();
+        IEnumerable<TEntity> GetAll<TEntity>(params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new();
 
         TEntity FindById<TEntity>(int id) where TEntity : BaseEntity, new();
 
-        TEntity FindById<TEntity>(int id, Action<TEntity>[] includes) where TEntity : BaseEntity, new();
+        TEntity FindById<TEntity>(int id, params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new();
 
         void Insert<TEntity>(TEntity entity) where TEntity : BaseEntity, new();
 
