@@ -25,23 +25,12 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
             foreach (var categoryEntity in entities)
             {
-                var category = new Category
-                {
-                    Id = categoryEntity.Id,
-                    Name = categoryEntity.Name,
-                    Description = categoryEntity.Description
-                };
+                var category = Mapper.MapToCategory(categoryEntity);
 
                 if (categoryEntity.Person != null)
                 {
                     var personEntity = dbProvider.FindById<PersonEntity>(categoryEntity.Person.Id);
-
-                    category.Person = new Person
-                    {
-                        Id = personEntity.Id,
-                        FirstName = personEntity.FirstName,
-                        LastName = personEntity.LastName
-                    };
+                    category.Person = Mapper.MapToPerson(personEntity);
                 }
 
                 categories.Add(category);
@@ -53,6 +42,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         public Category FindById(int id)
         {
             var entity = dbProvider.FindById<CategoryEntity>(id);
+
 
             var category = new Category
             {
@@ -66,11 +56,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
         public void Add(Category domainEntity)
         {
-            CategoryEntity entity = new CategoryEntity
-            {
-                Name = domainEntity.Name,
-                Description = domainEntity.Description
-            };
+            CategoryEntity entity = Mapper.MapToCategoryEntity(domainEntity);
 
             if (domainEntity.Person != null)
             {

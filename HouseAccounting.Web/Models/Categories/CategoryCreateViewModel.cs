@@ -37,7 +37,9 @@ namespace HouseAccounting.Web.Models.Categories
             base.SetupViewData();
             PageTitle = Title;
             var persons = personRepository.GetAll();
-            Persons = persons.Select(person => translator.TranslateTo<PersonDto>(person)).ToList();
+            var personList = persons.Select(person => translator.TranslateTo<PersonDto>(person)).ToList();
+            personList.Insert(0, new PersonDto());
+            Persons = personList;
         }
     }
 }

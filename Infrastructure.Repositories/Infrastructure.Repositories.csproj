@@ -62,6 +62,7 @@
     <Compile Include="Entities\PersonEntity.cs" />
     <Compile Include="Installers\RepositoriesInstaller.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
