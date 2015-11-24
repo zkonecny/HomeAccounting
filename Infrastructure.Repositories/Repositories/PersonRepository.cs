@@ -19,18 +19,18 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         {
             var entities = dbProvider.GetAll<PersonEntity>();
 
-            return entities.Select(Mapper.MapToPerson).ToList();
+            return entities.Select(Mapper.Map).ToList();
         }
 
         public Person FindById(int id)
         {
             var entity = dbProvider.FindById<PersonEntity>(id);
-            return Mapper.MapToPerson(entity);
+            return Mapper.Map(entity);
         }
 
         public void Add(Person domainEntity)
         {
-            PersonEntity entity = Mapper.MapToPersonEntity(domainEntity);
+            PersonEntity entity = Mapper.Map(domainEntity);
             dbProvider.Insert(entity);
         }
 

@@ -4,7 +4,7 @@ using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Entities
 {
-    public class CategoryEntity : BaseEntity
+    public abstract class BaseCategoryEntity : BaseEntity
     {
         [BsonIndex]
         public string Name { get; set; }

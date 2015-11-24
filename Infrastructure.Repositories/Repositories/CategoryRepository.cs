@@ -1,93 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using HouseAccounting.Infrastructure.Repositories.Entities;
-using HouseAccounting.Infrastructure.Repositories.Interfaces;
-using HouserAccounting.Business.Classes;
-using LiteDB;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using HouseAccounting.Infrastructure.Repositories.Entities;
+//using HouseAccounting.Infrastructure.Repositories.Interfaces;
+//using HouserAccounting.Business.Classes;
+//using LiteDB;
 
-namespace HouseAccounting.Infrastructure.Repositories.Repositories
-{
-    public class CategoryRepository : ICategoryRepository
-    {
-        private readonly IDbProvider dbProvider;
+//namespace HouseAccounting.Infrastructure.Repositories.Repositories
+//{
+//    public abstract class CategoryRepository<TDomainEntity, TEntity> where TDomainEntity : DomainEntity, new()
+//        where TEntity : BaseCategoryEntity, new()
+//    {
+//        private readonly IDbProvider dbProvider;
 
-        public CategoryRepository(IDbProvider dbProvider)
-        {
-            this.dbProvider = dbProvider;
-        }
+//        protected CategoryRepository(IDbProvider dbProvider)
+//        {
+//            this.dbProvider = dbProvider;
+//        }
 
-        public IEnumerable<Category> GetAll()
-        {
-            List<Category> categories = new List<Category>();
+//        public IEnumerable<TDomainEntity> GetAll()
+//        {
+//            List<TDomainEntity> categories = new List<TDomainEntity>();
 
-            var entities = dbProvider.GetAll<CategoryEntity>();
+//            var entities = dbProvider.GetAll<TEntity>();
 
-            foreach (var categoryEntity in entities)
-            {
-                var category = Mapper.MapToCategory(categoryEntity);
+//            foreach (var categoryEntity in entities)
+//            {
+//                var category = Mapper.Map(categoryEntity);
 
-                if (categoryEntity.Person != null)
-                {
-                    var personEntity = dbProvider.FindById<PersonEntity>(categoryEntity.Person.Id);
-                    category.Person = Mapper.MapToPerson(personEntity);
-                }
+//                if (categoryEntity.Person != null)
+//                {
+//                    var personEntity = dbProvider.FindById<PersonEntity>(categoryEntity.Person.Id);
+//                    category.Person = Mapper.Map(personEntity);
+//                }
 
-                categories.Add(category);
-            }
+//                categories.Add(category);
+//            }
 
-            return categories;
-        }
+//            return categories;
+//        }
 
-        public Category FindById(int id)
-        {
-            var entity = dbProvider.FindById<CategoryEntity>(id);
+//        public TDomainEntity FindById(int id)
+//        {
+//            var entity = dbProvider.FindById<TEntity>(id);
 
+//            return Mapper.Map(entity);
+//        }
 
-            var category = new Category
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                Description = entity.Description
-            };
+//        public void Add(IncomeCategory category)
+//        {
+//            var entity = Mapper.Map(category);
 
-            return category;
-        }
+//            if (category.Person != null)
+//            {
+//                var person = dbProvider.FindById<PersonEntity>(category.Person.Id);
+//                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
+//                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
+//            }
 
-        public void Add(Category domainEntity)
-        {
-            CategoryEntity entity = Mapper.MapToCategoryEntity(domainEntity);
+//            dbProvider.Insert(entity);
+//        }
 
-            if (domainEntity.Person != null)
-            {
-                var person = dbProvider.FindById<PersonEntity>(domainEntity.Person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
-            }
+//        public void Update(Category category)
+//        {
+//            var entity = dbProvider.FindById<IncomeCategoryEntity>(category.Id);
+//            entity.Name = category.Name;
+//            entity.Description = category.Description;
 
-            dbProvider.Insert(entity);
-        }
+//            if (category.Person != null)
+//            {
+//                var person = dbProvider.FindById<PersonEntity>(category.Person.Id);
+//                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
+//                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
+//            }
 
-        public void Update(Category domainEntity)
-        {
-            var entity = dbProvider.FindById<CategoryEntity>(domainEntity.Id);
-            entity.Name = domainEntity.Name;
-            entity.Description = domainEntity.Description;
+//            dbProvider.Update(entity);
+//        }
 
-            if (domainEntity.Person != null)
-            {
-                var person = dbProvider.FindById<PersonEntity>(domainEntity.Person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
-            }
-
-            dbProvider.Update(entity);
-        }
-
-        public void Remove(Category domainEntity)
-        {
-            var entity = dbProvider.FindById<CategoryEntity>(domainEntity.Id);
-            dbProvider.Delete(entity);
-        }
-    }
-}
+//        public void Remove(Category category)
+//        {
+//            var entity = dbProvider.FindById<IncomeCategoryEntity>(category.Id);
+//            dbProvider.Delete(entity);
+//        }
+//    }
+//}

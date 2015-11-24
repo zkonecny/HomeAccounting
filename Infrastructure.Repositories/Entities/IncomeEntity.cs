@@ -4,7 +4,7 @@ using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Entities
 {
-    public class Income : DomainEntity
+    public class IncomeEntity : BaseEntity
     {
         [BsonIndex]
         public DateTime Created { get; set; }
@@ -12,7 +12,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Entities
         public int Amount { get; set; }
 
         [BsonIndex]
-        public DbRef<CategoryEntity> Category { get; set; }
+        public DbRef<IncomeCategoryEntity> Category { get; set; }
 
         [BsonIndex]
         public DbRef<PersonEntity> Person { get; set; }

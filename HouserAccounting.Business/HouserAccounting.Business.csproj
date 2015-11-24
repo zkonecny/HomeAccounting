@@ -47,7 +47,9 @@
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\DomainEntity.cs" />
     <Compile Include="Classes\Expenditure.cs" />
+    <Compile Include="Classes\ExpenditureCategory.cs" />
     <Compile Include="Classes\Income.cs" />
+    <Compile Include="Classes\IncomeCategory.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />

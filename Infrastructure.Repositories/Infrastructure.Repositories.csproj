@@ -56,18 +56,24 @@
   <ItemGroup>
     <Compile Include="DbProvider.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\BaseCategoryEntity.cs" />
+    <Compile Include="Entities\ExpenditureCategoryEntity.cs" />
     <Compile Include="Entities\ExpenditureEntity.cs" />
+    <Compile Include="Entities\IncomeCategoryEntity.cs" />
     <Compile Include="Entities\IncomeEntity.cs" />
     <Compile Include="Entities\PersonEntity.cs" />
     <Compile Include="Installers\RepositoriesInstaller.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\ICategoryRepository.cs" />
-    <Compile Include="Repositories\IPersonRepository.cs" />
+    <Compile Include="Repositories\IIncomeCategoryRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\IncomeCategoryRepository.cs" />
+    <Compile Include="Repositories\IExpenditureCategoryRepository.cs" />
+    <Compile Include="Repositories\IncomeRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IPersonRepository.cs" />
+    <Compile Include="Repositories\ExpenditureCategoryRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>

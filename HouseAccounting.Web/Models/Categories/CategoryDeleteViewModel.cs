@@ -10,7 +10,7 @@ namespace HouseAccounting.Web.Models.Categories
     {
         private readonly ITranslator translator;
         private readonly int id;
-        private readonly ICategoryRepository repository;
+        private readonly IIncomeCategoryRepository repository;
         public readonly string Title = "Smazat kategorii";
 
         public CategoryDto Category { get; private set; }
@@ -20,7 +20,7 @@ namespace HouseAccounting.Web.Models.Categories
             this.Category = new CategoryDto();
         }
 
-        public CategoryDeleteViewModel(int id, ICategoryRepository repository, ITranslator translator)
+        public CategoryDeleteViewModel(int id, IIncomeCategoryRepository repository, ITranslator translator)
         {
             this.id = id;
             this.repository = repository;

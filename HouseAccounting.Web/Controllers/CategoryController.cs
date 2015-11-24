@@ -11,11 +11,11 @@ namespace HouseAccounting.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository categoryRepository;
+        private readonly IIncomeCategoryRepository categoryRepository;
         private readonly IPersonRepository pesonRepository;
         private readonly ITranslator translator;
 
-        public CategoryController(ICategoryRepository categoryRepository, IPersonRepository pesonRepository, ITranslator translator)
+        public CategoryController(IIncomeCategoryRepository categoryRepository, IPersonRepository pesonRepository, ITranslator translator)
         {
             this.categoryRepository = categoryRepository;
             this.pesonRepository = pesonRepository;
@@ -53,7 +53,7 @@ namespace HouseAccounting.Web.Controllers
             try
             {
                 TryUpdateModel(model.Category);
-                var category = translator.TranslateTo<Category>(model.Category);
+                var category = translator.TranslateTo<IncomeCategory>(model.Category);
                 category.Person = pesonRepository.FindById(model.SelectedPersonId);
                 categoryRepository.Add(category);
 
@@ -80,7 +80,7 @@ namespace HouseAccounting.Web.Controllers
             try
             {
                 TryUpdateModel(model.Category);
-                var person = translator.TranslateTo<Category>(model.Category);
+                var person = translator.TranslateTo<IncomeCategory>(model.Category);
                 categoryRepository.Update(person);
 
                 return RedirectToAction("Index");
@@ -106,7 +106,7 @@ namespace HouseAccounting.Web.Controllers
             try
             {
                 TryUpdateModel(model.Category);
-                var category = translator.TranslateTo<Category>(model.Category);
+                var category = translator.TranslateTo<IncomeCategory>(model.Category);
                 categoryRepository.Remove(category);
 
                 return RedirectToAction("Index");

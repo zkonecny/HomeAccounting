@@ -10,12 +10,12 @@ namespace HouseAccounting.Web.Models.Categories
     public class CategoryListViewModel : ViewModelBase
     {
         private readonly ITranslator translator;
-        private readonly ICategoryRepository repository;
+        private readonly IIncomeCategoryRepository repository;
         public readonly string Title = "Seznam kategorií";
 
         public IEnumerable<CategoryDto> Categories { get; private set; }
 
-        public CategoryListViewModel(ICategoryRepository repository, ITranslator translator)
+        public CategoryListViewModel(IIncomeCategoryRepository repository, ITranslator translator)
         {
             this.repository = repository;
             this.translator = translator;

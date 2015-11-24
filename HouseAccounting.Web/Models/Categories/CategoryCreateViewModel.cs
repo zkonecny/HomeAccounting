@@ -3,8 +3,6 @@ using System.Linq;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
 
 namespace HouseAccounting.Web.Models.Categories
 {
@@ -23,6 +21,7 @@ namespace HouseAccounting.Web.Models.Categories
         public CategoryCreateViewModel()
         {
             Category = new CategoryDto();
+            Persons = new List<PersonDto>();
         }
 
         public CategoryCreateViewModel(IPersonRepository personRepository, ITranslator translator)
