@@ -1,6 +1,4 @@
-﻿@model HouseAccounting.Web.Models.Categories.CategoryCreateViewModel
-
-<h2>Nová kategorie</h2>
+﻿@model HouseAccounting.Web.Models.IncomeCategories.IncomeCategoryEditViewModel
 
 @using (Html.BeginForm())
 {
@@ -20,20 +18,22 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Category.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Category.Description, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Category.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Category.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Category.Description, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Category.Description, "", new {@class = "text-danger"})
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Osoba">Osoba</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectedPersonId, new SelectList(Model.Persons, "Id", "FullName"))
+        @if (@Model.Persons != null)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Osoba">Osoba</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedPersonId, new SelectList(Model.Persons, "Id", "FullName"))
+                </div>
             </div>
-        </div>
-
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Uložit" class="btn btn-default" />
@@ -43,10 +43,9 @@
 }
 
 <div>
-    @Html.ActionLink("Zpět na seznam kategorií", "Index")
+    @Html.ActionLink("Zpět na seznam kategorií příjmů", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

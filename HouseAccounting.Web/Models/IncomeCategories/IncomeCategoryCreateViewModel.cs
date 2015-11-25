@@ -4,9 +4,9 @@ using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 
-namespace HouseAccounting.Web.Models.Categories
+namespace HouseAccounting.Web.Models.IncomeCategories
 {
-    public class CategoryCreateViewModel : ViewModelBase
+    public class IncomeCategoryCreateViewModel : ViewModelBase
     {
         private readonly IPersonRepository personRepository;
         private readonly ITranslator translator;
@@ -18,13 +18,13 @@ namespace HouseAccounting.Web.Models.Categories
 
         public int SelectedPersonId { get; set; }
 
-        public CategoryCreateViewModel()
+        public IncomeCategoryCreateViewModel()
         {
             Category = new CategoryDto();
             Persons = new List<PersonDto>();
         }
 
-        public CategoryCreateViewModel(IPersonRepository personRepository, ITranslator translator)
+        public IncomeCategoryCreateViewModel(IPersonRepository personRepository, ITranslator translator)
         {
             this.personRepository = personRepository;
             this.translator = translator;

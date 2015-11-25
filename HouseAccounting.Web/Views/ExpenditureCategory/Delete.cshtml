@@ -1,0 +1,18 @@
+﻿@model HouseAccounting.Web.Models.ExpenditureCategories.ExpenditureCategoryDeleteViewModel
+
+<h2>Smazání kategorie výdajů</h2>
+
+<h3>Opravdu smazat kategorii výdajů?</h3>
+<div>
+    <hr />
+    @Html.Partial("CategoryDetail", Model.Category)
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Zpět na seznam kategorií výdajů", "Index")
+            <input type="submit" value="Smazat" class="btn btn-default" />
+        </div>
+    }
+</div>

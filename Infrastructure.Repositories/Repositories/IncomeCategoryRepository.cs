@@ -42,8 +42,15 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         public Category FindById(int id)
         {
             var entity = dbProvider.FindById<IncomeCategoryEntity>(id);
+            var category = Mapper.Map(entity);
 
-            return Mapper.Map(entity);
+            if (entity.Person != null)
+            {
+                var personEntity = dbProvider.FindById<PersonEntity>(entity.Person.Id);
+                category.Person = Mapper.Map(personEntity);
+            }
+
+            return category;
         }
 
         public void Add(IncomeCategory category)
@@ -71,6 +78,10 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
                 var person = dbProvider.FindById<PersonEntity>(category.Person.Id);
                 var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
                 entity.Person = new DbRef<PersonEntity>(persons, person.Id);
+            }
+            else
+            {
+                entity.Person = null;
             }
 
             dbProvider.Update(entity);

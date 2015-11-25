@@ -133,17 +133,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ExpenditureCategoryController.cs" />
+    <Compile Include="Controllers\IncomeCategoryController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Installers\WebInstaller.cs" />
-    <Compile Include="Models\Categories\CategoryCreateViewModel.cs" />
-    <Compile Include="Models\Categories\CategoryDeleteViewModel.cs" />
-    <Compile Include="Models\Categories\CategoryDetailsViewModel.cs" />
-    <Compile Include="Models\Categories\CategoryEditViewModel.cs" />
-    <Compile Include="Models\Categories\CategoryListViewModel.cs" />
+    <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryCreateViewModel.cs" />
+    <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryDeleteViewModel.cs" />
+    <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryDetailsViewModel.cs" />
+    <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryEditViewModel.cs" />
+    <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryListViewModel.cs" />
+    <Compile Include="Models\IncomeCategories\IncomeCategoryCreateViewModel.cs" />
+    <Compile Include="Models\IncomeCategories\IncomeCategoryDeleteViewModel.cs" />
+    <Compile Include="Models\IncomeCategories\IncomeCategoryDetailsViewModel.cs" />
+    <Compile Include="Models\IncomeCategories\IncomeCategoryEditViewModel.cs" />
+    <Compile Include="Models\IncomeCategories\IncomeCategoryListViewModel.cs" />
     <Compile Include="Models\Persons\PersonDeleteViewModel.cs" />
     <Compile Include="Models\Persons\PersonCreateViewModel.cs" />
     <Compile Include="Models\Persons\PersonDetailsViewModel.cs" />
@@ -195,13 +201,20 @@
     <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\Person\PersonDetail.cshtml" />
     <Content Include="Views\Person\PersonEdit.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
-    <Content Include="Views\Category\Details.cshtml" />
-    <Content Include="Views\Category\Edit.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\CategoryDetail.cshtml" />
-    <Content Include="Views\Category\CategoryEdit.cshtml" />
+    <Content Include="Views\IncomeCategory\Create.cshtml" />
+    <Content Include="Views\IncomeCategory\Delete.cshtml" />
+    <Content Include="Views\IncomeCategory\Details.cshtml" />
+    <Content Include="Views\IncomeCategory\Edit.cshtml" />
+    <Content Include="Views\IncomeCategory\Index.cshtml" />
+    <Content Include="Views\IncomeCategory\CategoryDetail.cshtml" />
+    <Content Include="Views\IncomeCategory\CategoryEdit.cshtml" />
+    <Content Include="Views\ExpenditureCategory\CategoryDetail.cshtml" />
+    <Content Include="Views\ExpenditureCategory\CategoryEdit.cshtml" />
+    <Content Include="Views\ExpenditureCategory\Create.cshtml" />
+    <Content Include="Views\ExpenditureCategory\Delete.cshtml" />
+    <Content Include="Views\ExpenditureCategory\Details.cshtml" />
+    <Content Include="Views\ExpenditureCategory\Edit.cshtml" />
+    <Content Include="Views\ExpenditureCategory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,6 @@
     @Html.Partial("PersonDetail", Model.Person)
 </div>
 <p>
-    @Html.ActionLink("Editovat", "Edit", new { id = Model.Person.Id }) |
-    @Html.ActionLink("Zpět na seznam osob", "Index")
+    @Html.ActionLink("Zpět na seznam osob", "Index") | 
+    @Html.ActionLink("Editovat", "Edit", new {id = Model.Person.Id})
 </p>

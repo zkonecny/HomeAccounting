@@ -2,30 +2,30 @@
 using System.Web.Mvc;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouseAccounting.Web.Models.Categories;
+using HouseAccounting.Web.Models.IncomeCategories;
 using HouserAccounting.Business.Classes;
 using HouserAccounting.Business.Repositories;
 using LiteDB;
 
 namespace HouseAccounting.Web.Controllers
 {
-    public class CategoryController : Controller
+    public class IncomeCategoryController : Controller
     {
         private readonly IIncomeCategoryRepository categoryRepository;
-        private readonly IPersonRepository pesonRepository;
+        private readonly IPersonRepository personRepository;
         private readonly ITranslator translator;
 
-        public CategoryController(IIncomeCategoryRepository categoryRepository, IPersonRepository pesonRepository, ITranslator translator)
+        public IncomeCategoryController(IIncomeCategoryRepository categoryRepository, IPersonRepository personRepository, ITranslator translator)
         {
             this.categoryRepository = categoryRepository;
-            this.pesonRepository = pesonRepository;
+            this.personRepository = personRepository;
             this.translator = translator;
         }
 
         // GET: Category
         public ActionResult Index()
         {
-            CategoryListViewModel model = new CategoryListViewModel(categoryRepository, translator);
+            IncomeCategoryListViewModel model = new IncomeCategoryListViewModel(categoryRepository, translator);
             model.LoadViewModelData();
             return View(model);
         }
@@ -33,7 +33,7 @@ namespace HouseAccounting.Web.Controllers
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-            CategoryDetailsViewModel model = new CategoryDetailsViewModel(id, categoryRepository, translator);
+            IncomeCategoryDetailsViewModel model = new IncomeCategoryDetailsViewModel(id, categoryRepository, translator);
             model.LoadViewModelData();
             return View(model);
         }
@@ -41,20 +41,20 @@ namespace HouseAccounting.Web.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            CategoryCreateViewModel model = new CategoryCreateViewModel(pesonRepository, translator);
+            IncomeCategoryCreateViewModel model = new IncomeCategoryCreateViewModel(personRepository, translator);
             model.LoadViewModelData();
             return View(model);
         }
 
         // POST: Category/Create
         [HttpPost]
-        public ActionResult Create(CategoryCreateViewModel model)
+        public ActionResult Create(IncomeCategoryCreateViewModel model)
         {
             try
             {
                 TryUpdateModel(model.Category);
                 var category = translator.TranslateTo<IncomeCategory>(model.Category);
-                category.Person = pesonRepository.FindById(model.SelectedPersonId);
+                category.Person = personRepository.FindById(model.SelectedPersonId);
                 categoryRepository.Add(category);
 
                 return RedirectToAction("Index");
@@ -68,20 +68,26 @@ namespace HouseAccounting.Web.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            CategoryEditViewModel model = new CategoryEditViewModel(id, categoryRepository, translator);
+            IncomeCategoryEditViewModel model = new IncomeCategoryEditViewModel(id, categoryRepository, personRepository, translator);
             model.LoadViewModelData();
             return View(model);
         }
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, CategoryEditViewModel model)
+        public ActionResult Edit(int id, IncomeCategoryEditViewModel model)
         {
             try
             {
                 TryUpdateModel(model.Category);
-                var person = translator.TranslateTo<IncomeCategory>(model.Category);
-                categoryRepository.Update(person);
+                var category = translator.TranslateTo<IncomeCategory>(model.Category);
+                if (model.SelectedPersonId > 0)
+                {
+                    var personEntity = personRepository.FindById(model.SelectedPersonId);
+                    category.Person = translator.TranslateTo<Person>(personEntity);
+                }
+
+                categoryRepository.Update(category);
 
                 return RedirectToAction("Index");
             }
@@ -94,14 +100,14 @@ namespace HouseAccounting.Web.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            CategoryDeleteViewModel model = new CategoryDeleteViewModel(id, categoryRepository, translator);
+            IncomeCategoryDeleteViewModel model = new IncomeCategoryDeleteViewModel(id, categoryRepository, translator);
             model.LoadViewModelData();
             return View(model);
         }
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, CategoryDeleteViewModel model)
+        public ActionResult Delete(int id, IncomeCategoryDeleteViewModel model)
         {
             try
             {

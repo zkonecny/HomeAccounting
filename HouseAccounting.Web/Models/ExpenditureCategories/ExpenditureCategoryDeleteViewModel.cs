@@ -1,26 +1,24 @@
 ﻿using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
 
-namespace HouseAccounting.Web.Models.Categories
+namespace HouseAccounting.Web.Models.ExpenditureCategories
 {
-    public class CategoryDeleteViewModel : ViewModelBase
+    public class ExpenditureCategoryDeleteViewModel : ViewModelBase
     {
         private readonly ITranslator translator;
         private readonly int id;
-        private readonly IIncomeCategoryRepository repository;
+        private readonly IExpenditureCategoryRepository repository;
         public readonly string Title = "Smazat kategorii";
 
         public CategoryDto Category { get; private set; }
 
-        public CategoryDeleteViewModel()
+        public ExpenditureCategoryDeleteViewModel()
         {
             this.Category = new CategoryDto();
         }
 
-        public CategoryDeleteViewModel(int id, IIncomeCategoryRepository repository, ITranslator translator)
+        public ExpenditureCategoryDeleteViewModel(int id, IExpenditureCategoryRepository repository, ITranslator translator)
         {
             this.id = id;
             this.repository = repository;

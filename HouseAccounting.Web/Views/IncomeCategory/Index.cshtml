@@ -1,0 +1,38 @@
+﻿@model HouseAccounting.Web.Models.IncomeCategories.IncomeCategoryListViewModel
+
+<h2>Kategorie</h2>
+
+<p>
+    @Html.ActionLink("Vytvořit novou kategorii příjmů", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Název</th>
+        <th>Popis</th>
+        <th>Osoba</th>
+        <th></th>
+    </tr>
+
+@foreach (var category in Model.Categories) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => category.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => category.Description)
+        </td>
+        <td>
+            @if (category.Person != null)
+            {
+                @Html.DisplayFor(modelItem => category.Person.FullName)
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Editovat", "Edit", new { id=category.Id }) |
+            @Html.ActionLink("Detail", "Details", new { id=category.Id }) |
+            @Html.ActionLink("Smazat", "Delete", new { id=category.Id })
+        </td>
+    </tr>
+}
+
+</table>

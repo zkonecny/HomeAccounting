@@ -1,26 +1,24 @@
 ﻿using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
 
-namespace HouseAccounting.Web.Models.Categories
+namespace HouseAccounting.Web.Models.IncomeCategories
 {
-    public class CategoryDetailsViewModel : ViewModelBase
+    public class IncomeCategoryDetailsViewModel : ViewModelBase
     {
-        private readonly ITranslator translator;
-        private readonly int id;
-        private readonly IIncomeCategoryRepository repository;
+        protected readonly ITranslator translator;
+        protected readonly int id;
+        protected readonly IIncomeCategoryRepository repository;
         public readonly string Title = "Detail osoby";
 
         public CategoryDto Category { get; private set; }
 
-        public CategoryDetailsViewModel()
+        public IncomeCategoryDetailsViewModel()
         {
             Category = new CategoryDto();
         }
 
-        public CategoryDetailsViewModel(int id, IIncomeCategoryRepository repository, ITranslator translator)
+        public IncomeCategoryDetailsViewModel(int id, IIncomeCategoryRepository repository, ITranslator translator)
         {
             this.id = id;
             this.repository = repository;

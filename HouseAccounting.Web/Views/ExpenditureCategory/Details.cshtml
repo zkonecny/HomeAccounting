@@ -1,0 +1,12 @@
+﻿@model HouseAccounting.Web.Models.ExpenditureCategories.ExpenditureCategoryDetailsViewModel
+
+<h2>Detail kategorie výdajů</h2>
+
+<div>
+    <hr />
+    @Html.Partial("CategoryDetail", Model.Category)
+</div>
+<p>
+    @Html.ActionLink("Zpět na seznam kategorií výdajů", "Index") | 
+    @Html.ActionLink("Editovat", "Edit", new {id = Model.Category.Id}) 
+</p>
