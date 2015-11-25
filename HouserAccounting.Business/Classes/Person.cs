@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HouserAccounting.Business.Classes
+﻿namespace HouserAccounting.Business.Classes
 {
     public class Person : DomainEntity
     {

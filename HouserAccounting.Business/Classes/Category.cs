@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using LiteDB;
-
-namespace HouserAccounting.Business.Classes
+﻿namespace HouserAccounting.Business.Classes
 {
     public abstract class Category : DomainEntity
     {
