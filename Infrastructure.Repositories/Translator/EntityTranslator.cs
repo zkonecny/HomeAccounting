@@ -1,4 +1,5 @@
-﻿using HouseAccounting.Infrastructure.Repositories.Entities;
+﻿using System.Security.Cryptography.X509Certificates;
+using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouserAccounting.Business.Classes;
 
@@ -10,18 +11,18 @@ namespace HouseAccounting.Infrastructure.Repositories.Translator
         {
             AutoMapper.Mapper.CreateMap<Person, PersonEntity>();
             AutoMapper.Mapper.CreateMap<PersonEntity, Person>();
-            
-            AutoMapper.Mapper.CreateMap<IncomeCategory, IncomeCategoryEntity>();
-            AutoMapper.Mapper.CreateMap<IncomeCategoryEntity, IncomeCategory>();
-            
-            AutoMapper.Mapper.CreateMap<ExpenditureCategory, ExpenditureCategoryEntity>();
-            AutoMapper.Mapper.CreateMap<ExpenditureCategoryEntity, ExpenditureCategory>();
-            
-            AutoMapper.Mapper.CreateMap<Income, IncomeEntity>();
-            AutoMapper.Mapper.CreateMap<IncomeEntity, Income>();
-            
-            AutoMapper.Mapper.CreateMap<Expenditure, ExpenditureEntity>();
-            AutoMapper.Mapper.CreateMap<ExpenditureEntity, Expenditure>();
+
+            AutoMapper.Mapper.CreateMap<IncomeCategory, IncomeCategoryEntity>().ForMember(x => x.Person, opt => opt.Ignore());
+            AutoMapper.Mapper.CreateMap<IncomeCategoryEntity, IncomeCategory>().ForMember(x => x.Person, opt => opt.Ignore());
+
+            AutoMapper.Mapper.CreateMap<ExpenditureCategory, ExpenditureCategoryEntity>().ForMember(x => x.Person, opt => opt.Ignore());
+            AutoMapper.Mapper.CreateMap<ExpenditureCategoryEntity, ExpenditureCategory>().ForMember(x => x.Person, opt => opt.Ignore());
+
+            AutoMapper.Mapper.CreateMap<Income, IncomeEntity>().ForMember(x => x.Person, opt => opt.Ignore());
+            AutoMapper.Mapper.CreateMap<IncomeEntity, Income>().ForMember(x => x.Person, opt => opt.Ignore());
+
+            AutoMapper.Mapper.CreateMap<Expenditure, ExpenditureEntity>().ForMember(x => x.Person, opt => opt.Ignore());
+            AutoMapper.Mapper.CreateMap<ExpenditureEntity, Expenditure>().ForMember(x => x.Person, opt => opt.Ignore());
         }
 
         public T TranslateTo<T>(object fromObject)

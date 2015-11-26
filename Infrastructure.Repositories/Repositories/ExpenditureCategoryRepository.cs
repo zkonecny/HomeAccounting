@@ -41,7 +41,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         public Category FindById(int id)
         {
             var categoryEntity = dbProvider.FindById<ExpenditureCategoryEntity>(id);
-            var category = translator.TranslateTo<Category>(categoryEntity);
+            var category = translator.TranslateTo<ExpenditureCategory>(categoryEntity);
             MapPerson(categoryEntity, category);
 
             return category;
