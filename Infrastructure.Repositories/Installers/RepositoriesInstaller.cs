@@ -2,7 +2,9 @@
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
+using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
+using HouseAccounting.Infrastructure.Repositories.Translator;
 using HouserAccounting.Business.Repositories;
 
 namespace HouseAccounting.Infrastructure.Repositories.Installers
@@ -21,6 +23,9 @@ namespace HouseAccounting.Infrastructure.Repositories.Installers
             container.Register(Component.For(typeof(IExpenditureCategoryRepository))
                 .ImplementedBy(typeof(ExpenditureCategoryRepository)).LifestylePerWebRequest());
 
-            }
+            container.Register(Component.For(typeof(IEntityTranslator))
+                .ImplementedBy(typeof(EntityTranslator)).LifestyleSingleton());
+
+        }
     }
 }

@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
+using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouserAccounting.Business.Classes;
 using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class IncomeCategoryRepository : IIncomeCategoryRepository
+    public class IncomeCategoryRepository : CategoryRepository, IIncomeCategoryRepository
     {
         private readonly IDbProvider dbProvider;
+        private readonly IEntityTranslator translator;
 
-        public IncomeCategoryRepository(IDbProvider dbProvider)
+        public IncomeCategoryRepository(IDbProvider dbProvider, IEntityTranslator translator)
+            : base(dbProvider, translator)
         {
             this.dbProvider = dbProvider;
+            this.translator = translator;
         }
 
-        public IEnumerable<IncomeCategory> GetAll()
+        public IEnumerable<Category> GetAll()
         {
             List<IncomeCategory> categories = new List<IncomeCategory>();
 
@@ -25,14 +29,9 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
             foreach (var categoryEntity in entities)
             {
-                var category = Mapper.Map(categoryEntity);
+                var category = translator.TranslateTo<IncomeCategory>(categoryEntity);
 
-                if (categoryEntity.Person != null)
-                {
-                    var personEntity = dbProvider.FindById<PersonEntity>(categoryEntity.Person.Id);
-                    category.Person = Mapper.Map(personEntity);
-                }
-
+                MapPerson(categoryEntity, category);
                 categories.Add(category);
             }
 
@@ -41,30 +40,25 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
         public Category FindById(int id)
         {
-            var entity = dbProvider.FindById<IncomeCategoryEntity>(id);
-            var category = Mapper.Map(entity);
-
-            if (entity.Person != null)
-            {
-                var personEntity = dbProvider.FindById<PersonEntity>(entity.Person.Id);
-                category.Person = Mapper.Map(personEntity);
-            }
+            var categoryEntity = dbProvider.FindById<IncomeCategoryEntity>(id);
+            var category = translator.TranslateTo<Category>(categoryEntity);
+            MapPerson(categoryEntity, category);
 
             return category;
         }
 
-        public void Add(IncomeCategory category)
+        public void Add(Category category)
         {
-            var entity = Mapper.Map(category);
+            var categoryEntity = translator.TranslateTo<IncomeCategoryEntity>(category);
 
             if (category.Person != null)
             {
                 var person = dbProvider.FindById<PersonEntity>(category.Person.Id);
                 var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
+                categoryEntity.Person = new DbRef<PersonEntity>(persons, person.Id);
             }
 
-            dbProvider.Insert(entity);
+            dbProvider.Insert(categoryEntity);
         }
 
         public void Update(Category category)

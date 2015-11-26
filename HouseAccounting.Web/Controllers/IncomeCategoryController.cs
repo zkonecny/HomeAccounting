@@ -4,8 +4,6 @@ using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.IncomeCategories;
 using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
-using LiteDB;
 
 namespace HouseAccounting.Web.Controllers
 {

@@ -1,4 +1,5 @@
-﻿using LiteDB;
+﻿using System;
+using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Entities
 {
@@ -6,5 +7,9 @@ namespace HouseAccounting.Infrastructure.Repositories.Entities
     {
         [BsonId]
         public int Id { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public DateTime Modified { get; set; }
     }
 }
