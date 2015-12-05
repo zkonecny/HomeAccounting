@@ -8,6 +8,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Entities
     {
         public int Amount { get; set; }
 
+        public string Description { get; set; }
+
         [BsonIndex]
         public DbRef<IncomeCategoryEntity> Category { get; set; }
 

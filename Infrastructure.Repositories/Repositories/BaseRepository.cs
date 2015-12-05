@@ -7,24 +7,26 @@ using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public abstract class CategoryRepository
+    public abstract class BaseRepository
     {
         private readonly IDbProvider dbProvider;
         private readonly IEntityTranslator translator;
 
-        protected CategoryRepository(IDbProvider dbProvider, IEntityTranslator translator)
+        protected BaseRepository(IDbProvider dbProvider, IEntityTranslator translator)
         {
             this.dbProvider = dbProvider;
             this.translator = translator;
         }
 
-        protected void MapPerson(BaseCategoryEntity categoryEntity, Category category)
+        protected Person MapPerson(DbRef<PersonEntity> personEntity)
         {
-            if (categoryEntity.Person != null)
+            if (personEntity != null)
             {
-                var personEntity = dbProvider.FindById<PersonEntity>(categoryEntity.Person.Id);
-                category.Person = translator.TranslateTo<Person>(personEntity);
+                var pe = dbProvider.FindById<PersonEntity>(personEntity.Id);
+                return translator.TranslateTo<Person>(pe);
             }
+
+            return null;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using HouseAccounting.Infrastructure.Repositories.Entities;
+﻿using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouserAccounting.Business.Classes;
 

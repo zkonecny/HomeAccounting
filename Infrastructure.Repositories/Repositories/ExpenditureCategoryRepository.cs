@@ -9,7 +9,7 @@ using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class ExpenditureCategoryRepository : CategoryRepository, IExpenditureCategoryRepository
+    public class ExpenditureCategoryRepository : BaseRepository, IExpenditureCategoryRepository
     {
         private readonly IDbProvider dbProvider;
         private readonly IEntityTranslator translator;
@@ -31,7 +31,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             {
                 var category = translator.TranslateTo<ExpenditureCategory>(categoryEntity);
 
-                MapPerson(categoryEntity, category);
+                category.Person = MapPerson(categoryEntity.Person);
                 categories.Add(category);
             }
 
@@ -42,8 +42,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         {
             var categoryEntity = dbProvider.FindById<ExpenditureCategoryEntity>(id);
             var category = translator.TranslateTo<ExpenditureCategory>(categoryEntity);
-            MapPerson(categoryEntity, category);
-
+            category.Person = MapPerson(categoryEntity.Person);
+            
             return category;
         }
 
