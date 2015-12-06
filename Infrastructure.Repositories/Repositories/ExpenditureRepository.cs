@@ -31,10 +31,22 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
                 var expenditure = translator.TranslateTo<Expenditure>(expenditureEntity);
 
                 expenditure.Person = MapPerson(expenditureEntity.Person);
+                expenditure.Category = MapCategory(expenditureEntity.Category);
                 expenditures.Add(expenditure);
             }
 
             return expenditures;
+        }
+
+        protected ExpenditureCategory MapCategory(DbRef<ExpenditureCategoryEntity> categoryEntity)
+        {
+            if (categoryEntity != null)
+            {
+                var ce = dbProvider.FindById<ExpenditureCategoryEntity>(categoryEntity.Id);
+                return translator.TranslateTo<ExpenditureCategory>(ce);
+            }
+
+            return null;
         }
 
         public Expenditure FindById(int id)
@@ -42,60 +54,49 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             var expenditureEntity = dbProvider.FindById<ExpenditureEntity>(id);
             var expenditure = translator.TranslateTo<Expenditure>(expenditureEntity);
             expenditure.Person = MapPerson(expenditureEntity.Person);
-
+            expenditure.Category = MapCategory(expenditureEntity.Category);
             return expenditure;
         }
 
         public void Add(Expenditure expenditure)
         {
             var expenditureEntity = translator.TranslateTo<ExpenditureEntity>(expenditure);
-
-            if (expenditureEntity.Person != null)
-            {
-                var person = dbProvider.FindById<PersonEntity>(expenditure.Person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                expenditureEntity.Person = new DbRef<PersonEntity>(persons, person.Id);
-            }
-
+            UpdatePersonEntity(expenditure.Person, expenditureEntity.Person);
+            UpdateCategory(expenditure.Category, expenditureEntity.Category);
             dbProvider.Insert(expenditureEntity);
         }
 
         public void Update(Expenditure expenditure)
         {
-            var entity = dbProvider.FindById<ExpenditureEntity>(expenditure.Id);
-            entity.Amount = expenditure.Amount;
-            entity.Description = expenditure.Description;
-            entity.Modified = DateTime.Now;
+            var expenditureEntity = dbProvider.FindById<ExpenditureEntity>(expenditure.Id);
+            expenditureEntity.Amount = expenditure.Amount;
+            expenditureEntity.Description = expenditure.Description;
+            expenditureEntity.Modified = expenditure.Modified;
 
-            if (expenditure.Person != null)
-            {
-                var person = dbProvider.FindById<PersonEntity>(expenditure.Person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
-            }
-            else
-            {
-                entity.Person = null;
-            }
+            UpdatePersonEntity(expenditure.Person, expenditureEntity.Person);
+            UpdateCategory(expenditure.Category, expenditureEntity.Category);
 
-            if (expenditure.Category != null)
-            {
-                var category = dbProvider.FindById<ExpenditureCategoryEntity>(expenditure.Category.Id);
-                var categories = dbProvider.GetCollection<ExpenditureCategoryEntity>(typeof(ExpenditureCategoryEntity));
-                entity.Category = new DbRef<ExpenditureCategoryEntity>(categories, category.Id);
-            }
-            else
-            {
-                entity.Category = null;
-            }
-
-            dbProvider.Update(entity);
+            dbProvider.Update(expenditureEntity);
         }
 
         public void Remove(Expenditure expenditure)
         {
             var entity = dbProvider.FindById<ExpenditureEntity>(expenditure.Id);
             dbProvider.Delete(entity);
+        }
+
+        private void UpdateCategory(Category category, DbRef<ExpenditureCategoryEntity> categoryEntity)
+        {
+            if (category != null)
+            {
+                var entity = dbProvider.FindById<ExpenditureCategoryEntity>(category.Id);
+                var categories = dbProvider.GetCollection<ExpenditureCategoryEntity>(typeof(ExpenditureCategoryEntity));
+                categoryEntity = new DbRef<ExpenditureCategoryEntity>(categories, entity.Id);
+            }
+            else
+            {
+                categoryEntity = null;
+            }
         }
     }
 }

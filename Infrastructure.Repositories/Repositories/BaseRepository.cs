@@ -28,5 +28,19 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
             return null;
         }
+
+        protected void UpdatePersonEntity(Person person, DbRef<PersonEntity> personEntity)
+        {
+            if (person != null)
+            {
+                var entity = dbProvider.FindById<PersonEntity>(person.Id);
+                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
+                personEntity = new DbRef<PersonEntity>(persons, entity.Id);
+            }
+            else
+            {
+                personEntity = null;
+            }
+        }
     }
 }

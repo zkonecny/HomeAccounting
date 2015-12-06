@@ -8,7 +8,7 @@ namespace HouserAccounting.Business.Classes
 
         public string Description { get; set; }
 
-        public Category Category { get; set; }
+        public ExpenditureCategory Category { get; set; }
 
         public Person Person { get; set; }
     }
