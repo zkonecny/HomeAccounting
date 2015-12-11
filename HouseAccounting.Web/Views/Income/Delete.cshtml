@@ -1,0 +1,18 @@
+﻿@model HouseAccounting.Web.Models.Incomes.IncomeDeleteViewModel
+
+<h2>Smazání příjmu</h2>
+
+<h3>Opravdu smazat příjem?</h3>
+<div>
+    <hr />
+    @Html.Partial("IncomeDetail", Model.Income)
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Zpět na seznam příjmů", "Index")
+            <input type="submit" value="Smazat" class="btn btn-default" />
+        </div>
+    }
+</div>

@@ -11,15 +11,11 @@ using HouserAccounting.Business.Repositories;
 
 namespace HouseAccounting.Web.Controllers
 {
-    public class PersonController : Controller
+    public class PersonController : BaseController
     {
-        private readonly IPersonRepository personRepository;
-        private readonly ITranslator translator;
-
         public PersonController(IPersonRepository personRepository, ITranslator translator)
+            : base(personRepository, translator)
         {
-            this.personRepository = personRepository;
-            this.translator = translator;
         }
 
         // GET: Person

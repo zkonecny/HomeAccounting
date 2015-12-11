@@ -61,8 +61,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         public void Add(Expenditure expenditure)
         {
             var expenditureEntity = translator.TranslateTo<ExpenditureEntity>(expenditure);
-            UpdatePersonEntity(expenditure.Person, expenditureEntity.Person);
-            UpdateCategory(expenditure.Category, expenditureEntity.Category);
+            expenditureEntity.Person = UpdatePersonEntity(expenditure.Person);
+            expenditureEntity.Category = UpdateCategory(expenditure.Category);
             dbProvider.Insert(expenditureEntity);
         }
 
@@ -73,8 +73,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             expenditureEntity.Description = expenditure.Description;
             expenditureEntity.Modified = expenditure.Modified;
 
-            UpdatePersonEntity(expenditure.Person, expenditureEntity.Person);
-            UpdateCategory(expenditure.Category, expenditureEntity.Category);
+            expenditureEntity.Person = UpdatePersonEntity(expenditure.Person);
+            expenditureEntity.Category = UpdateCategory(expenditure.Category);
 
             dbProvider.Update(expenditureEntity);
         }
@@ -85,18 +85,17 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Delete(entity);
         }
 
-        private void UpdateCategory(Category category, DbRef<ExpenditureCategoryEntity> categoryEntity)
+        private DbRef<ExpenditureCategoryEntity> UpdateCategory(Category category)
         {
+            DbRef<ExpenditureCategoryEntity> categoryEntity = null;
             if (category != null)
             {
                 var entity = dbProvider.FindById<ExpenditureCategoryEntity>(category.Id);
                 var categories = dbProvider.GetCollection<ExpenditureCategoryEntity>(typeof(ExpenditureCategoryEntity));
                 categoryEntity = new DbRef<ExpenditureCategoryEntity>(categories, entity.Id);
             }
-            else
-            {
-                categoryEntity = null;
-            }
+
+            return categoryEntity;
         }
     }
 }

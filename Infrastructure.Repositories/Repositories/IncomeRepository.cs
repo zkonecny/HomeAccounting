@@ -61,8 +61,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         public void Add(Income income)
         {
             var incomeEntity = translator.TranslateTo<IncomeEntity>(income);
-            UpdatePersonEntity(income.Person, incomeEntity.Person);
-            UpdateCategory(income.Category, incomeEntity.Category);
+            incomeEntity.Person = UpdatePersonEntity(income.Person);
+            incomeEntity.Category = UpdateCategory(income.Category);
             dbProvider.Insert(incomeEntity);
         }
 
@@ -73,8 +73,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             incomeEntity.Description = income.Description;
             incomeEntity.Modified = income.Modified;
 
-            UpdatePersonEntity(income.Person, incomeEntity.Person);
-            UpdateCategory(income.Category, incomeEntity.Category);
+            incomeEntity.Person = UpdatePersonEntity(income.Person);
+            incomeEntity.Category = UpdateCategory(income.Category);
 
             dbProvider.Update(incomeEntity);
         }
@@ -85,8 +85,10 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Delete(entity);
         }
 
-        private void UpdateCategory(Category category, DbRef<IncomeCategoryEntity> categoryEntity)
+        private DbRef<IncomeCategoryEntity> UpdateCategory(Category category)
         {
+            DbRef<IncomeCategoryEntity> categoryEntity = null;
+
             if (category != null)
             {
                 var entity = dbProvider.FindById<ExpenditureCategoryEntity>(category.Id);
@@ -97,6 +99,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             {
                 categoryEntity = null;
             }
+
+            return categoryEntity;
         }
     }
 }

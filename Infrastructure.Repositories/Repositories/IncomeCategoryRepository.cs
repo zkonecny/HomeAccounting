@@ -21,7 +21,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             this.translator = translator;
         }
 
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<IncomeCategory> GetAll()
         {
             List<IncomeCategory> categories = new List<IncomeCategory>();
 
@@ -37,7 +37,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return categories;
         }
 
-        public Category FindById(int id)
+        public IncomeCategory FindById(int id)
         {
             var categoryEntity = dbProvider.FindById<IncomeCategoryEntity>(id);
             var category = translator.TranslateTo<IncomeCategory>(categoryEntity);
@@ -46,7 +46,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return category;
         }
 
-        public void Add(Category category)
+        public void Add(IncomeCategory category)
         {
             var categoryEntity = translator.TranslateTo<IncomeCategoryEntity>(category);
 
@@ -60,7 +60,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Insert(categoryEntity);
         }
 
-        public void Update(Category category)
+        public void Update(IncomeCategory category)
         {
             var entity = dbProvider.FindById<IncomeCategoryEntity>(category.Id);
             entity.Name = category.Name;
@@ -80,7 +80,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Update(entity);
         }
 
-        public void Remove(Category category)
+        public void Remove(IncomeCategory category)
         {
             var entity = dbProvider.FindById<IncomeCategoryEntity>(category.Id);
             dbProvider.Delete(entity);

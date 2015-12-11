@@ -10,9 +10,18 @@ namespace HouseAccounting.DTO.Translators
         {
             Mapper.CreateMap<Person, PersonDto>();
             Mapper.CreateMap<PersonDto, Person>();
-            Mapper.CreateMap<Category, CategoryDto>();
+
             Mapper.CreateMap<CategoryDto, IncomeCategory>();
+            Mapper.CreateMap<IncomeCategory, CategoryDto>();
+
             Mapper.CreateMap<CategoryDto, ExpenditureCategory>();
+            Mapper.CreateMap<ExpenditureCategory, CategoryDto>();
+
+            Mapper.CreateMap<IncomeDto, Income>();
+            Mapper.CreateMap<Income, IncomeDto>();
+
+            Mapper.CreateMap<ExpenditureDto, Expenditure>();
+            Mapper.CreateMap<Expenditure, ExpenditureDto>();
         }
 
         public T TranslateTo<T>(object fromObject)

@@ -7,17 +7,17 @@ using HouserAccounting.Business.Classes;
 
 namespace HouseAccounting.Web.Controllers
 {
-    public class IncomeCategoryController : Controller
+    public class IncomeCategoryController : BaseController
     {
         private readonly IIncomeCategoryRepository categoryRepository;
-        private readonly IPersonRepository personRepository;
-        private readonly ITranslator translator;
-
-        public IncomeCategoryController(IIncomeCategoryRepository categoryRepository, IPersonRepository personRepository, ITranslator translator)
+  
+        public IncomeCategoryController(
+            IIncomeCategoryRepository categoryRepository, 
+            IPersonRepository personRepository,
+            ITranslator translator)
+            : base(personRepository, translator)
         {
             this.categoryRepository = categoryRepository;
-            this.personRepository = personRepository;
-            this.translator = translator;
         }
 
         // GET: Category

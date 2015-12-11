@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryDto.cs" />
+    <Compile Include="ExpenditureDto.cs" />
+    <Compile Include="IncomeDto.cs" />
     <Compile Include="PersonDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,22 +4,20 @@ using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.ExpenditureCategories;
 using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
-using LiteDB;
 
 namespace HouseAccounting.Web.Controllers
 {
-    public class ExpenditureCategoryController : Controller
+    public class ExpenditureCategoryController : BaseController
     {
         private readonly IExpenditureCategoryRepository categoryRepository;
-        private readonly IPersonRepository personRepository;
-        private readonly ITranslator translator;
 
-        public ExpenditureCategoryController(IExpenditureCategoryRepository categoryRepository, IPersonRepository personRepository, ITranslator translator)
+        public ExpenditureCategoryController(
+             IPersonRepository personRepository,
+             ITranslator translator,
+             IExpenditureCategoryRepository categoryRepository)
+            : base(personRepository, translator)
         {
             this.categoryRepository = categoryRepository;
-            this.personRepository = personRepository;
-            this.translator = translator;
         }
 
         // GET: Category
