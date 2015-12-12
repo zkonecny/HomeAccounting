@@ -229,6 +229,7 @@
     <Content Include="Views\Income\Details.cshtml" />
     <Content Include="Views\Income\Edit.cshtml" />
     <Content Include="Views\Income\IncomeEdit.cshtml" />
+    <Content Include="Views\Shared\_ButtonSave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
