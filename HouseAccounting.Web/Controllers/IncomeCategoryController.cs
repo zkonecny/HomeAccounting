@@ -52,7 +52,10 @@ namespace HouseAccounting.Web.Controllers
             {
                 TryUpdateModel(model.Category);
                 var category = translator.TranslateTo<IncomeCategory>(model.Category);
-                category.Person = personRepository.FindById(model.SelectedPersonId);
+                if (model.SelectedPersonId > 0)
+                {
+                    category.Person = personRepository.FindById(model.SelectedPersonId);
+                }
                 categoryRepository.Add(category);
 
                 return RedirectToAction("Index");

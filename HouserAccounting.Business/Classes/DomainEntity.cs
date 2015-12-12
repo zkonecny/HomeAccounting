@@ -8,6 +8,6 @@ namespace HouserAccounting.Business.Classes
 
         public DateTime Created { get; set; }
 
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 }

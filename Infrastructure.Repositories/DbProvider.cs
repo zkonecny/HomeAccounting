@@ -51,8 +51,8 @@ namespace HouseAccounting.Infrastructure.Repositories
         {
             using (var database = new LiteDatabase(connectionString))
             {
+                entity.Created = DateTime.Now;
                 var collection = GetCollection(database, entity);
-
                 var result = collection.Insert(entity);
             }
         }
@@ -61,8 +61,8 @@ namespace HouseAccounting.Infrastructure.Repositories
         {
             using (var database = new LiteDatabase(connectionString))
             {
+                entity.Modified = DateTime.Now;
                 var collection = GetCollection(database, entity);
-
                 var result = collection.Update(entity);
             }
         }
@@ -72,7 +72,6 @@ namespace HouseAccounting.Infrastructure.Repositories
             using (var database = new LiteDatabase(connectionString))
             {
                 var collection = GetCollection(database, entity);
-
                 var result = collection.Delete(new BsonValue(entity.Id));
             }
         }

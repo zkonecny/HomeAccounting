@@ -20,7 +20,7 @@ namespace HouseAccounting.Web.Controllers
             ITranslator translator,
             IIncomeCategoryRepository incomeCategoryRepository,
             IIncomeRepository incomeRepository)
-            : base (personRepository, translator)
+            : base(personRepository, translator)
         {
             this.incomeCategoryRepository = incomeCategoryRepository;
             this.incomeRepository = incomeRepository;
@@ -58,8 +58,16 @@ namespace HouseAccounting.Web.Controllers
             {
                 TryUpdateModel(model.Income);
                 var income = translator.TranslateTo<Income>(model.Income);
-                income.Person = personRepository.FindById(model.SelectedPersonId);
-                income.Category = incomeCategoryRepository.FindById(model.SelectedCategoryId);
+                if (model.SelectedPersonId > 0)
+                {
+                    income.Person = personRepository.FindById(model.SelectedPersonId);
+                }
+
+                if (model.SelectedCategoryId > 0)
+                {
+                    income.Category = incomeCategoryRepository.FindById(model.SelectedCategoryId);
+                }
+
                 incomeRepository.Add(income);
 
                 return RedirectToAction("Index");
@@ -94,7 +102,7 @@ namespace HouseAccounting.Web.Controllers
 
                 if (model.SelectedCategoryId > 0)
                 {
-                    var categoryEntity = personRepository.FindById(model.SelectedCategoryId);
+                    var categoryEntity = incomeCategoryRepository.FindById(model.SelectedCategoryId);
                     category.Category = translator.TranslateTo<IncomeCategory>(categoryEntity);
                 }
 

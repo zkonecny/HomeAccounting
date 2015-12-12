@@ -1,22 +1,31 @@
 ﻿@model HouseAccounting.Web.Models.Incomes.IncomeListViewModel
 
-<h2>Kategorie výdajů</h2>
+<h2>Kategorie příjmů</h2>
 
 <p>
     @Html.ActionLink("Vytvořit nový příjem", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>Kategorie</th>
-        <th>Osoba</th>
-        <th>Popis</th>
+        <th>Datum</th>
         <th>Částka</th>
+        <th>Popis</th>
+        <th>Osoba</th>
+        <th>Kategorie</th>
     </tr>
 
 @foreach (var income in Model.Incomes) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => income.Category.Name)
+            @Html.DisplayFor(modelItem => income.CreatedShortDate)
+        </td>
+        <td>
+            <b>
+                @Html.DisplayFor(modelItem => income.AmountString)
+            </b>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => income.Description)
         </td>
         <td>
             @if (income.Person != null)
@@ -25,10 +34,7 @@
             }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => income.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => income.Amount)
+            @Html.DisplayFor(modelItem => income.Category.Name)
         </td>
         <td>
             @Html.ActionLink("Editovat", "Edit", new { id= income.Id }) |

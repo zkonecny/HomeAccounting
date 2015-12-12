@@ -10,6 +10,6 @@ namespace HouseAccounting.Infrastructure.Repositories.Entities
 
         public DateTime Created { get; set; }
 
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 }
