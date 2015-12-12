@@ -10,9 +10,9 @@ namespace HouseAccounting.Web.Controllers
     public class IncomeCategoryController : BaseController
     {
         private readonly IIncomeCategoryRepository categoryRepository;
-  
+
         public IncomeCategoryController(
-            IIncomeCategoryRepository categoryRepository, 
+            IIncomeCategoryRepository categoryRepository,
             IPersonRepository personRepository,
             ITranslator translator)
             : base(personRepository, translator)

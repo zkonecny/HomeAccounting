@@ -11,7 +11,7 @@ namespace HouseAccounting.Web.Models.Incomes
         private readonly IPersonRepository personRepository;
         private readonly ITranslator translator;
         private readonly IIncomeCategoryRepository incomeCategoryRepository;
-        public readonly string Title = "Nová příjem";
+        public readonly string Title = "Nový příjem";
 
         public IncomeDto Income { get; set; }
 

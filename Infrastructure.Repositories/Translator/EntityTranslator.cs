@@ -30,7 +30,12 @@ namespace HouseAccounting.Infrastructure.Repositories.Translator
 
         public T TranslateTo<T>(object fromObject)
         {
-            return (T)AutoMapper.Mapper.Map(fromObject, fromObject.GetType(), typeof(T));
+            if (fromObject != null)
+            {
+                return (T)AutoMapper.Mapper.Map(fromObject, fromObject.GetType(), typeof(T));
+            }
+
+            return default(T);
         }
 
         public T TranslateTo<T>(object sourceObject, object targetObject)
