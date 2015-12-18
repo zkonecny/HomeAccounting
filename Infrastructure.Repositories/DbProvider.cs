@@ -1,6 +1,7 @@
 ﻿using System;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using HouseAccounting.Infrastructure.Repositories.Entities;
 using LiteDB;
@@ -9,7 +10,21 @@ namespace HouseAccounting.Infrastructure.Repositories
 {
     public class DbProvider : IDbProvider
     {
-        private const string connectionString = @"C:\Temp\MyData.db";
+        private string connectionStringKey = @"HouseAccountingConnectionString";
+        private string connectionString;
+
+        public string ConnectionString
+        {
+            get
+            {
+                if (connectionString == null)
+                {
+                    connectionString = ConfigurationManager.AppSettings[connectionStringKey];
+                }
+
+                return connectionString;
+            }
+        }
 
         public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity, new()
         {
@@ -18,7 +33,7 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public IEnumerable<TEntity> GetAll<TEntity>(params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new()
         {
-            using (var database = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(ConnectionString))
             {
                 var collection = GetCollection<TEntity>(database, typeof(TEntity).Name);
 
