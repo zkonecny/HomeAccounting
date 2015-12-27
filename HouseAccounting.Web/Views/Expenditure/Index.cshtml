@@ -1,0 +1,47 @@
+﻿@model HouseAccounting.Web.Models.Expenditures.ExpenditureListViewModel
+
+<h2>Výdaje</h2>
+
+<p>
+    @Html.ActionLink("Vytvořit nový výdaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Datum</th>
+        <th>Částka</th>
+        <th>Popis</th>
+        <th>Osoba</th>
+        <th>Kategorie</th>
+    </tr>
+
+@foreach (var expenditure in Model.Expenditures) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => expenditure.CreatedShortDate)
+        </td>
+        <td>
+            <b>
+                @Html.DisplayFor(modelItem => expenditure.AmountString)
+            </b>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => expenditure.Description)
+        </td>
+        <td>
+            @if (expenditure.Person != null)
+            {
+                @Html.DisplayFor(modelItem => expenditure.Person.FullName)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => expenditure.Category.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Editovat", "Edit", new { id= expenditure.Id }) |
+            @Html.ActionLink("Detail", "Details", new { id= expenditure.Id }) |
+            @Html.ActionLink("Smazat", "Delete", new { id= expenditure.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,18 @@
+﻿@model HouseAccounting.Web.Models.Expenditures.ExpenditureDeleteViewModel
+
+<h2>Smazání výdaje</h2>
+
+<h3>Opravdu smazat výdaj?</h3>
+<div>
+    <hr />
+    @Html.Partial("ExpenditureDetail", Model.Expenditure)
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Zpět na seznam výdajů", "Index")
+            <input type="submit" value="Smazat" class="btn btn-primary" />
+        </div>
+    }
+</div>

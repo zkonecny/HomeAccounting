@@ -1,0 +1,60 @@
+﻿@model HouseAccounting.Web.Models.Expenditures.ExpenditureEditViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Expenditure.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Expenditure.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Expenditure.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Expenditure.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Expenditure.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Expenditure.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Expenditure.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (@Model.Persons != null)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Osoba">Osoba</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedPersonId,
+                        new SelectList(Model.Persons, "Id", "FullName"), new { @class = "form-control" })
+                </div>
+            </div>
+        }
+
+        @if (@Model.Categories != null)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Osoba">Kategorie</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedCategoryId,
+                        new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control" })
+                </div>
+            </div>
+        }
+
+        @Html.Partial("_ButtonSave")
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Zpět na seznam výdajů", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

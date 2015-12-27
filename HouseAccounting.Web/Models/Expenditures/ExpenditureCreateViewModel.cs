@@ -5,16 +5,16 @@ using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 
-namespace HouseAccounting.Web.Models.Incomes
+namespace HouseAccounting.Web.Models.Expenditures
 {
-    public class IncomeCreateViewModel : ViewModelBase
+    public class ExpenditureCreateViewModel : ViewModelBase
     {
         private readonly IPersonRepository personRepository;
         private readonly ITranslator translator;
-        private readonly IIncomeCategoryRepository incomeCategoryRepository;
-        public readonly string Title = "Nový příjem";
+        private readonly IExpenditureCategoryRepository expenditureCategoryRepository;
+        public readonly string Title = "Nový výdaj";
 
-        public IncomeDto Income { get; set; }
+        public ExpenditureDto Expenditure { get; set; }
 
         public IEnumerable<PersonDto> Persons { get; private set; }
 
@@ -24,21 +24,21 @@ namespace HouseAccounting.Web.Models.Incomes
 
         public int SelectedCategoryId { get; set; }
 
-        public IncomeCreateViewModel()
+        public ExpenditureCreateViewModel()
         {
 
         }
 
-        public IncomeCreateViewModel(
+        public ExpenditureCreateViewModel(
             IPersonRepository personRepository,
             ITranslator translator,
-            IIncomeCategoryRepository incomeCategoryRepository)
+            IExpenditureCategoryRepository expenditureCategoryRepository)
         {
             this.personRepository = personRepository;
             this.translator = translator;
-            this.incomeCategoryRepository = incomeCategoryRepository;
-            Income = new IncomeDto();
-            Income.Created = DateTime.Now;
+            this.expenditureCategoryRepository = expenditureCategoryRepository;
+            Expenditure = new ExpenditureDto();
+            Expenditure.Created = DateTime.Now;
         }
 
         protected override void SetupViewData()
@@ -50,7 +50,7 @@ namespace HouseAccounting.Web.Models.Incomes
             personList.Insert(0, new PersonDto());
             Persons = personList;
 
-            var categories = incomeCategoryRepository.GetAll();
+            var categories = expenditureCategoryRepository.GetAll();
             Categories = categories.Select(category => translator.TranslateTo<CategoryDto>(category)).ToList();
         }
     }

@@ -22,6 +22,11 @@ namespace HouseAccounting.Infrastructure.Repositories
                     connectionString = ConfigurationManager.AppSettings[connectionStringKey];
                 }
 
+                if (connectionString == null)
+                {
+                    throw new ArgumentNullException("connection string");
+                }
+
                 return connectionString;
             }
         }
@@ -50,7 +55,7 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public TEntity FindById<TEntity>(int id, params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new()
         {
-            using (var database = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(ConnectionString))
             {
                 var collection = GetCollection<TEntity>(database, typeof(TEntity).Name);
 
@@ -64,7 +69,7 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public void Insert<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            using (var database = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(ConnectionString))
             {
                 entity.Created = DateTime.Now;
                 var collection = GetCollection(database, entity);
@@ -74,7 +79,7 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public void Update<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            using (var database = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(ConnectionString))
             {
                 entity.Modified = DateTime.Now;
                 var collection = GetCollection(database, entity);
@@ -84,7 +89,7 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity, new()
         {
-            using (var database = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(ConnectionString))
             {
                 var collection = GetCollection(database, entity);
                 var result = collection.Delete(new BsonValue(entity.Id));
@@ -93,7 +98,7 @@ namespace HouseAccounting.Infrastructure.Repositories
 
         public LiteCollection<TEntity> GetCollection<TEntity>(Type entityType) where TEntity : BaseEntity, new()
         {
-            using (var database = new LiteDatabase(connectionString))
+            using (var database = new LiteDatabase(ConnectionString))
             {
                 var collectionName = entityType.Name;
                 return GetCollection<TEntity>(database, collectionName);

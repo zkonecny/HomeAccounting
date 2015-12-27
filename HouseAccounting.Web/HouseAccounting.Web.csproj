@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ExpenditureCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncomeCategoryController.cs" />
+    <Compile Include="Controllers\ExpenditureController.cs" />
     <Compile Include="Controllers\IncomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
@@ -152,6 +153,11 @@
     <Compile Include="Models\IncomeCategories\IncomeCategoryDetailsViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryEditViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryListViewModel.cs" />
+    <Compile Include="Models\Expenditures\ExpenditureCreateViewModel.cs" />
+    <Compile Include="Models\Expenditures\ExpenditureDeleteViewModel.cs" />
+    <Compile Include="Models\Expenditures\ExpenditureDetailsViewModel.cs" />
+    <Compile Include="Models\Expenditures\ExpenditureEditViewModel.cs" />
+    <Compile Include="Models\Expenditures\ExpenditureListViewModel.cs" />
     <Compile Include="Models\Incomes\IncomeEditViewModel.cs" />
     <Compile Include="Models\Incomes\IncomeDetailsViewModel.cs" />
     <Compile Include="Models\Incomes\IncomeDeleteViewModel.cs" />
@@ -230,6 +236,13 @@
     <Content Include="Views\Income\Edit.cshtml" />
     <Content Include="Views\Income\IncomeEdit.cshtml" />
     <Content Include="Views\Shared\_ButtonSave.cshtml" />
+    <Content Include="Views\Expenditure\Create.cshtml" />
+    <Content Include="Views\Expenditure\Delete.cshtml" />
+    <Content Include="Views\Expenditure\Details.cshtml" />
+    <Content Include="Views\Expenditure\Edit.cshtml" />
+    <Content Include="Views\Expenditure\ExpenditureDetail.cshtml" />
+    <Content Include="Views\Expenditure\ExpenditureEdit.cshtml" />
+    <Content Include="Views\Expenditure\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
