@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HouseAccounting.Web.Models.Home.HomeIndexViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -6,10 +8,16 @@
 <div class="row">
     <br />
 </div>
-<div class="jumbotron">
-    <button type="button" class="btn btn-lg btn-primary">Jana - výdaj</button>
-    <button type="button" class="btn btn-lg btn-primary">Zdeněk - výdaj</button>
-    <button type="button" class="btn btn-lg btn-primary">Ondrášek - výdaj</button>
+<div class="container">
+    <h3>Zadat rychle výdaj</h3>
+    @foreach (var personExpenditure in Model.PersonExpenditures)
+    {
+        @Html.ActionLink(personExpenditure.Text, "CreateForPerson", "Expenditure",
+            new
+            {
+                personId = personExpenditure.PersonId,
+                expenditureCategoryId = personExpenditure.ExpenditureCategory.Id
+            },
+            new { @class = "btn btn-lg btn-info .caret" });
+    }
 </div>
-
-

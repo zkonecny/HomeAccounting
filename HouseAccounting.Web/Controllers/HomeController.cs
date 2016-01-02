@@ -1,12 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using HouseAccounting.DTO.Translators;
+using HouseAccounting.Infrastructure.Repositories.Repositories;
+using HouseAccounting.Web.Models.Home;
+using System.Web.Mvc;
 
 namespace HouseAccounting.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        private IExpenditureCategoryRepository expenditureCategoryRepository;
+        public HomeController(IPersonRepository personRepository, ITranslator translator, IExpenditureCategoryRepository expenditureCategoryRepository)
+            : base(personRepository, translator)
+        {
+            this.expenditureCategoryRepository = expenditureCategoryRepository;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            HomeIndexViewModel model = new HomeIndexViewModel(personRepository, translator, expenditureCategoryRepository);
+            model.LoadViewModelData();
+            return View(model);
         }
 
         public ActionResult About()

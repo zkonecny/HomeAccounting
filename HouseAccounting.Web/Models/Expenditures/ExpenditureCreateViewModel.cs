@@ -26,30 +26,70 @@ namespace HouseAccounting.Web.Models.Expenditures
 
         public ExpenditureCreateViewModel()
         {
-
         }
 
         public ExpenditureCreateViewModel(
             IPersonRepository personRepository,
             ITranslator translator,
-            IExpenditureCategoryRepository expenditureCategoryRepository)
+            IExpenditureCategoryRepository expenditureCategoryRepository,
+            int personId = 0,
+            int expenditureCategoryId = 0)
         {
             this.personRepository = personRepository;
             this.translator = translator;
             this.expenditureCategoryRepository = expenditureCategoryRepository;
             Expenditure = new ExpenditureDto();
             Expenditure.Created = DateTime.Now;
+            SelectedPersonId = personId;
+            SelectedCategoryId = expenditureCategoryId;
+            Persons = new List<PersonDto>();
+            Categories = new List<CategoryDto>();
         }
 
         protected override void SetupViewData()
         {
             base.SetupViewData();
             PageTitle = Title;
+            if (SelectedPersonId == 0 && SelectedCategoryId == 0)
+            {
+                SetAllPersons();
+                SetAllCategories();
+            }
+            else
+            {
+                SetPersons();
+                SetCategories();
+            }
+        }
+
+        private void SetPersons()
+        {
+            if (SelectedPersonId > 0)
+            {
+                var person = personRepository.FindById(SelectedPersonId);
+                Persons = new PersonDto[] { translator.TranslateTo<PersonDto>(person) };
+            }
+        }
+
+        private void SetAllPersons()
+        {
             var persons = personRepository.GetAll();
             var personList = persons.Select(person => translator.TranslateTo<PersonDto>(person)).ToList();
             personList.Insert(0, new PersonDto());
             Persons = personList;
+        }
 
+        private void SetCategories()
+        {
+            if (SelectedCategoryId > 0)
+            {
+                var category = expenditureCategoryRepository.FindById(SelectedCategoryId);
+                Categories = new CategoryDto[] { translator.TranslateTo<CategoryDto>(category) };
+            }
+        }
+
+        private void SetAllCategories()
+        {
             var categories = expenditureCategoryRepository.GetAll();
             Categories = categories.Select(category => translator.TranslateTo<CategoryDto>(category)).ToList();
         }

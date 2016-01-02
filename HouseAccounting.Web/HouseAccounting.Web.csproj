@@ -148,6 +148,7 @@
     <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryDetailsViewModel.cs" />
     <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryEditViewModel.cs" />
     <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryListViewModel.cs" />
+    <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryCreateViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryDeleteViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryDetailsViewModel.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\HouseAccountingRelease.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

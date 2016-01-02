@@ -26,7 +26,6 @@ namespace HouseAccounting.Web.Controllers
             this.expenditureRepository = expenditureRepository;
         }
 
-        // GET: Income
         public ActionResult Index()
         {
             ExpenditureListViewModel model = new ExpenditureListViewModel(personRepository, translator, expenditureRepository);
@@ -34,7 +33,6 @@ namespace HouseAccounting.Web.Controllers
             return View(model);
         }
 
-        // GET: Category/Details/5
         public ActionResult Details(int id)
         {
             ExpenditureDetailsViewModel model = new ExpenditureDetailsViewModel(id, expenditureRepository, translator);
@@ -42,7 +40,6 @@ namespace HouseAccounting.Web.Controllers
             return View(model);
         }
 
-        // GET: Category/Create
         public ActionResult Create()
         {
             ExpenditureCreateViewModel model = new ExpenditureCreateViewModel(personRepository, translator, expenditureCategoryRepository);
@@ -50,7 +47,14 @@ namespace HouseAccounting.Web.Controllers
             return View(model);
         }
 
-        // POST: Category/Create
+        public ActionResult CreateForPerson(int personId, int expenditureCategoryId)
+        {
+            ExpenditureCreateViewModel model = new ExpenditureCreateViewModel(personRepository, translator, 
+                expenditureCategoryRepository, personId: personId, expenditureCategoryId: expenditureCategoryId);
+            model.LoadViewModelData();
+            return View("Create", model);
+        }
+
         [HttpPost]
         public ActionResult Create(ExpenditureCreateViewModel model)
         {
@@ -78,7 +82,6 @@ namespace HouseAccounting.Web.Controllers
             }
         }
 
-        //// GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
             ExpenditureEditViewModel model = new ExpenditureEditViewModel(id, expenditureRepository, personRepository, translator, expenditureCategoryRepository);
@@ -86,7 +89,6 @@ namespace HouseAccounting.Web.Controllers
             return View(model);
         }
 
-        //// POST: Category/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, ExpenditureEditViewModel model)
         {

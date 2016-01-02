@@ -4,9 +4,9 @@
 
 <div>
     <hr />
-    @Html.Partial("ExpenditureDetail", Model.Income)
+    @Html.Partial("ExpenditureDetail", Model.Expenditure)
 </div>
 <p>
     @Html.ActionLink("Zpět na seznam výdajů", "Index") | 
-    @Html.ActionLink("Editovat", "Edit", new {id = Model.Income.Id}) 
+    @Html.ActionLink("Editovat", "Edit", new {id = Model.Expenditure.Id}) 
 </p>
