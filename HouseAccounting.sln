@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseAccounting.DTOS", "Hou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseAccounting.DTO.Translators", "HouseAccounting.DTO.Translators\HouseAccounting.DTO.Translators.csproj", "{73E890C1-BD5E-4913-80C3-BBE29EDDE2AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouserAccounting.Business", "HouserAccounting.Business\HouserAccounting.Business.csproj", "{F1C89212-724E-483F-A8ED-2B8ADC935F4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseAccounting.Business", "HouserAccounting.Business\HouseAccounting.Business.csproj", "{F1C89212-724E-483F-A8ED-2B8ADC935F4E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{860E7E32-3550-4EBB-B4C9-BB454BD9C690}"
 	ProjectSection(SolutionItems) = preProject

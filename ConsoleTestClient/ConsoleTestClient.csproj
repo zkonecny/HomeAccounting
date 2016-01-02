@@ -49,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HouserAccounting.Business\HouserAccounting.Business.csproj">
+    <ProjectReference Include="..\HouserAccounting.Business\HouseAccounting.Business.csproj">
       <Project>{F1C89212-724E-483F-A8ED-2B8ADC935F4E}</Project>
-      <Name>HouserAccounting.Business</Name>
+      <Name>HouseAccounting.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
       <Project>{4edf72ad-8667-4e60-91a4-11f4a4c4b7e0}</Project>

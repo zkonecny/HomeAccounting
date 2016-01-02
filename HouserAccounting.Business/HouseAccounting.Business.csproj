@@ -7,8 +7,8 @@
     <ProjectGuid>{F1C89212-724E-483F-A8ED-2B8ADC935F4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HouserAccounting.Business</RootNamespace>
-    <AssemblyName>HouserAccounting.Business</AssemblyName>
+    <RootNamespace>HouseAccounting.Business</RootNamespace>
+    <AssemblyName>HouseAccounting.Business</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -266,9 +266,9 @@
       <Project>{55e8d102-5cbe-428b-8309-f406c73c0a65}</Project>
       <Name>HouseAccounting.DTOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HouserAccounting.Business\HouserAccounting.Business.csproj">
+    <ProjectReference Include="..\HouserAccounting.Business\HouseAccounting.Business.csproj">
       <Project>{f1c89212-724e-483f-a8ed-2b8adc935f4e}</Project>
-      <Name>HouserAccounting.Business</Name>
+      <Name>HouseAccounting.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Repositories\Infrastructure.Repositories.csproj">
       <Project>{4edf72ad-8667-4e60-91a4-11f4a4c4b7e0}</Project>
