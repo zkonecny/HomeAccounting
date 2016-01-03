@@ -70,18 +70,13 @@
     <Compile Include="Installers\RepositoriesInstaller.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\IExpenditureCategoryRepository.cs" />
-    <Compile Include="Repositories\IExpenditureRepository.cs" />
-    <Compile Include="Repositories\IIncomeCategoryRepository.cs" />
     <Compile Include="Repositories\ExpenditureCategoryRepository.cs" />
-    <Compile Include="Repositories\IIncomeRepository.cs" />
     <Compile Include="Repositories\ExpenditureRepository.cs" />
     <Compile Include="Repositories\IncomeRepository.cs" />
     <Compile Include="Translator\IEntityTranslator.cs" />
     <Compile Include="Translator\EntityTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IncomeCategoryRepository.cs" />
-    <Compile Include="Repositories\IPersonRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>

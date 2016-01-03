@@ -50,9 +50,16 @@
     <Compile Include="Classes\ExpenditureCategory.cs" />
     <Compile Include="Classes\Income.cs" />
     <Compile Include="Classes\IncomeCategory.cs" />
+    <Compile Include="Classes\MonthlyItem.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IExpenditureCategoryRepository.cs" />
+    <Compile Include="Repositories\IExpenditureRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
+    <Compile Include="Repositories\IIncomeCategoryRepository.cs" />
+    <Compile Include="Repositories\IIncomeRepository.cs" />
+    <Compile Include="Repositories\IPersonRepository.cs" />
+    <Compile Include="Services\MonthlyStatisticsService.cs" />
     <Compile Include="Specifications\ISpecification.cs" />
   </ItemGroup>
   <ItemGroup>
