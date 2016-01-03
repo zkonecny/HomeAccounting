@@ -35,13 +35,16 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Osoba">Osoba</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectedPersonId,
-                    new SelectList(Model.Persons, "Id", "FullName"), new { @class = "form-control" })
+        @if (Model.Persons.Any())
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Osoba">Osoba</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedPersonId,
+                     new SelectList(Model.Persons, "Id", "FullName"), new { @class = "form-control" })
+                </div>
             </div>
-        </div>
+        }
 
         <div class="form-group">
             <label class="control-label col-md-2" for="Osoba">Kategorie</label>

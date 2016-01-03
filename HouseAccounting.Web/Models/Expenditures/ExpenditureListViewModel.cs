@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
@@ -34,7 +35,7 @@ namespace HouseAccounting.Web.Models.Expenditures
         {
             PageTitle = Title;
 
-            var expenditures = expenditureRepository.GetAll();
+            var expenditures = expenditureRepository.GetAll().OrderByDescending(expenditure => expenditure.Created);
             Expenditures = translator.TranslateTo<IEnumerable<ExpenditureDto>>(expenditures);
         }
     }

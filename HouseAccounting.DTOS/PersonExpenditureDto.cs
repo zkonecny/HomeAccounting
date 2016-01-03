@@ -28,10 +28,10 @@ namespace HouseAccounting.DTOS
             get
             {
                 var text = string.Empty;
-                //if (ExpenditureCategory.Person != null)
-                //{
-                //    text += ExpenditureCategory.Person.FirstName + " - ";
-                //}
+                if (ExpenditureCategory.Person != null)
+                {
+                    text += ExpenditureCategory.Person.FirstName + " - ";
+                }
 
                 text += ExpenditureCategory.Name;
                 return text;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
@@ -34,7 +35,7 @@ namespace HouseAccounting.Web.Models.Incomes
         {
             PageTitle = Title;
 
-            var incomes = incomeRepository.GetAll();
+            var incomes = incomeRepository.GetAll().OrderByDescending(income => income.Created);
             Incomes = translator.TranslateTo<IEnumerable<IncomeDto>>(incomes);
         }
     }
