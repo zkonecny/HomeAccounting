@@ -10,9 +10,9 @@ namespace HouseAccounting.Web.Models.Home
 {
     public class HomeIndexViewModel : ViewModelBase
     {
-        private readonly ITranslator translator;
-        private readonly IPersonRepository personRepository;
-        private readonly IExpenditureCategoryRepository expenditureCategoryRepository;
+        protected readonly ITranslator translator;
+        protected readonly IPersonRepository personRepository;
+        protected readonly IExpenditureCategoryRepository expenditureCategoryRepository;
 
         public HomeIndexViewModel(IPersonRepository personRepository, ITranslator translator, IExpenditureCategoryRepository expenditureCategoryRepository)
         {

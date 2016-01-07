@@ -2,46 +2,65 @@
 
 <h2>Výdaje</h2>
 
-<p>
-    @Html.ActionLink("Vytvořit nový výdaj", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>Datum</th>
-        <th>Částka</th>
-        <th>Popis</th>
-        <th>Osoba</th>
-        <th>Kategorie</th>
-    </tr>
-
-@foreach (var expenditure in Model.Expenditures) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => expenditure.CreatedShortDate)
-        </td>
-        <td>
-            <b>
-                @Html.DisplayFor(modelItem => expenditure.AmountString)
-            </b>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => expenditure.Description)
-        </td>
-        <td>
-            @if (expenditure.Person != null)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h5>Zadat nový výdaj</h5>
+        @foreach (var personExpenditure in Model.PersonExpenditures)
             {
-                @Html.DisplayFor(modelItem => expenditure.Person.FullName)
+            @Html.ActionLink(personExpenditure.Text, "CreateForPerson", "Expenditure",
+            new
+            {
+                personId = personExpenditure.PersonId,
+                expenditureCategoryId = personExpenditure.ExpenditureCategory.Id
+            },
+            new { @class = "btn btn-md btn-info" });
+            <a></a>
             }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => expenditure.Category.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Editovat", "Edit", new { id= expenditure.Id }) |
-            @Html.ActionLink("Detail", "Details", new { id= expenditure.Id }) |
-            @Html.ActionLink("Smazat", "Delete", new { id= expenditure.Id })
-        </td>
-    </tr>
-}
+    </div>
+    <div class="panel-body">
+        <h4>Seznam výdajů</h4>
+        <table class="table">
+            <tr>
+                <th>Datum</th>
+                <th>Částka</th>
+                <th>Popis</th>
+                <th>Osoba</th>
+                <th>Kategorie</th>
+            </tr>
 
-</table>
+            @foreach (var expenditure in Model.Expenditures)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => expenditure.CreatedShortDate)
+                    </td>
+                    <td>
+                        <b>
+                            @Html.DisplayFor(modelItem => expenditure.AmountString)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => expenditure.Description)
+                    </td>
+                    <td>
+                        @if (expenditure.Person != null)
+                {
+                            @Html.DisplayFor(modelItem => expenditure.Person.FirstName)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => expenditure.Category.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editovat", "Edit", new { id = expenditure.Id }) |
+                        @Html.ActionLink("Detail", "Details", new { id = expenditure.Id }) |
+                        @Html.ActionLink("Smazat", "Delete", new { id = expenditure.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

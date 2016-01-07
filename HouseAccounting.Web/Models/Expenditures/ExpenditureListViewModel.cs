@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
+using HouseAccounting.Web.Models.Home;
 
 namespace HouseAccounting.Web.Models.Expenditures
 {
-    public class ExpenditureListViewModel : ViewModelBase
+    public class ExpenditureListViewModel : HomeIndexViewModel
     {
-        private readonly ITranslator translator;
-        private readonly IPersonRepository personRepository;
         private readonly IExpenditureRepository expenditureRepository;
         public readonly string Title = "Seznam výdajů";
 
@@ -18,12 +17,13 @@ namespace HouseAccounting.Web.Models.Expenditures
         public ExpenditureListViewModel(
             IPersonRepository personRepository, 
             ITranslator translator,
-            IExpenditureRepository expenditureRepository)
+            IExpenditureRepository expenditureRepository,
+            IExpenditureCategoryRepository expenditureCategoryRepository)
+             : base(personRepository, translator, expenditureCategoryRepository)
         {
-            this.personRepository = personRepository;
-            this.translator = translator;
             this.expenditureRepository = expenditureRepository;
         }
+       
 
         protected override void SetupViewData()
         {

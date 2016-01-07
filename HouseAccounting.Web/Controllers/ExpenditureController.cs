@@ -28,7 +28,8 @@ namespace HouseAccounting.Web.Controllers
 
         public ActionResult Index()
         {
-            ExpenditureListViewModel model = new ExpenditureListViewModel(personRepository, translator, expenditureRepository);
+            ExpenditureListViewModel model = new ExpenditureListViewModel(personRepository, translator,
+                expenditureRepository, expenditureCategoryRepository);
             model.LoadViewModelData();
             return View(model);
         }

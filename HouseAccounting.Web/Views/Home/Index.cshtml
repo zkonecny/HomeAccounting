@@ -9,7 +9,7 @@
     <br />
 </div>
 <div class="container">
-    <h3>Zadat rychle výdaj</h3>
+    <h3>Zadat výdaj</h3>
     @foreach (var personExpenditure in Model.PersonExpenditures)
     {
         @Html.ActionLink(personExpenditure.Text, "CreateForPerson", "Expenditure",
@@ -18,6 +18,7 @@
                 personId = personExpenditure.PersonId,
                 expenditureCategoryId = personExpenditure.ExpenditureCategory.Id
             },
-            new { @class = "btn btn-lg btn-info" });
+            new { @class = "btn btn-md btn-info" });
+        <a></a>
     }
 </div>
