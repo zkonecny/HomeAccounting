@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories

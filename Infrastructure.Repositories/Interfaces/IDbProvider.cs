@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HouseAccounting.Infrastructure.Repositories.Entities;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Interfaces

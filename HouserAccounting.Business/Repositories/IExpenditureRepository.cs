@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {

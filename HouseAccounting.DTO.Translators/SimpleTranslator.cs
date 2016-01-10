@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using HouseAccounting.Business.Classes;
 using HouseAccounting.DTOS;
-using HouserAccounting.Business.Classes;
 
 namespace HouseAccounting.DTO.Translators
 {

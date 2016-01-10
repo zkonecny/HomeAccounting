@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HouserAccounting.Business.Classes
+namespace HouseAccounting.Business.Classes
 {
     public class IncomeCategory : Category
     {

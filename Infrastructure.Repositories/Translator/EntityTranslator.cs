@@ -1,6 +1,6 @@
 ﻿using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 
 namespace HouseAccounting.Infrastructure.Repositories.Translator
 {

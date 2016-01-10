@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Entities

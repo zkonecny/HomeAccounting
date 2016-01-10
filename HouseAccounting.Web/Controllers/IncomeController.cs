@@ -1,7 +1,7 @@
 ﻿using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Incomes;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

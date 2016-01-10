@@ -1,4 +1,4 @@
-﻿namespace HouserAccounting.Business.Specifications
+﻿namespace HouseAccounting.Business.Specifications
 {
     public interface ISpecification<T>
     {

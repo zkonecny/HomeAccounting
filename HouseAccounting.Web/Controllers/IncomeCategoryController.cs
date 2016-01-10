@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.IncomeCategories;
-using HouserAccounting.Business.Classes;
+using HouseAccounting.Business.Classes;
 
 namespace HouseAccounting.Web.Controllers
 {

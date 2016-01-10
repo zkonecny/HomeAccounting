@@ -2,8 +2,8 @@
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
+using HouseAccounting.Business.Classes;
+using HouseAccounting.Business.Repositories;
 
 namespace HouseAccounting.Web.Models.Persons
 {

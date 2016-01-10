@@ -15,5 +15,9 @@ namespace HouseAccounting.Business.Classes
         public int TotalIncomes { get; set; }
 
         public int TotalExpenditures { get; set; }
+
+        public Person Person { get; set; }
+
+        public Category Category { get; set; }
     }
 }

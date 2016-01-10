@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Specifications;
+using HouseAccounting.Business.Classes;
+using HouseAccounting.Business.Specifications;
 using LiteDB;
 
-namespace HouserAccounting.Business.Repositories
+namespace HouseAccounting.Business.Repositories
 {
     public interface IGenericRepository<TDomainEntity> where TDomainEntity : DomainEntity, new()
     {

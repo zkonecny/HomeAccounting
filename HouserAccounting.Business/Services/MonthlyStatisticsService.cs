@@ -1,6 +1,5 @@
 ﻿using HouseAccounting.Business.Classes;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouserAccounting.Business.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

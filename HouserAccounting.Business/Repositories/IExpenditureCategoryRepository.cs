@@ -1,4 +1,4 @@
-﻿using HouserAccounting.Business.Classes;
+﻿using HouseAccounting.Business.Classes;
 using System.Collections.Generic;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories

@@ -6,8 +6,8 @@ using HouseAccounting.Infrastructure.Repositories;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Persons;
-using HouserAccounting.Business.Classes;
-using HouserAccounting.Business.Repositories;
+using HouseAccounting.Business.Classes;
+using HouseAccounting.Business.Repositories;
 
 namespace HouseAccounting.Web.Controllers
 {
