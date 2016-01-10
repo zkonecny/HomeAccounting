@@ -1,4 +1,5 @@
-﻿@model HouseAccounting.Web.Models.Home.HomeIndexViewModel
+﻿@using HouseAccounting.DTOS;
+@model HouseAccounting.Web.Models.Home.HomeIndexViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -9,16 +10,42 @@
     <br />
 </div>
 <div class="container">
-    <h3>Zadat výdaj</h3>
-    @foreach (var personExpenditure in Model.PersonExpenditures)
-    {
-        @Html.ActionLink(personExpenditure.Text, "CreateForPerson", "Expenditure",
-            new
-            {
-                personId = personExpenditure.PersonId,
-                expenditureCategoryId = personExpenditure.ExpenditureCategory.Id
-            },
-            new { @class = "btn btn-md btn-info" });
-        <a></a>
-    }
+    @Html.Partial("_QuickExpenditure", Model)
 </div>
+
+<div class="panel-heading">
+    <h4>Měsíční přehledy</h4>
+</div>
+<div class="panel-body">
+    <table class="table">
+        <tr>
+            <th>Rok</th>
+            <th>Měsíc</th>
+            <th>Příjmy</th>
+            <th>Výdaje</th>
+            <th>Rozdíl</th>
+        </tr>
+
+        @foreach (var item in Model.MonthlyItems)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalIncomesInCurrency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalExpendituresInCurrency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemainderInCurrency)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

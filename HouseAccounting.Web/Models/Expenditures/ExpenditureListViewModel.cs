@@ -4,6 +4,7 @@ using HouseAccounting.DTO.Translators;
 using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Home;
+using HouseAccounting.Business.Services;
 
 namespace HouseAccounting.Web.Models.Expenditures
 {
@@ -18,8 +19,9 @@ namespace HouseAccounting.Web.Models.Expenditures
             IPersonRepository personRepository, 
             ITranslator translator,
             IExpenditureRepository expenditureRepository,
-            IExpenditureCategoryRepository expenditureCategoryRepository)
-             : base(personRepository, translator, expenditureCategoryRepository)
+            IExpenditureCategoryRepository expenditureCategoryRepository,
+            IMonthlyStatisticsService monthlyStatisticsService)
+             : base(personRepository, translator, expenditureCategoryRepository, monthlyStatisticsService)
         {
             this.expenditureRepository = expenditureRepository;
         }

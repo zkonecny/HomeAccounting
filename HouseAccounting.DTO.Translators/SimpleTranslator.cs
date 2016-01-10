@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HouseAccounting.Business.Classes;
 using HouseAccounting.DTOS;
 using HouserAccounting.Business.Classes;
 
@@ -22,6 +23,8 @@ namespace HouseAccounting.DTO.Translators
 
             Mapper.CreateMap<ExpenditureDto, Expenditure>();
             Mapper.CreateMap<Expenditure, ExpenditureDto>();
+
+            Mapper.CreateMap<MonthlyItem, MonthlyItemDto>();
         }
 
         public T TranslateTo<T>(object fromObject)

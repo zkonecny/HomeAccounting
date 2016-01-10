@@ -1,0 +1,15 @@
+﻿@model HouseAccounting.Web.Models.Home.HomeIndexViewModel
+
+<h5>Zadat nový výdaj</h5>
+@foreach (var personExpenditure in Model.PersonExpenditures)
+            {
+    @Html.ActionLink(personExpenditure.Text, "CreateForPerson", "Expenditure",
+            new
+            {
+                personId = personExpenditure.PersonId,
+                expenditureCategoryId = personExpenditure.ExpenditureCategory.Id
+            },
+            new { @class = "btn btn-md btn-info" });
+    <a></a>
+}
+

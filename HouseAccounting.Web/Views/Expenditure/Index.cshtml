@@ -3,19 +3,9 @@
 <h2>Výdaje</h2>
 
 <div class="panel panel-default">
+
     <div class="panel-heading">
-        <h5>Zadat nový výdaj</h5>
-        @foreach (var personExpenditure in Model.PersonExpenditures)
-            {
-            @Html.ActionLink(personExpenditure.Text, "CreateForPerson", "Expenditure",
-            new
-            {
-                personId = personExpenditure.PersonId,
-                expenditureCategoryId = personExpenditure.ExpenditureCategory.Id
-            },
-            new { @class = "btn btn-md btn-info" });
-            <a></a>
-            }
+        @Html.Partial("_QuickExpenditure", Model)
     </div>
     <div class="panel-body">
         <h4>Seznam výdajů</h4>
@@ -36,7 +26,7 @@
                     </td>
                     <td>
                         <b>
-                            @Html.DisplayFor(modelItem => expenditure.AmountString)
+                            @Html.DisplayFor(modelItem => expenditure.AmountInCurrency)
                         </b>
                     </td>
                     <td>

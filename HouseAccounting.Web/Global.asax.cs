@@ -9,6 +9,7 @@ using Castle.Windsor;
 using HouseAccounting.DTO.Translators.Installers;
 using HouseAccounting.Infrastructure.Repositories.Installers;
 using HouseAccounting.Web.Installers;
+using HouseAccounting.Business.Installers;
 
 namespace HouseAccounting.Web
 {
@@ -38,6 +39,7 @@ namespace HouseAccounting.Web
 
             this._container.Install(
                 new RepositoriesInstaller(),
+                new BusinessInstaller(),
                 new TranslatorsInstaller(),
                 new WebInstaller()
                 );

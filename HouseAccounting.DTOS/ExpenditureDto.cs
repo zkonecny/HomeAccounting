@@ -17,6 +17,8 @@ namespace HouseAccounting.DTOS
         [Display(Name = "Datum")]
         public string CreatedShortDate { get { return Created.ToShortDateString(); } }
 
+        public string AmountInCurrency { get { return Amount.ToCurrencyString(); } }
+
         [Required]
         [Display(Name = "Popis")]
         public string Description { get; set; }
@@ -24,8 +26,6 @@ namespace HouseAccounting.DTOS
         [Required]
         [Display(Name = "Částka")]
         public int Amount { get; set; }
-
-        public string AmountString { get { return Amount.ToString("C0"); } }
 
         [Required]
         [Display(Name = "Kategorie")]

@@ -1,4 +1,5 @@
-﻿using HouseAccounting.DTO.Translators;
+﻿using HouseAccounting.Business.Services;
+using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Expenditures;
 using HouserAccounting.Business.Classes;
@@ -14,22 +15,25 @@ namespace HouseAccounting.Web.Controllers
     {
         private IExpenditureRepository expenditureRepository;
         private IExpenditureCategoryRepository expenditureCategoryRepository;
+        private IMonthlyStatisticsService monthlyStatisticsService;
 
         public ExpenditureController(
             IPersonRepository personRepository,
             ITranslator translator,
             IExpenditureCategoryRepository expenditureCategoryRepository,
-            IExpenditureRepository expenditureRepository)
+            IExpenditureRepository expenditureRepository,
+            IMonthlyStatisticsService monthlyStatisticsService)
             : base(personRepository, translator)
         {
             this.expenditureCategoryRepository = expenditureCategoryRepository;
             this.expenditureRepository = expenditureRepository;
+            this.monthlyStatisticsService = monthlyStatisticsService;
         }
 
         public ActionResult Index()
         {
             ExpenditureListViewModel model = new ExpenditureListViewModel(personRepository, translator,
-                expenditureRepository, expenditureCategoryRepository);
+                expenditureRepository, expenditureCategoryRepository, monthlyStatisticsService);
             model.LoadViewModelData();
             return View(model);
         }
