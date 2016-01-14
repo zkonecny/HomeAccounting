@@ -5,6 +5,7 @@ using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Business.Classes;
 using LiteDB;
+using System.Linq.Expressions;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
@@ -56,6 +57,30 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             income.Person = MapPerson(incomeEntity.Person);
             income.Category = MapCategory(incomeEntity.Category);
             return income;
+        }
+
+        public IEnumerable<Income> FindByDate(int year, int month)
+        {
+            List<Income> incomes = new List<Income>();
+
+            DateTime fromDate = new DateTime(year, month, 1);
+            DateTime endDate = fromDate.AddMonths(1).AddDays(-1);
+
+            Expression<Func<IncomeEntity, bool>> predicate = incomeEntity
+                => (incomeEntity.Created >= fromDate
+                && incomeEntity.Created <= endDate);
+
+            var incomeEntities = dbProvider.Find(predicate);
+
+            foreach (var incomeEntity in incomeEntities)
+            {
+                Income income = translator.TranslateTo<Income>(incomeEntity);
+                income.Person = MapPerson(incomeEntity.Person);
+                income.Category = MapCategory(incomeEntity.Category);
+                incomes.Add(income);
+            }
+
+            return incomes;
         }
 
         public void Add(Income income)

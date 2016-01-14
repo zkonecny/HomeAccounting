@@ -23,5 +23,9 @@ namespace HouseAccounting.DTOS
         public int Remainder { get { return TotalIncomes - TotalExpenditures; } }
 
         public string RemainderInCurrency { get { return Remainder.ToCurrencyString(); } }
+
+        public PersonDto Person { get; set; }
+
+        public CategoryDto Category { get; set; }
     }
 }

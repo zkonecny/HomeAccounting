@@ -1,0 +1,85 @@
+﻿@model HouseAccounting.Web.Models.Expenditures.ExpenditureMonthlyViewModel
+
+
+<div class="panel-heading">
+    <h3>Aktuální měsíční přehled</h3>
+</div>
+<div class="panel-body">
+    <h4>Příjmy</h4>
+    <table class="table">
+        <tr>
+            <th>Rok</th>
+            <th>Měsíc</th>
+            <th>Příjmy</th>
+            <th>Kategorie</th>
+            <th>Osoba</th>
+        </tr>
+
+        @foreach (var item in Model.MonthlyItems.Where(item => item.TotalIncomes > 0))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalIncomesInCurrency)
+                </td>
+                <td>
+                    @if (item.Category != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    }
+                </td>
+                <td>
+                    @if (item.Person != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Person.FirstName)
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+    <h4>Výdaje</h4>
+    <table class="table">
+        <tr>
+            <th>Rok</th>
+            <th>Měsíc</th>
+            <th>Výdaje</th>
+            <th>Kategorie</th>
+            <th>Osoba</th>
+        </tr>
+
+        @foreach (var item in Model.MonthlyItems.Where(item => item.TotalExpenditures > 0))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalExpendituresInCurrency)
+                </td>
+                <td>
+                    @if (item.Category != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    }
+                </td>
+                <td>
+                    @if (item.Person != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Person.FirstName)
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+

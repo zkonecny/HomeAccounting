@@ -5,6 +5,8 @@ namespace HouseAccounting.Business.Services
 {
     public interface IMonthlyStatisticsService
     {
-        IEnumerable<MonthlyItem> GetMonthlyStatistic();
+        IEnumerable<MonthlyItem> GetAllMonthlyStatistics();
+
+        IEnumerable<MonthlyItem> GetMonthlyStatistics(int year, int month);
     }
 }

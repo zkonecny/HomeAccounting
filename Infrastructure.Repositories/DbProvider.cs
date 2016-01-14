@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Linq;
 using HouseAccounting.Infrastructure.Repositories.Entities;
 using LiteDB;
+using System.Linq.Expressions;
 
 namespace HouseAccounting.Infrastructure.Repositories
 {
@@ -62,6 +63,19 @@ namespace HouseAccounting.Infrastructure.Repositories
                 AddIncludes(database, collection, includes);
 
                 var result = collection.FindById(new BsonValue(id));
+
+                return result;
+            }
+        }
+
+        public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate, int skip = 0, int limit = int.MaxValue)
+            where TEntity : BaseEntity, new()
+        {
+            using (var database = new LiteDatabase(ConnectionString))
+            {
+                var collection = GetCollection<TEntity>(database, typeof(TEntity).Name);
+
+                var result = collection.Find(predicate, skip, limit).ToList();
 
                 return result;
             }

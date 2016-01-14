@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace HouseAccounting.Web.Models.Home
+namespace HouseAccounting.Web.Models.Expenditures
 {
-    public class HomeIndexViewModel : ViewModelBase
+    public class ExpenditureMonthlyViewModel : ViewModelBase
     {
         protected readonly ITranslator translator;
         protected readonly IPersonRepository personRepository;
         protected readonly IExpenditureCategoryRepository expenditureCategoryRepository;
         protected readonly IMonthlyStatisticsService monthlyStatisticsService;
 
-        public HomeIndexViewModel(IPersonRepository personRepository,
+        public ExpenditureMonthlyViewModel(IPersonRepository personRepository,
             ITranslator translator,
             IExpenditureCategoryRepository expenditureCategoryRepository,
             IMonthlyStatisticsService monthlyStatisticsService)
@@ -26,8 +26,6 @@ namespace HouseAccounting.Web.Models.Home
             this.expenditureCategoryRepository = expenditureCategoryRepository;
             this.monthlyStatisticsService = monthlyStatisticsService;
         }
-
-        public IEnumerable<PersonExpenditureDto> PersonExpenditures { get; private set; }
 
         public IEnumerable<MonthlyItemDto> MonthlyItems { get; private set; }
 
@@ -39,30 +37,16 @@ namespace HouseAccounting.Web.Models.Home
 
         private void LoadData()
         {
-            LoadQuickPersonExpenditures();
             LoadMonthlyStatistics();
-        }
-
-        private void LoadQuickPersonExpenditures()
-        {
-            var personExpenditures = new List<PersonExpenditureDto>();
-
-            var expendituresCategories = expenditureCategoryRepository.GetAll();
-
-            foreach (var expenditureCategory in expenditureCategoryRepository.GetAll())
-            {
-                var personExpenditureDto = new PersonExpenditureDto();
-                personExpenditureDto.ExpenditureCategory = translator.TranslateTo<CategoryDto>(expenditureCategory);
-
-                personExpenditures.Add(personExpenditureDto);
-            }
-
-            PersonExpenditures = personExpenditures;
         }
 
         private void LoadMonthlyStatistics()
         {
-            var monthlyItems = monthlyStatisticsService.GetAllMonthlyStatistics();
+            var year = DateTime.Now.Year;
+            var month = DateTime.Now.Month;
+
+            var monthlyItems = monthlyStatisticsService.GetMonthlyStatistics(year, month);
+
             var monthlyItemsDto = new List<MonthlyItemDto>();
             foreach (var item in monthlyItems)
             {

@@ -19,7 +19,7 @@ namespace HouseAccounting.Business.Services
             this.expenditureRepository = expenditureRepository;
         }
 
-        public IEnumerable<MonthlyItem> GetMonthlyStatistic()
+        public IEnumerable<MonthlyItem> GetAllMonthlyStatistics()
         {
             var monthlyItems = new Dictionary<string, MonthlyItem>();
             var allIncomes = incomeRepository.GetAll().OrderByDescending(income => income.Created);
@@ -31,14 +31,30 @@ namespace HouseAccounting.Business.Services
             return monthlyItems.Select(pair => pair.Value);
         }
 
-        private void AddIncomes(IDictionary<string, MonthlyItem> monthlyItems, IEnumerable<Income> incomes)
+        private void AddIncomes(IDictionary<string, MonthlyItem> monthlyItems, IEnumerable<Income> incomes, bool useCategoryAndPerson = false)
         {
             foreach (var income in incomes)
             {
-                var key = GetKey(income.Created);
+                string key = null;
+                if (useCategoryAndPerson)
+                {
+                    key = GetMonthlyKey(income.Created, income.Category, income.Person);
+                }
+                else
+                {
+                    key = GetKey(income.Created);
+                }
+
                 if (monthlyItems.ContainsKey(key))
                 {
-                    monthlyItems[key].TotalIncomes += income.Amount;
+                    if (monthlyItems[key] != null)
+                    {
+                        monthlyItems[key].TotalIncomes += income.Amount;
+                    }
+                    else
+                    {
+                        monthlyItems[key] = new MonthlyItem { TotalIncomes = income.Amount };
+                    }
                 }
                 else
                 {
@@ -46,20 +62,39 @@ namespace HouseAccounting.Business.Services
                     {
                         Year = income.Created.Year,
                         Month = income.Created.Month,
-                        TotalIncomes = income.Amount
+                        TotalIncomes = income.Amount,
+                        Category = income.Category,
+                        Person = income.Person
                     };
                 }
             }
         }
 
-        private void AddExpenditures(IDictionary<string, MonthlyItem> monthlyItems, IEnumerable<Expenditure> expenditures)
+        private void AddExpenditures(IDictionary<string, MonthlyItem> monthlyItems, IEnumerable<Expenditure> expenditures,
+           bool useCategoryAndPerson = false)
         {
             foreach (var expenditure in expenditures)
             {
-                var key = GetKey(expenditure.Created);
+                string key = null;
+                if (useCategoryAndPerson)
+                {
+                    key = GetMonthlyKey(expenditure.Created, expenditure.Category, expenditure.Person);
+                }
+                else
+                {
+                    key = GetKey(expenditure.Created);
+                }
+
                 if (monthlyItems.ContainsKey(key))
                 {
-                    monthlyItems[key].TotalExpenditures += expenditure.Amount;
+                    if (monthlyItems[key] != null)
+                    {
+                        monthlyItems[key].TotalExpenditures += expenditure.Amount;
+                    }
+                    else
+                    {
+                        monthlyItems[key] = new MonthlyItem { TotalExpenditures = expenditure.Amount };
+                    }
                 }
                 else
                 {
@@ -67,15 +102,46 @@ namespace HouseAccounting.Business.Services
                     {
                         Year = expenditure.Created.Year,
                         Month = expenditure.Created.Month,
-                        TotalExpenditures = expenditure.Amount
+                        TotalExpenditures = expenditure.Amount,
+                        Category = expenditure.Category,
+                        Person = expenditure.Person
                     };
                 }
             }
         }
 
+        private string GetMonthlyKey(DateTime createdDate, Category category, Person person)
+        {
+            var key = GetKey(createdDate);
+
+            if (category != null)
+            {
+                key += category.Id;
+            }
+
+            if (person != null)
+            {
+                key += person.Id;
+            }
+
+            return key;
+        }
+
         private string GetKey(DateTime createdDate)
         {
             return createdDate.Year.ToString() + createdDate.Month;
+        }
+
+        public IEnumerable<MonthlyItem> GetMonthlyStatistics(int year, int month)
+        {
+            var monthlyItems = new Dictionary<string, MonthlyItem>();
+            var allIncomes = incomeRepository.FindByDate(year, month).OrderByDescending(expenditure => expenditure.Created);
+            var allExpenditures = expenditureRepository.FindByDate(year, month).OrderByDescending(expenditure => expenditure.Created);
+
+            AddIncomes(monthlyItems, allIncomes, useCategoryAndPerson: true);
+            AddExpenditures(monthlyItems, allExpenditures, useCategoryAndPerson: true);
+
+            return monthlyItems.Select(pair => pair.Value);
         }
     }
 }

@@ -148,6 +148,7 @@
     <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryDetailsViewModel.cs" />
     <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryEditViewModel.cs" />
     <Compile Include="Models\ExpenditureCategories\ExpenditureCategoryListViewModel.cs" />
+    <Compile Include="Models\Expenditures\ExpenditureMonthlyViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryCreateViewModel.cs" />
     <Compile Include="Models\IncomeCategories\IncomeCategoryDeleteViewModel.cs" />
@@ -246,6 +247,7 @@
     <Content Include="Views\Expenditure\ExpenditureEdit.cshtml" />
     <Content Include="Views\Expenditure\Index.cshtml" />
     <Content Include="Views\Shared\_QuickExpenditure.cshtml" />
+    <Content Include="Views\Expenditure\MonthlyStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

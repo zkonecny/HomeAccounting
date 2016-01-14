@@ -5,6 +5,7 @@ using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Business.Classes;
 using LiteDB;
+using System.Linq.Expressions;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
@@ -96,6 +97,59 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             }
 
             return categoryEntity;
+        }
+
+        public IEnumerable<Expenditure> FindByDate(int year, int month)
+        {
+            List<Expenditure> expenditures = new List<Expenditure>();
+
+            DateTime fromDate = new DateTime(year, month, 1);
+            DateTime endDate = fromDate.AddMonths(1).AddDays(-1);
+
+            Expression<Func<ExpenditureEntity, bool>> predicate = expenditureEntity
+                => (expenditureEntity.Created >= fromDate
+                && expenditureEntity.Created <= endDate);
+
+            var expenditureEntities = dbProvider.Find(predicate);
+
+            foreach (var expenditureEntity in expenditureEntities)
+            {
+                Expenditure expenditure = translator.TranslateTo<Expenditure>(expenditureEntity);
+                expenditure.Person = MapPerson(expenditureEntity.Person);
+                expenditure.Category = MapCategory(expenditureEntity.Category);
+                expenditures.Add(expenditure);
+            }
+
+            return expenditures;
+        }
+
+        public IEnumerable<Expenditure> Find(Expression<Func<Expenditure, bool>> predicate, int skip = 0, int limit = int.MaxValue)
+        {
+
+            //var y = AddBox(predicate);
+            //var a = y.Compile()(predicate)
+
+            //var expenditureEntities = dbProvider.Find<ExpenditureEntity>(predicate, skip, limit);
+            //var expenditure = translator.TranslateTo<Expenditure>(expenditureEntity);
+            //expenditure.Person = MapPerson(expenditureEntity.Person);
+            //expenditure.Category = MapCategory(expenditureEntity.Category);
+            //return expenditure;
+            return null;
+        }
+
+        static Expression<Func<TInput, object>> AddBox<TInput, TOutput>(Expression<Func<TInput, TOutput>> expression)
+        {
+            // Add the boxing operation, but get a weakly typed expression
+            Expression converted = Expression.Convert
+                 (expression.Body, typeof(object));
+            // Use Expression.Lambda to get back to strong typing
+            return Expression.Lambda<Func<TInput, object>>
+                 (converted, expression.Parameters);
+        }
+
+        public IEnumerable<Expenditure> Find<Expenditure>(Expression<Func<Expenditure, bool>> predicate, int skip = 0, int limit = int.MaxValue)
+        {
+            throw new NotImplementedException();
         }
     }
 }

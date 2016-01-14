@@ -148,5 +148,13 @@ namespace HouseAccounting.Web.Controllers
                 return View();
             }
         }
+
+        public ActionResult MonthlyStatistics()
+        {
+            ExpenditureMonthlyViewModel model = new ExpenditureMonthlyViewModel(personRepository, translator,
+                expenditureCategoryRepository, monthlyStatisticsService);
+            model.LoadViewModelData();
+            return View(model);
+        }
     }
 }
