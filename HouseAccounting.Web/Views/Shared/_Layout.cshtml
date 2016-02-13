@@ -25,6 +25,12 @@
                     <li>@Html.ActionLink("Příjmy", "Index", "Income")</li>
                     <li>@Html.ActionLink("Výdaje", "Index", "Expenditure")</li>
                     <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Šablony<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Šablony výdajů ", "Index", "IncomeTemplate")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Číselníky<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Osoby", "Index", "Person")</li>

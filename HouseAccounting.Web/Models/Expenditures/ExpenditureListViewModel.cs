@@ -15,6 +15,8 @@ namespace HouseAccounting.Web.Models.Expenditures
 
         public IEnumerable<ExpenditureDto> Expenditures { get; private set; }
 
+        public int SelectedMonth { get; set; }
+
         public ExpenditureListViewModel(
             IPersonRepository personRepository, 
             ITranslator translator,

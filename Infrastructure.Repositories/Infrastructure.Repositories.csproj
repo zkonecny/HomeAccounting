@@ -66,6 +66,8 @@
     <Compile Include="Entities\ExpenditureEntity.cs" />
     <Compile Include="Entities\IncomeCategoryEntity.cs" />
     <Compile Include="Entities\IncomeEntity.cs" />
+    <Compile Include="Entities\IncomeTemplate.cs" />
+    <Compile Include="Entities\IncomeTemplateItem.cs" />
     <Compile Include="Entities\PersonEntity.cs" />
     <Compile Include="Installers\RepositoriesInstaller.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />

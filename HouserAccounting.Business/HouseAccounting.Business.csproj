@@ -58,6 +58,8 @@
     <Compile Include="Classes\ExpenditureCategory.cs" />
     <Compile Include="Classes\Income.cs" />
     <Compile Include="Classes\IncomeCategory.cs" />
+    <Compile Include="Classes\IncomeTemplate.cs" />
+    <Compile Include="Classes\IncomeTemplateItem.cs" />
     <Compile Include="Classes\MonthlyItem.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Installers\BusinessInstaller.cs" />
