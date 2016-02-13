@@ -21,7 +21,10 @@
         </td>
         <td>
             <b>
-                @Html.DisplayFor(modelItem => income.AmountInCurrency)
+                @{
+                    var amount = income.Amount.ToCurrencyString();
+                    @Html.DisplayFor(modelItem => amount);
+                }
             </b>
         </td>
         <td>

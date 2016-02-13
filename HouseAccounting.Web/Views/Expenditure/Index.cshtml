@@ -26,7 +26,10 @@
                     </td>
                     <td>
                         <b>
-                            @Html.DisplayFor(modelItem => expenditure.Amount.ToCurrencyString())
+                            @{
+                                var totalExpenditures = expenditure.Amount.ToCurrencyString();
+                                @Html.DisplayFor(modelItem => totalExpenditures);
+                            }
                         </b>
                     </td>
                     <td>
@@ -47,10 +50,8 @@
                         @Html.ActionLink("Smazat", "Delete", new { id = expenditure.Id })
                     </td>
                 </tr>
-            }
+                                }
 
         </table>
     </div>
 </div>
-
-
