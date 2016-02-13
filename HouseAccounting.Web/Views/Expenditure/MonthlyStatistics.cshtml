@@ -5,7 +5,7 @@
     <h3>Aktuální měsíční přehled</h3>
 </div>
 <div class="panel-body">
-    <h4>Příjmy</h4>
+    <h4>Příjmy: @Model.TotalMonthlyIncomes.ToCurrencyString()</h4>
     <table class="table">
         <tr>
             <th>Rok</th>
@@ -25,7 +25,10 @@
                     @Html.DisplayFor(modelItem => item.Month)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalIncomesInCurrency)
+                    @{
+                        var totalIncomes = item.TotalIncomes.ToCurrencyString();
+                        @Html.DisplayFor(modelItem => totalIncomes);
+                    }
                 </td>
                 <td>
                     @if (item.Category != null)
@@ -40,10 +43,10 @@
                     }
                 </td>
             </tr>
-        }
+                        }
     </table>
 
-    <h4>Výdaje</h4>
+    <h4>Výdaje: @Model.TotalMonthlyExpenditures.ToCurrencyString()</h4>
     <table class="table">
         <tr>
             <th>Rok</th>
@@ -63,7 +66,10 @@
                     @Html.DisplayFor(modelItem => item.Month)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalExpendituresInCurrency)
+                    @{
+                        var totalExpenditures = item.TotalExpenditures.ToCurrencyString();
+                        @Html.DisplayFor(modelItem => totalExpenditures);
+                    }
                 </td>
                 <td>
                     @if (item.Category != null)
@@ -78,8 +84,6 @@
                     }
                 </td>
             </tr>
-        }
+                        }
     </table>
 </div>
-
-

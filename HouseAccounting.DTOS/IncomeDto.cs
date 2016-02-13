@@ -25,8 +25,6 @@ namespace HouseAccounting.DTOS
         [Display(Name = "Částka")]
         public int Amount { get; set; }
 
-        public string AmountInCurrency { get { return Amount.ToCurrencyString(); } }
-
         [Required]
         [Display(Name = "Kategorie")]
         public CategoryDto Category { get; set; }

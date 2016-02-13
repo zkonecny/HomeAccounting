@@ -1,5 +1,4 @@
-﻿@using HouseAccounting.DTOS;
-@model HouseAccounting.Web.Models.Home.HomeIndexViewModel
+﻿@model HouseAccounting.Web.Models.Home.HomeIndexViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -36,16 +35,24 @@
                     @Html.DisplayFor(modelItem => item.Month)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalIncomesInCurrency)
+                    @{
+                        var totalIncomes = item.TotalIncomes.ToCurrencyString();
+                        @Html.DisplayFor(modelItem => totalIncomes);
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalExpendituresInCurrency)
+                    @{
+                        var totalExpenditures = item.TotalExpenditures.ToCurrencyString();
+                        @Html.DisplayFor(modelItem => totalExpenditures);
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RemainderInCurrency)
+                    @{
+                        var remainder = item.Remainder.ToCurrencyString();
+                        @Html.DisplayFor(modelItem => remainder);
+                    }
                 </td>
             </tr>
-        }
+                        }
     </table>
 </div>
-

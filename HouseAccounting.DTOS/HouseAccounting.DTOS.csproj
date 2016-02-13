@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryDto.cs" />
-    <Compile Include="DtoExtensions.cs" />
     <Compile Include="ExpenditureDto.cs" />
     <Compile Include="IncomeDto.cs" />
     <Compile Include="MonthlyItemDto.cs" />

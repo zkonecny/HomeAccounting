@@ -14,15 +14,9 @@ namespace HouseAccounting.DTOS
 
         public int TotalIncomes { get; set; }
 
-        public string TotalIncomesInCurrency { get { return TotalIncomes.ToCurrencyString(); } }
-
         public int TotalExpenditures { get; set; }
 
-        public string TotalExpendituresInCurrency { get { return TotalExpenditures.ToCurrencyString(); } }
-
         public int Remainder { get { return TotalIncomes - TotalExpenditures; } }
-
-        public string RemainderInCurrency { get { return Remainder.ToCurrencyString(); } }
 
         public PersonDto Person { get; set; }
 

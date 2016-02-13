@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace HouseAccounting.DTOS
+namespace HouseAccounting.Web
 {
-    public static class DtoExtensions
+    public static class ViewExtensions
     {
         public static string ToCurrencyString(this int value)
         {

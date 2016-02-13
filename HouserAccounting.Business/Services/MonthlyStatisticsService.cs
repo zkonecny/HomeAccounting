@@ -132,16 +132,22 @@ namespace HouseAccounting.Business.Services
             return createdDate.Year.ToString() + createdDate.Month;
         }
 
-        public IEnumerable<MonthlyItem> GetMonthlyStatistics(int year, int month)
+        public MonthlyData GetMonthlyStatistics(int year, int month)
         {
+            var monthlyData = new MonthlyData();
             var monthlyItems = new Dictionary<string, MonthlyItem>();
             var allIncomes = incomeRepository.FindByDate(year, month).OrderByDescending(expenditure => expenditure.Created);
             var allExpenditures = expenditureRepository.FindByDate(year, month).OrderByDescending(expenditure => expenditure.Created);
 
+            monthlyData.TotalIncomes = allIncomes.Sum(income => income.Amount);
+            monthlyData.TotalExpenditures = allExpenditures.Sum(expenditure => expenditure.Amount);
+
             AddIncomes(monthlyItems, allIncomes, useCategoryAndPerson: true);
             AddExpenditures(monthlyItems, allExpenditures, useCategoryAndPerson: true);
 
-            return monthlyItems.Select(pair => pair.Value);
+            monthlyData.MonthlyItems = monthlyItems.Select(pair => pair.Value);
+
+            return monthlyData;
         }
     }
 }

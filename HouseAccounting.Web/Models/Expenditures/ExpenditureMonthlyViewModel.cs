@@ -29,6 +29,10 @@ namespace HouseAccounting.Web.Models.Expenditures
 
         public IEnumerable<MonthlyItemDto> MonthlyItems { get; private set; }
 
+        public int TotalMonthlyIncomes { get; private set; }
+
+        public int TotalMonthlyExpenditures { get; private set; }
+
         protected override void SetupViewData()
         {
             base.SetupViewData();
@@ -45,16 +49,19 @@ namespace HouseAccounting.Web.Models.Expenditures
             var year = DateTime.Now.Year;
             var month = DateTime.Now.Month;
 
-            var monthlyItems = monthlyStatisticsService.GetMonthlyStatistics(year, month);
+            var monthlyData = monthlyStatisticsService.GetMonthlyStatistics(year, month);
 
             var monthlyItemsDto = new List<MonthlyItemDto>();
-            foreach (var item in monthlyItems)
+            foreach (var item in monthlyData.MonthlyItems)
             {
                 var monthlyItemDto = translator.TranslateTo<MonthlyItemDto>(item);
                 monthlyItemsDto.Add(monthlyItemDto);
             }
 
             MonthlyItems = monthlyItemsDto;
+
+            TotalMonthlyIncomes = monthlyData.TotalIncomes;
+            TotalMonthlyExpenditures = monthlyData.TotalExpenditures;
         }
     }
 }

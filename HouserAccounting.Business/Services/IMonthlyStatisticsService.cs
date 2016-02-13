@@ -7,6 +7,6 @@ namespace HouseAccounting.Business.Services
     {
         IEnumerable<MonthlyItem> GetAllMonthlyStatistics();
 
-        IEnumerable<MonthlyItem> GetMonthlyStatistics(int year, int month);
+        MonthlyData GetMonthlyStatistics(int year, int month);
     }
 }
