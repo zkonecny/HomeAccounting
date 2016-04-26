@@ -11,5 +11,10 @@ namespace HouseAccounting.Web
         {
             return value.ToString("C0");
         }
+
+        public static string ToDate(this DateTime value)
+        {
+            return value.ToShortDateString();
+        }
     }
 }

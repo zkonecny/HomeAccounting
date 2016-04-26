@@ -14,10 +14,6 @@ namespace HouseAccounting.DTOS
         public DateTime Created { get; set; }
 
         [Required]
-        [Display(Name = "Datum")]
-        public string CreatedShortDate { get { return Created.ToShortDateString(); } }
-
-        [Required]
         [Display(Name = "Popis")]
         public string Description { get; set; }
 

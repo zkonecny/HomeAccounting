@@ -117,11 +117,13 @@ namespace HouseAccounting.Business.Services
             if (category != null)
             {
                 key += category.Id;
+                key += category.Created.Ticks.ToString();
             }
 
             if (person != null)
             {
                 key += person.Id;
+                key += person.Created.Ticks.ToString();
             }
 
             return key;

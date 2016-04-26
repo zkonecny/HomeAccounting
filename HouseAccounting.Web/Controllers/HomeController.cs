@@ -2,6 +2,7 @@
 using HouseAccounting.DTO.Translators;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Home;
+using System.Diagnostics;
 using System.Web.Mvc;
 
 namespace HouseAccounting.Web.Controllers
@@ -24,9 +25,12 @@ namespace HouseAccounting.Web.Controllers
 
         public ActionResult Index()
         {
+            Stopwatch w = new Stopwatch();
+            w.Start();
             HomeIndexViewModel model = new HomeIndexViewModel(personRepository, translator,
                 expenditureCategoryRepository, monthlyStatisticsService);
             model.LoadViewModelData();
+            w.Stop();
             return View(model);
         }
 

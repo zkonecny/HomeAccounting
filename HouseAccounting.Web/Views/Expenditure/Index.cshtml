@@ -22,7 +22,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => expenditure.CreatedShortDate)
+                        @{
+                            var created = expenditure.Created.ToShortDateString();
+                            @Html.DisplayFor(modelItem => created);
+                        }
                     </td>
                     <td>
                         <b>

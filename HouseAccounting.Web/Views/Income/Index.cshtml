@@ -14,37 +14,41 @@
         <th>Kategorie</th>
     </tr>
 
-@foreach (var income in Model.Incomes) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => income.CreatedShortDate)
-        </td>
-        <td>
-            <b>
+    @foreach (var income in Model.Incomes)
+    {
+        <tr>
+            <td>
                 @{
-                    var amount = income.Amount.ToCurrencyString();
-                    @Html.DisplayFor(modelItem => amount);
+                    var created = income.Created.ToShortDateString();
+                    @Html.DisplayFor(modelItem => created);
                 }
-            </b>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => income.Description)
-        </td>
-        <td>
-            @if (income.Person != null)
-            {
-                @Html.DisplayFor(modelItem => income.Person.FullName)
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => income.Category.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Editovat", "Edit", new { id= income.Id }) |
-            @Html.ActionLink("Detail", "Details", new { id= income.Id }) |
-            @Html.ActionLink("Smazat", "Delete", new { id= income.Id })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                <b>
+                    @{
+                        var amount = income.Amount.ToCurrencyString();
+                        @Html.DisplayFor(modelItem => amount);
+                    }
+                </b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => income.Description)
+            </td>
+            <td>
+                @if (income.Person != null)
+                {
+                    @Html.DisplayFor(modelItem => income.Person.FullName)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => income.Category.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Editovat", "Edit", new { id = income.Id }) |
+                @Html.ActionLink("Detail", "Details", new { id = income.Id }) |
+                @Html.ActionLink("Smazat", "Delete", new { id = income.Id })
+            </td>
+        </tr>
+                        }
 
 </table>

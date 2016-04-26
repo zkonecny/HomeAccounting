@@ -17,15 +17,15 @@ namespace HouseAccounting.Infrastructure.Repositories.Installers
                 .ImplementedBy<DbProvider>().LifestylePerWebRequest());
 
             container.Register(Component.For(typeof(IPersonRepository))
-                .ImplementedBy(typeof(PersonRepository)).LifestylePerWebRequest());
+                .ImplementedBy(typeof(PersonRepository)));
             container.Register(Component.For(typeof(IIncomeCategoryRepository))
-                .ImplementedBy(typeof(IncomeCategoryRepository)).LifestylePerWebRequest());
+                .ImplementedBy(typeof(IncomeCategoryRepository)));
             container.Register(Component.For(typeof(IExpenditureCategoryRepository))
-                .ImplementedBy(typeof(ExpenditureCategoryRepository)).LifestylePerWebRequest());
+                .ImplementedBy(typeof(ExpenditureCategoryRepository)));
             container.Register(Component.For(typeof(IIncomeRepository))
-                .ImplementedBy(typeof(IncomeRepository)).LifestylePerWebRequest());
+                .ImplementedBy(typeof(IncomeRepository)));
             container.Register(Component.For(typeof(IExpenditureRepository))
-                .ImplementedBy(typeof(ExpenditureRepository)).LifestylePerWebRequest());
+                .ImplementedBy(typeof(CachedExpenditureRepository)));
 
             container.Register(Component.For(typeof(IEntityTranslator))
                 .ImplementedBy(typeof(EntityTranslator)).LifestyleSingleton());

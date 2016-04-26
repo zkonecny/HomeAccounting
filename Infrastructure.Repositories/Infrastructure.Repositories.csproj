@@ -72,6 +72,7 @@
     <Compile Include="Installers\RepositoriesInstaller.cs" />
     <Compile Include="Interfaces\IDbProvider.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\CachedExpenditureRepository.cs" />
     <Compile Include="Repositories\ExpenditureCategoryRepository.cs" />
     <Compile Include="Repositories\ExpenditureRepository.cs" />
     <Compile Include="Repositories\IncomeRepository.cs" />

@@ -9,8 +9,8 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
     public abstract class BaseRepository
     {
-        private readonly IDbProvider dbProvider;
-        private readonly IEntityTranslator translator;
+        protected readonly IDbProvider dbProvider;
+        protected readonly IEntityTranslator translator;
 
         protected BaseRepository(IDbProvider dbProvider, IEntityTranslator translator)
         {

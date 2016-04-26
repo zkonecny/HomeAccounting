@@ -11,17 +11,12 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
     public class ExpenditureRepository : BaseRepository, IExpenditureRepository
     {
-        private readonly IDbProvider dbProvider;
-        private readonly IEntityTranslator translator;
-
         public ExpenditureRepository(IDbProvider dbProvider, IEntityTranslator translator)
             : base(dbProvider, translator)
         {
-            this.dbProvider = dbProvider;
-            this.translator = translator;
         }
 
-        public IEnumerable<Expenditure> GetAll()
+        public virtual IEnumerable<Expenditure> GetAll()
         {
             List<Expenditure> expenditures = new List<Expenditure>();
 

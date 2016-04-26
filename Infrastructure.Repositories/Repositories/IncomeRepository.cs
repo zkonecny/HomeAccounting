@@ -94,6 +94,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
         public void Update(Income income)
         {
             var incomeEntity = dbProvider.FindById<IncomeEntity>(income.Id);
+            incomeEntity.Created = income.Created;
             incomeEntity.Amount = income.Amount;
             incomeEntity.Description = income.Description;
             incomeEntity.Modified = income.Modified;
