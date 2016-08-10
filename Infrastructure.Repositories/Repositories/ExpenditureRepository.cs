@@ -6,6 +6,7 @@ using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Business.Classes;
 using LiteDB;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
@@ -99,7 +100,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             List<Expenditure> expenditures = new List<Expenditure>();
 
             DateTime fromDate = new DateTime(year, month, 1);
-            DateTime endDate = fromDate.AddMonths(1).AddDays(-1);
+            DateTime endDate = fromDate.AddMonths(1).AddDays(-1).AddHours(23).AddMinutes(59);
 
             Expression<Func<ExpenditureEntity, bool>> predicate = expenditureEntity
                 => (expenditureEntity.Created >= fromDate
@@ -115,7 +116,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
                 expenditures.Add(expenditure);
             }
 
-            return expenditures;
+            return expenditures.ToList();
         }
 
         public IEnumerable<Expenditure> Find(Expression<Func<Expenditure, bool>> predicate, int skip = 0, int limit = int.MaxValue)
