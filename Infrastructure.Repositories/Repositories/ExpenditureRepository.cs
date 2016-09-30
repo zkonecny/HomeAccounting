@@ -100,7 +100,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             List<Expenditure> expenditures = new List<Expenditure>();
 
             DateTime fromDate = new DateTime(year, month, 1);
-            DateTime endDate = fromDate.AddMonths(1).AddDays(-1).AddHours(23).AddMinutes(59);
+            DateTime endDate = fromDate.AddMonths(1).Subtract(TimeSpan.FromSeconds(1));
 
             Expression<Func<ExpenditureEntity, bool>> predicate = expenditureEntity
                 => (expenditureEntity.Created >= fromDate

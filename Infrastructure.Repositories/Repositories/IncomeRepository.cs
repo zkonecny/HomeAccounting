@@ -64,7 +64,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             List<Income> incomes = new List<Income>();
 
             DateTime fromDate = new DateTime(year, month, 1);
-            DateTime endDate = fromDate.AddMonths(1).AddDays(-1);
+            DateTime endDate = fromDate.AddMonths(1).Subtract(TimeSpan.FromSeconds(1));
 
             Expression<Func<IncomeEntity, bool>> predicate = incomeEntity
                 => (incomeEntity.Created >= fromDate
