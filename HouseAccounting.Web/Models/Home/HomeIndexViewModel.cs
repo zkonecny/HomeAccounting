@@ -31,9 +31,9 @@ namespace HouseAccounting.Web.Models.Home
 
         public IEnumerable<MonthlyItemDto> MonthlyItems { get; private set; }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             LoadData();
         }
 

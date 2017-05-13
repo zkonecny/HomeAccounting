@@ -25,9 +25,9 @@ namespace HouseAccounting.Web.Models.Incomes
             this.incomeRepository = incomeRepository;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             LoadData();
         }
 

@@ -11,14 +11,9 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
     public class ExpenditureCategoryRepository : BaseRepository, IExpenditureCategoryRepository
     {
-        private readonly IDbProvider dbProvider;
-        private readonly IEntityTranslator translator;
-
         public ExpenditureCategoryRepository(IDbProvider dbProvider, IEntityTranslator translator)
             : base(dbProvider, translator)
         {
-            this.dbProvider = dbProvider;
-            this.translator = translator;
         }
 
         public IEnumerable<ExpenditureCategory> GetAll()
@@ -43,7 +38,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             var categoryEntity = dbProvider.FindById<ExpenditureCategoryEntity>(id);
             var category = translator.TranslateTo<ExpenditureCategory>(categoryEntity);
             category.Person = MapPerson(categoryEntity.Person);
-            
+
             return category;
         }
 

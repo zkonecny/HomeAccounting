@@ -19,9 +19,9 @@ namespace HouseAccounting.Web.Models.ExpenditureCategories
             this.translator = translator;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             LoadData();
         }
 

@@ -8,15 +8,11 @@ using HouseAccounting.Business.Classes;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : BaseRepository, IPersonRepository
     {
-        private readonly IDbProvider dbProvider;
-        private readonly IEntityTranslator translator;
-
         public PersonRepository(IDbProvider dbProvider, IEntityTranslator translator)
+            : base(dbProvider, translator)
         {
-            this.dbProvider = dbProvider;
-            this.translator = translator;
         }
 
         public IEnumerable<Person> GetAll()

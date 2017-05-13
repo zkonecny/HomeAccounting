@@ -31,9 +31,9 @@ namespace HouseAccounting.Web.Models.Expenditures
             this.expenditureCategoryRepository = expenditureCategoryRepository;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             PageTitle = Title;
             var persons = personRepository.GetAll();
             var personList = persons.Select(person => translator.TranslateTo<PersonDto>(person)).ToList();

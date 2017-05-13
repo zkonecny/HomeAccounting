@@ -11,14 +11,9 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
     public class IncomeCategoryRepository : BaseRepository, IIncomeCategoryRepository
     {
-        private readonly IDbProvider dbProvider;
-        private readonly IEntityTranslator translator;
-
         public IncomeCategoryRepository(IDbProvider dbProvider, IEntityTranslator translator)
             : base(dbProvider, translator)
         {
-            this.dbProvider = dbProvider;
-            this.translator = translator;
         }
 
         public IEnumerable<IncomeCategory> GetAll()

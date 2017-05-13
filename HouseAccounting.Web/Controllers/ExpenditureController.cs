@@ -30,11 +30,11 @@ namespace HouseAccounting.Web.Controllers
             this.monthlyStatisticsService = monthlyStatisticsService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             ExpenditureListViewModel model = new ExpenditureListViewModel(personRepository, translator,
                 expenditureRepository, expenditureCategoryRepository, monthlyStatisticsService);
-            model.LoadViewModelData();
+            model.LoadViewModelData(page);
             return View(model);
         }
 

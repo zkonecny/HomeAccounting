@@ -25,9 +25,9 @@ namespace HouseAccounting.Web.Models.Expenditures
             this.translator = translator;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             PageTitle = Title;
             var expenditure = expenditureRepository.FindById(id);
             Expenditure = this.translator.TranslateTo<ExpenditureDto>(expenditure);

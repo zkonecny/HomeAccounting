@@ -28,9 +28,9 @@ namespace HouseAccounting.Web.Models.Persons
             this.translator = translator;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             PageTitle = Title;
             var person = repository.FindById(id);
             Person = translator.TranslateTo<PersonDto>(person);

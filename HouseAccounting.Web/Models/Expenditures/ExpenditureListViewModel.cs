@@ -29,18 +29,22 @@ namespace HouseAccounting.Web.Models.Expenditures
         }
        
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
-            LoadData();
+            base.SetupViewData(page);
+            LoadData(page);
         }
 
-        private void LoadData()
+        private void LoadData(int page)
         {
             PageTitle = Title;
 
             var expenditures = expenditureRepository.GetAll().OrderByDescending(expenditure => expenditure.Created);
-            Expenditures = translator.TranslateTo<IEnumerable<ExpenditureDto>>(expenditures);
+            TotalItemCount = expenditures.Count();
+            PageNumber = page;
+            var skip = (page - 1) * PageSize;
+            var pagedExpenditures = expenditures.Skip(skip).Take(PageSize).ToList();
+            Expenditures = translator.TranslateTo<IEnumerable<ExpenditureDto>>(pagedExpenditures);
         }
     }
 }

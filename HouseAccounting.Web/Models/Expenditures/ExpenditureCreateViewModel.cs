@@ -46,9 +46,9 @@ namespace HouseAccounting.Web.Models.Expenditures
             Categories = new List<CategoryDto>();
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             PageTitle = Title;
             if (SelectedPersonId == 0 && SelectedCategoryId == 0)
             {

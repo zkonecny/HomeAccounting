@@ -25,9 +25,9 @@ namespace HouseAccounting.Web.Models.IncomeCategories
             this.translator = translator;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             PageTitle = Title;
             var category = repository.FindById(id);
             Category = translator.TranslateTo<CategoryDto>(category);

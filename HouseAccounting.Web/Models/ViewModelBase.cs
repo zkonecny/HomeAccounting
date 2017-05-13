@@ -1,7 +1,12 @@
-﻿namespace HouseAccounting.Web.Models
+﻿using System;
+using System.Configuration;
+
+namespace HouseAccounting.Web.Models
 {
     public abstract class ViewModelBase
     {
+        static int pageSize;
+
         protected ViewModelBase()
         {
             IsViewModelLoaded = false;
@@ -11,18 +16,35 @@
 
         public bool IsViewModelLoaded { get; set; }
 
-        public void LoadViewModelData()
+        public int PageSize
+        {
+            get
+            {
+                if (pageSize == 0)
+                {
+                    pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["pageSize"]);
+                }
+
+                return pageSize;
+            }
+        }
+
+        public int PageNumber { get; protected set; }
+
+        public int TotalItemCount { get; protected set; }
+
+        public void LoadViewModelData(int page = 1)
         {
             if (IsViewModelLoaded)
             {
                 return;
             }
 
-            SetupViewData();
+            SetupViewData(page);
             IsViewModelLoaded = true;
         }
 
-        protected virtual void SetupViewData()
+        protected virtual void SetupViewData(int page)
         {
         }
     }

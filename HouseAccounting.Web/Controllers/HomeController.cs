@@ -25,12 +25,9 @@ namespace HouseAccounting.Web.Controllers
 
         public ActionResult Index()
         {
-            Stopwatch w = new Stopwatch();
-            w.Start();
             HomeIndexViewModel model = new HomeIndexViewModel(personRepository, translator,
                 expenditureCategoryRepository, monthlyStatisticsService);
             model.LoadViewModelData();
-            w.Stop();
             return View(model);
         }
 

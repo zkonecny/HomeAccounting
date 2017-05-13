@@ -25,9 +25,9 @@ namespace HouseAccounting.Web.Models.Incomes
             this.translator = translator;
         }
 
-        protected override void SetupViewData()
+        protected override void SetupViewData(int page)
         {
-            base.SetupViewData();
+            base.SetupViewData(page);
             PageTitle = Title;
             var income = incomeRepository.FindById(id);
             Income = this.translator.TranslateTo<IncomeDto>(income);

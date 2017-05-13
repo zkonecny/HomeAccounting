@@ -1,4 +1,5 @@
 ﻿@model HouseAccounting.Web.Models.Expenditures.ExpenditureListViewModel
+@using MvcPaging
 
 <h2>Výdaje</h2>
 
@@ -57,4 +58,32 @@
 
         </table>
     </div>
+</div>
+<div class="pager">
+    
+
+@Html.Raw(Ajax.Pager(
+
+       new Options
+
+       {
+           PageSize = Model.PageSize,
+           TotalItemCount = Model.TotalItemCount,
+           CurrentPage = Model.PageNumber,
+           ItemTexts = new ItemTexts() { Next = "Další", Previous = "Předchozí", Page = "", First = "První", Last = "Poslední" },
+           ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
+           TooltipTitles = new TooltipTitles() { Next = "Další strana", Previous = "Předchozí strana", Page = "Jít na stranu {0}.", First = "Jít na první stranu", Last = "Jít na poslední stranu" },
+           Size = Size.normal,
+           Alignment = Alignment.centered,
+           IsShowControls = true,
+           IsShowFirstLast = true
+       },
+       new AjaxOptions
+       {
+           UpdateTargetId = "grid-list",
+           OnBegin = "beginPaging",
+           OnSuccess = "successPaging",
+           OnFailure = "failurePaging"
+       }, new { controller = "Expenditure", action = "Index" }))
+
 </div>

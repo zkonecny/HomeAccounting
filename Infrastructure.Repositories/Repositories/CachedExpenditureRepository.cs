@@ -27,8 +27,6 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
 
         public override IEnumerable<Expenditure> GetAll()
         {
-            Stopwatch w = new Stopwatch();
-            w.Start();
             List<Expenditure> expenditures = new List<Expenditure>();
 
             var entities = dbProvider.GetAll<ExpenditureEntity>();
@@ -40,7 +38,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
                 expenditure.Category = GetCachedExpenditureCategory(expenditureEntity.Category);
                 expenditures.Add(expenditure);
             }
-            w.Stop();
+    
             return expenditures;
         }
 
