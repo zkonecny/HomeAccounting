@@ -34,7 +34,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return incomes;
         }
 
-        protected IncomeCategory MapCategory(DbRef<IncomeCategoryEntity> categoryEntity)
+        protected IncomeCategory MapCategory(IncomeCategoryEntity categoryEntity)
         {
             if (categoryEntity != null)
             {
@@ -106,15 +106,14 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Delete(entity);
         }
 
-        private DbRef<IncomeCategoryEntity> UpdateCategory(Category category)
+        private IncomeCategoryEntity UpdateCategory(Category category)
         {
-            DbRef<IncomeCategoryEntity> categoryEntity = null;
+           IncomeCategoryEntity categoryEntity = null;
 
             if (category != null)
             {
-                var entity = dbProvider.FindById<ExpenditureCategoryEntity>(category.Id);
-                var categories = dbProvider.GetCollection<IncomeCategoryEntity>(typeof(IncomeCategoryEntity));
-                categoryEntity = new DbRef<IncomeCategoryEntity>(categories, entity.Id);
+                var entity = dbProvider.FindById<IncomeCategoryEntity>(category.Id);
+                categoryEntity = entity;
             }
             else
             {

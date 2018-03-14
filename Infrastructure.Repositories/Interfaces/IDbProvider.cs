@@ -11,11 +11,11 @@ namespace HouseAccounting.Infrastructure.Repositories.Interfaces
     {
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : BaseEntity, new();
 
-        IEnumerable<TEntity> GetAll<TEntity>(params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new();
+        IEnumerable<TEntity> GetAll<TEntity>(params TEntity[] includes) where TEntity : BaseEntity, new();
 
         TEntity FindById<TEntity>(int id) where TEntity : BaseEntity, new();
 
-        TEntity FindById<TEntity>(int id, params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new();
+        TEntity FindById<TEntity>(int id, params TEntity[] includes) where TEntity : BaseEntity, new();
 
         IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate, int skip = 0, int limit = int.MaxValue)
             where TEntity : BaseEntity, new();

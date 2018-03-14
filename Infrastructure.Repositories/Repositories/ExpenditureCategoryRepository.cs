@@ -50,7 +50,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             {
                 var person = dbProvider.FindById<PersonEntity>(category.Person.Id);
                 var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                categoryEntity.Person = new DbRef<PersonEntity>(persons, person.Id);
+                categoryEntity.Person = person;
             }
 
             dbProvider.Insert(categoryEntity);
@@ -65,8 +65,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             if (category.Person != null)
             {
                 var person = dbProvider.FindById<PersonEntity>(category.Person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                entity.Person = new DbRef<PersonEntity>(persons, person.Id);
+                entity.Person = person;
             }
             else
             {

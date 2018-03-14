@@ -9,7 +9,6 @@ namespace HouseAccounting.Infrastructure.Repositories.Entities
 {
     public class IncomeTemplateEntity : BaseEntity
     {
-        [BsonIndex]
         public string Name { get; set; }
 
         public string Description { get; set; }

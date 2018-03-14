@@ -18,7 +18,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             this.translator = translator;
         }
 
-        protected Person MapPerson(DbRef<PersonEntity> personEntity)
+        protected Person MapPerson(PersonEntity personEntity)
         {
             if (personEntity != null)
             {
@@ -29,15 +29,14 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return null;
         }
 
-        protected DbRef<PersonEntity> UpdatePersonEntity(Person person)
+        protected PersonEntity UpdatePersonEntity(Person person)
         {
-            DbRef<PersonEntity> personEntity = null;
+            PersonEntity personEntity = null;
 
             if (person != null)
             {
                 var entity = dbProvider.FindById<PersonEntity>(person.Id);
-                var persons = dbProvider.GetCollection<PersonEntity>(typeof(PersonEntity));
-                personEntity = new DbRef<PersonEntity>(persons, entity.Id);
+                personEntity = entity;
             }
 
             return personEntity;

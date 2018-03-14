@@ -4,7 +4,6 @@ using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Business.Classes;
-using LiteDB;
 using System.Linq.Expressions;
 using System.Linq;
 
@@ -35,7 +34,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return expenditures;
         }
 
-        protected ExpenditureCategory MapCategory(DbRef<ExpenditureCategoryEntity> categoryEntity)
+        protected ExpenditureCategory MapCategory(ExpenditureCategoryEntity categoryEntity)
         {
             if (categoryEntity != null)
             {
@@ -82,14 +81,13 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             dbProvider.Delete(entity);
         }
 
-        private DbRef<ExpenditureCategoryEntity> UpdateCategory(Category category)
+        private ExpenditureCategoryEntity UpdateCategory(Category category)
         {
-            DbRef<ExpenditureCategoryEntity> categoryEntity = null;
+            ExpenditureCategoryEntity categoryEntity = null;
             if (category != null)
             {
                 var entity = dbProvider.FindById<ExpenditureCategoryEntity>(category.Id);
-                var categories = dbProvider.GetCollection<ExpenditureCategoryEntity>(typeof(ExpenditureCategoryEntity));
-                categoryEntity = new DbRef<ExpenditureCategoryEntity>(categories, entity.Id);
+                categoryEntity = entity;
             }
 
             return categoryEntity;

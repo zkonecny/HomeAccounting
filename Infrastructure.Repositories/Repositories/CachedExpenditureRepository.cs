@@ -42,7 +42,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return expenditures;
         }
 
-        private Person GetCachedPerson(DbRef<PersonEntity> personEntity)
+        private Person GetCachedPerson(PersonEntity personEntity)
         {
             Person person = null;
             if (personEntity != null)
@@ -58,7 +58,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Repositories
             return person;
         }
 
-        private ExpenditureCategory GetCachedExpenditureCategory(DbRef<ExpenditureCategoryEntity> expenditureCategoryEntity)
+        private ExpenditureCategory GetCachedExpenditureCategory(ExpenditureCategoryEntity expenditureCategoryEntity)
         {
             ExpenditureCategory expenditureCategory = null;
             if (expenditureCategoryEntity != null)

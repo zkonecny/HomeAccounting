@@ -13,10 +13,10 @@ namespace HouseAccounting.Infrastructure.Repositories.Entities
 
         public string Description { get; set; }
 
-        [BsonIndex]
-        public DbRef<IncomeCategoryEntity> Category { get; set; }
+        [BsonRef(Collection = "IncomeCategoryEntity")]
+        public IncomeCategoryEntity Category { get; set; }
 
-        [BsonIndex]
-        public DbRef<PersonEntity> Person { get; set; }
+        [BsonRef(Collection = "PersonEntity")]
+        public PersonEntity Person { get; set; }
     }
 }

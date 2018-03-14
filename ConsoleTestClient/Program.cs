@@ -1,9 +1,4 @@
 ﻿using System;
-using HouseAccounting.Infrastructure.Repositories;
-using HouseAccounting.Infrastructure.Repositories.Interfaces;
-using HouseAccounting.Infrastructure.Repositories.Repositories;
-using HouseAccounting.Business.Classes;
-using HouseAccounting.Business.Repositories;
 
 namespace ConsoleTestClient
 {
@@ -11,7 +6,7 @@ namespace ConsoleTestClient
     {
         static void Main(string[] args)
         {
-            IDbProvider dbProvider = new DbProvider();
+            //IDbProvider dbProvider = new DbProvider();
 
             //IGenericRepository<Category> categoryRepository = new GenericRepository<Category>(dbProvider);
 

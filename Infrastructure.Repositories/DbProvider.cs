@@ -37,12 +37,11 @@ namespace HouseAccounting.Infrastructure.Repositories
             return GetAll<TEntity>(null);
         }
 
-        public IEnumerable<TEntity> GetAll<TEntity>(params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new()
+        public IEnumerable<TEntity> GetAll<TEntity>(params TEntity[] includes) where TEntity : BaseEntity, new()
         {
             using (var database = new LiteDatabase(ConnectionString))
             {
                 var collection = GetCollection<TEntity>(database, typeof(TEntity).Name);
-
                 AddIncludes(database, collection, includes);
 
                 return collection.FindAll().ToList();
@@ -54,7 +53,7 @@ namespace HouseAccounting.Infrastructure.Repositories
             return FindById<TEntity>(id, null);
         }
 
-        public TEntity FindById<TEntity>(int id, params DbRef<TEntity>[] includes) where TEntity : BaseEntity, new()
+        public TEntity FindById<TEntity>(int id, params TEntity[] includes) where TEntity : BaseEntity, new()
         {
             using (var database = new LiteDatabase(ConnectionString))
             {
@@ -133,14 +132,14 @@ namespace HouseAccounting.Infrastructure.Repositories
             return collection;
         }
 
-        private void AddIncludes<TEntity>(LiteDatabase database, LiteCollection<TEntity> collection, DbRef<TEntity>[] includes)
+        private void AddIncludes<TEntity>(LiteDatabase database, LiteCollection<TEntity> collection, TEntity[] includes)
             where TEntity : BaseEntity, new()
         {
             if (includes != null)
             {
                 foreach (var include in includes)
                 {
-                    collection.Include(x => include.Fetch(database));
+                    collection.Include(x => include);
                 }
             }
         }
