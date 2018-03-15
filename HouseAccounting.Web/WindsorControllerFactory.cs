@@ -12,7 +12,6 @@ namespace HouseAccounting.Web
         public WindsorControllerFactory(WindsorContainer container)
         {
             this.container = container;
-
         }
 
         public override void ReleaseController(IController controller)
