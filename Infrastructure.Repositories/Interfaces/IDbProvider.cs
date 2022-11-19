@@ -26,7 +26,7 @@ namespace HouseAccounting.Infrastructure.Repositories.Interfaces
 
         void Delete<TEntity>(TEntity entity) where TEntity : BaseEntity, new();
 
-        LiteCollection<TEntity> GetCollection<TEntity>(Type entityType)
+        ILiteCollection<TEntity> GetCollection<TEntity>(Type entityType)
             where TEntity : BaseEntity, new();
     }
 }

@@ -109,7 +109,7 @@ namespace HouseAccounting.Infrastructure.Repositories
             }
         }
 
-        public LiteCollection<TEntity> GetCollection<TEntity>(Type entityType) where TEntity : BaseEntity, new()
+        public ILiteCollection<TEntity> GetCollection<TEntity>(Type entityType) where TEntity : BaseEntity, new()
         {
             using (var database = new LiteDatabase(ConnectionString))
             {
@@ -118,21 +118,21 @@ namespace HouseAccounting.Infrastructure.Repositories
             }
         }
 
-        private LiteCollection<TEntity> GetCollection<TEntity>(LiteDatabase database, TEntity entity)
+        private ILiteCollection<TEntity> GetCollection<TEntity>(LiteDatabase database, TEntity entity)
             where TEntity : BaseEntity, new()
         {
             var collectionName = entity.GetType().Name;
             return GetCollection<TEntity>(database, collectionName);
         }
 
-        private LiteCollection<TEntity> GetCollection<TEntity>(LiteDatabase database, string collectionName)
+        private ILiteCollection<TEntity> GetCollection<TEntity>(LiteDatabase database, string collectionName)
             where TEntity : BaseEntity, new()
         {
             var collection = database.GetCollection<TEntity>(collectionName);
             return collection;
         }
 
-        private void AddIncludes<TEntity>(LiteDatabase database, LiteCollection<TEntity> collection, TEntity[] includes)
+        private void AddIncludes<TEntity>(LiteDatabase database, ILiteCollection<TEntity> collection, TEntity[] includes)
             where TEntity : BaseEntity, new()
         {
             if (includes != null)
