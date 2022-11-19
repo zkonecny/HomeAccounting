@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using HouseAccounting.DTO.Translators;
-using HouseAccounting.DTOS;
-using HouseAccounting.Infrastructure.Repositories;
-using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Persons;
 using HouseAccounting.Business.Classes;
-using HouseAccounting.Business.Repositories;
 
 namespace HouseAccounting.Web.Controllers
 {

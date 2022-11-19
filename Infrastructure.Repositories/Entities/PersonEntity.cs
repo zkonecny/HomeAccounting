@@ -1,6 +1,4 @@
-﻿using LiteDB;
-
-namespace HouseAccounting.Infrastructure.Repositories.Entities
+﻿namespace HouseAccounting.Infrastructure.Repositories.Entities
 {
     public class PersonEntity : BaseEntity
     {

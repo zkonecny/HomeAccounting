@@ -1,6 +1,4 @@
-﻿using System;
-using HouseAccounting.Business.Classes;
-using LiteDB;
+﻿using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories.Entities
 {

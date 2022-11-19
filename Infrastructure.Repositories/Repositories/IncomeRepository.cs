@@ -4,7 +4,6 @@ using HouseAccounting.Infrastructure.Repositories.Entities;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Business.Classes;
-using LiteDB;
 using System.Linq.Expressions;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories

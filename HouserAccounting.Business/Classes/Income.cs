@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HouseAccounting.Business.Classes
+﻿namespace HouseAccounting.Business.Classes
 {
     public class Income : DomainEntity
     {

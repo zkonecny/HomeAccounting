@@ -4,8 +4,6 @@ using HouseAccounting.DTOS;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace HouseAccounting.Web.Models.Expenditures
 {

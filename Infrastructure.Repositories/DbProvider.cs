@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using HouseAccounting.Infrastructure.Repositories.Entities;
-using LiteDB;
 using System.Linq.Expressions;
+using LiteDB;
 
 namespace HouseAccounting.Infrastructure.Repositories
 {

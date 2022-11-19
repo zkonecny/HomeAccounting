@@ -5,7 +5,6 @@ using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Infrastructure.Repositories.Translator;
-using HouseAccounting.Business.Repositories;
 
 namespace HouseAccounting.Infrastructure.Repositories.Installers
 {

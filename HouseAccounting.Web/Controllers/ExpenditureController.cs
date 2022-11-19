@@ -4,9 +4,6 @@ using HouseAccounting.Infrastructure.Repositories.Repositories;
 using HouseAccounting.Web.Models.Expenditures;
 using HouseAccounting.Business.Classes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HouseAccounting.Web.Controllers

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using HouseAccounting.Business.Classes;
 using HouseAccounting.Infrastructure.Repositories.Interfaces;
 using HouseAccounting.Infrastructure.Repositories.Mapper;
 using HouseAccounting.Infrastructure.Repositories.Entities;
-using LiteDB;
-using System.Diagnostics;
 
 namespace HouseAccounting.Infrastructure.Repositories.Repositories
 {
